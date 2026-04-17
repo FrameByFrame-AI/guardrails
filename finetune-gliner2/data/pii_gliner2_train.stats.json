@@ -1,0 +1,33 @@
+{
+  "per_dataset": {
+    "KDPII": {
+      "total": 41968,
+      "with_entities": 7227,
+      "safe": 34741
+    },
+    "synthetic_pii_finance_multilingual": {
+      "total": 23853,
+      "with_entities": 23853,
+      "safe": 0
+    },
+    "korean_rrn_synthetic": {
+      "total": 1000,
+      "with_entities": 1000,
+      "safe": 0
+    }
+  },
+  "total": 66821,
+  "label_counts": {
+    "person": 45405,
+    "address": 21569,
+    "phone": 6523,
+    "email": 6366,
+    "bank_account": 2756,
+    "id_number": 2294,
+    "date_of_birth": 2116,
+    "ssn": 1784,
+    "credit_card": 1606,
+    "passport": 804,
+    "driver_license": 763
+  }
+}

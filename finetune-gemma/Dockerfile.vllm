@@ -1,0 +1,28 @@
+FROM vllm/vllm-openai:nightly
+
+USER root
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    VLLM_ENABLE_CUDA_COMPATIBILITY=1
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        git \
+        ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+# DFlash repo for benchmark utilities / local package access.
+# Use --no-deps so we do not accidentally replace the vLLM build already in the base image.
+RUN git clone --depth 1 https://github.com/z-lab/dflash.git /opt/dflash && \
+    uv pip install --system --no-deps -e /opt/dflash
+
+# Upgrade transformers from source so new model types (Qwen3.5, Gemma4) are recognized.
+# Keep pandas (some vLLM modules require it).
+RUN pip install --upgrade git+https://github.com/huggingface/transformers.git && \
+    pip install pandas
+
+WORKDIR /workspace
+EXPOSE 8000

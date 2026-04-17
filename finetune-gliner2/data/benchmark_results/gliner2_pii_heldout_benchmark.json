@@ -1,0 +1,187 @@
+{
+  "KDPII": {
+    "dataset": "KDPII",
+    "total": 155,
+    "elapsed_sec": 9.9,
+    "ms_per_record": 64.0,
+    "binary": {
+      "tp": 7,
+      "fp": 16,
+      "tn": 113,
+      "fn": 19,
+      "accuracy": 0.7742,
+      "precision": 0.3043,
+      "recall": 0.2692,
+      "f1": 0.2857
+    },
+    "entity_level": {
+      "tp": 5,
+      "fp": 18,
+      "fn": 21,
+      "precision": 0.2174,
+      "recall": 0.1923,
+      "f1": 0.2041
+    },
+    "per_label": {
+      "address": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "bank_account": {
+        "tp": 1,
+        "fp": 3,
+        "fn": 2,
+        "precision": 0.25,
+        "recall": 0.3333
+      },
+      "credit_card": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "date_of_birth": {
+        "tp": 0,
+        "fp": 3,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "email": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "id_number": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "person": {
+        "tp": 0,
+        "fp": 10,
+        "fn": 9,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "phone": {
+        "tp": 1,
+        "fp": 1,
+        "fn": 5,
+        "precision": 0.5,
+        "recall": 0.1667
+      }
+    }
+  },
+  "synthetic_pii_finance": {
+    "dataset": "synthetic_pii_finance",
+    "total": 166,
+    "elapsed_sec": 69.6,
+    "ms_per_record": 419.4,
+    "binary": {
+      "tp": 19,
+      "fp": 0,
+      "tn": 0,
+      "fn": 147,
+      "accuracy": 0.1145,
+      "precision": 1.0,
+      "recall": 0.1145,
+      "f1": 0.2054
+    },
+    "entity_level": {
+      "tp": 58,
+      "fp": 46,
+      "fn": 481,
+      "precision": 0.5577,
+      "recall": 0.1076,
+      "f1": 0.1804
+    },
+    "per_label": {
+      "address": {
+        "tp": 10,
+        "fp": 2,
+        "fn": 143,
+        "precision": 0.8333,
+        "recall": 0.0654
+      },
+      "bank_account": {
+        "tp": 2,
+        "fp": 1,
+        "fn": 10,
+        "precision": 0.6667,
+        "recall": 0.1667
+      },
+      "credit_card": {
+        "tp": 1,
+        "fp": 4,
+        "fn": 5,
+        "precision": 0.2,
+        "recall": 0.1667
+      },
+      "date_of_birth": {
+        "tp": 1,
+        "fp": 8,
+        "fn": 11,
+        "precision": 0.1111,
+        "recall": 0.0833
+      },
+      "driver_license": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 5,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "email": {
+        "tp": 1,
+        "fp": 1,
+        "fn": 25,
+        "precision": 0.5,
+        "recall": 0.0385
+      },
+      "id_number": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 12,
+        "precision": 1.0,
+        "recall": 0.0769
+      },
+      "passport": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "person": {
+        "tp": 41,
+        "fp": 27,
+        "fn": 234,
+        "precision": 0.6029,
+        "recall": 0.1491
+      },
+      "phone": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 28,
+        "precision": 1.0,
+        "recall": 0.0345
+      },
+      "ssn": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 7,
+        "precision": 0.0,
+        "recall": 0.0
+      }
+    }
+  }
+}

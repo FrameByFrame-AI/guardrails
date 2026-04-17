@@ -1,0 +1,1000 @@
+{"query": "최민수의 주민번호는 870508-2218196입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "870508-2218196", "label": "ssn"}, {"form": "최민수", "label": "person"}]}
+{"query": "가입 시 주민번호 530417-1838637을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "530417-1838637", "label": "ssn"}]}
+{"query": "장나영의 주민등록번호는 950125-2654235이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "950125-2654235", "label": "ssn"}, {"form": "장나영", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 460628-3940781", "blocked": true, "type": "pii-filter", "answer": [{"form": "460628-3940781", "label": "ssn"}]}
+{"query": "서승훈의 주민등록번호는 750527-3931034이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "750527-3931034", "label": "ssn"}, {"form": "서승훈", "label": "person"}]}
+{"query": "윤혜진, 주민번호 460709-4525534.", "blocked": true, "type": "pii-filter", "answer": [{"form": "460709-4525534", "label": "ssn"}, {"form": "윤혜진", "label": "person"}]}
+{"query": "주민등록번호(800318-2276483)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "800318-2276483", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 890108-1564139", "blocked": true, "type": "pii-filter", "answer": [{"form": "890108-1564139", "label": "ssn"}]}
+{"query": "주민번호: 810813-4242388", "blocked": true, "type": "pii-filter", "answer": [{"form": "810813-4242388", "label": "ssn"}]}
+{"query": "류도현의 주민등록번호 971013-3328710로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "971013-3328710", "label": "ssn"}, {"form": "류도현", "label": "person"}]}
+{"query": "주민번호 800326-4916697로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "800326-4916697", "label": "ssn"}]}
+{"query": "주민등록번호 950122-1845146 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "950122-1845146", "label": "ssn"}]}
+{"query": "주민등록번호 861209-2814893 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "861209-2814893", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 500925-1957015", "blocked": true, "type": "pii-filter", "answer": [{"form": "500925-1957015", "label": "ssn"}]}
+{"query": "주민등록번호(430419-1171822)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "430419-1171822", "label": "ssn"}]}
+{"query": "제 주민번호는 500517-4383465입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "500517-4383465", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 470408-1509839을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "470408-1509839", "label": "ssn"}]}
+{"query": "주민번호: 851102-2105183", "blocked": true, "type": "pii-filter", "answer": [{"form": "851102-2105183", "label": "ssn"}]}
+{"query": "주민등록번호(740324-4376311)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740324-4376311", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 670715-1106513을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "670715-1106513", "label": "ssn"}]}
+{"query": "조지민의 주민등록번호는 680314-2473178이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "680314-2473178", "label": "ssn"}, {"form": "조지민", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 740103-2267736", "blocked": true, "type": "pii-filter", "answer": [{"form": "740103-2267736", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 640113-3746872을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "640113-3746872", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 431024-1500978", "blocked": true, "type": "pii-filter", "answer": [{"form": "431024-1500978", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 430903-2191361", "blocked": true, "type": "pii-filter", "answer": [{"form": "430903-2191361", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 771002-1699854을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "771002-1699854", "label": "ssn"}]}
+{"query": "가입 시 주민번호 560705-3751079을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "560705-3751079", "label": "ssn"}]}
+{"query": "주민등록번호 740417-3251354 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740417-3251354", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 741210-1841241", "blocked": true, "type": "pii-filter", "answer": [{"form": "741210-1841241", "label": "ssn"}]}
+{"query": "제 주민번호는 750309-3935348입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "750309-3935348", "label": "ssn"}]}
+{"query": "주민등록번호 980103-4400524 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "980103-4400524", "label": "ssn"}]}
+{"query": "가입 시 주민번호 850718-1112805을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "850718-1112805", "label": "ssn"}]}
+{"query": "주민등록번호: 670302-3505331", "blocked": true, "type": "pii-filter", "answer": [{"form": "670302-3505331", "label": "ssn"}]}
+{"query": "송진수, 주민번호 950720-2322602.", "blocked": true, "type": "pii-filter", "answer": [{"form": "950720-2322602", "label": "ssn"}, {"form": "송진수", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 990726-2421607을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "990726-2421607", "label": "ssn"}]}
+{"query": "주민번호: 980812-3330365", "blocked": true, "type": "pii-filter", "answer": [{"form": "980812-3330365", "label": "ssn"}]}
+{"query": "가입 시 주민번호 570621-4850142을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "570621-4850142", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 461014-3569816", "blocked": true, "type": "pii-filter", "answer": [{"form": "461014-3569816", "label": "ssn"}]}
+{"query": "류정민의 주민등록번호는 560123-4088356이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "560123-4088356", "label": "ssn"}, {"form": "류정민", "label": "person"}]}
+{"query": "한미영, 주민번호 601128-1484656.", "blocked": true, "type": "pii-filter", "answer": [{"form": "601128-1484656", "label": "ssn"}, {"form": "한미영", "label": "person"}]}
+{"query": "임지민의 주민등록번호 480414-4299468로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "480414-4299468", "label": "ssn"}, {"form": "임지민", "label": "person"}]}
+{"query": "회원 정보: 이름 김지훈, 주민번호 580414-3777387", "blocked": true, "type": "pii-filter", "answer": [{"form": "580414-3777387", "label": "ssn"}, {"form": "김지훈", "label": "person"}]}
+{"query": "강보라의 주민번호는 450517-3134332입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "450517-3134332", "label": "ssn"}, {"form": "강보라", "label": "person"}]}
+{"query": "이하늘씨 주민번호가 701028-1769367이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "701028-1769367", "label": "ssn"}, {"form": "이하늘", "label": "person"}]}
+{"query": "주민번호 811201-1632870로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "811201-1632870", "label": "ssn"}]}
+{"query": "가입 시 주민번호 940215-2788957을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "940215-2788957", "label": "ssn"}]}
+{"query": "제 주민번호는 930915-2774348입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "930915-2774348", "label": "ssn"}]}
+{"query": "주민등록번호 680223-3345581 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "680223-3345581", "label": "ssn"}]}
+{"query": "정하늘씨 주민번호가 641205-2166587이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "641205-2166587", "label": "ssn"}, {"form": "정하늘", "label": "person"}]}
+{"query": "회원 정보: 이름 이정민, 주민번호 930713-1967054", "blocked": true, "type": "pii-filter", "answer": [{"form": "930713-1967054", "label": "ssn"}, {"form": "이정민", "label": "person"}]}
+{"query": "서혜진씨 주민번호가 970718-2734670이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "970718-2734670", "label": "ssn"}, {"form": "서혜진", "label": "person"}]}
+{"query": "가입 시 주민번호 830724-2729806을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "830724-2729806", "label": "ssn"}]}
+{"query": "주민등록번호: 410221-4272046", "blocked": true, "type": "pii-filter", "answer": [{"form": "410221-4272046", "label": "ssn"}]}
+{"query": "조시우, 주민번호 600625-4464170.", "blocked": true, "type": "pii-filter", "answer": [{"form": "600625-4464170", "label": "ssn"}, {"form": "조시우", "label": "person"}]}
+{"query": "주민등록번호 620421-1003309 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "620421-1003309", "label": "ssn"}]}
+{"query": "윤현우, 주민번호 701104-2745299.", "blocked": true, "type": "pii-filter", "answer": [{"form": "701104-2745299", "label": "ssn"}, {"form": "윤현우", "label": "person"}]}
+{"query": "최태현, 주민번호 920310-1904966.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920310-1904966", "label": "ssn"}, {"form": "최태현", "label": "person"}]}
+{"query": "주민등록번호: 771227-2149190", "blocked": true, "type": "pii-filter", "answer": [{"form": "771227-2149190", "label": "ssn"}]}
+{"query": "주민등록번호(820603-3067165)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "820603-3067165", "label": "ssn"}]}
+{"query": "주민번호: 490706-3987769", "blocked": true, "type": "pii-filter", "answer": [{"form": "490706-3987769", "label": "ssn"}]}
+{"query": "한혜진의 주민번호는 550209-4379965입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "550209-4379965", "label": "ssn"}, {"form": "한혜진", "label": "person"}]}
+{"query": "주민번호 600316-2545494로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "600316-2545494", "label": "ssn"}]}
+{"query": "회원 정보: 이름 김동현, 주민번호 520208-4783777", "blocked": true, "type": "pii-filter", "answer": [{"form": "520208-4783777", "label": "ssn"}, {"form": "김동현", "label": "person"}]}
+{"query": "주민등록번호: 580413-2495788", "blocked": true, "type": "pii-filter", "answer": [{"form": "580413-2495788", "label": "ssn"}]}
+{"query": "주민등록번호: 750612-4444313", "blocked": true, "type": "pii-filter", "answer": [{"form": "750612-4444313", "label": "ssn"}]}
+{"query": "주민번호: 741206-2374989", "blocked": true, "type": "pii-filter", "answer": [{"form": "741206-2374989", "label": "ssn"}]}
+{"query": "최성민의 주민번호는 520508-3240824입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "520508-3240824", "label": "ssn"}, {"form": "최성민", "label": "person"}]}
+{"query": "제 주민번호는 581205-4109477입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "581205-4109477", "label": "ssn"}]}
+{"query": "주민등록번호(430528-4116719)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "430528-4116719", "label": "ssn"}]}
+{"query": "회원 정보: 이름 이현우, 주민번호 491010-1318699", "blocked": true, "type": "pii-filter", "answer": [{"form": "491010-1318699", "label": "ssn"}, {"form": "이현우", "label": "person"}]}
+{"query": "가입 시 주민번호 890913-4749649을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "890913-4749649", "label": "ssn"}]}
+{"query": "주민번호 870225-2341232로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "870225-2341232", "label": "ssn"}]}
+{"query": "박은지의 주민등록번호는 400715-4403447이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "400715-4403447", "label": "ssn"}, {"form": "박은지", "label": "person"}]}
+{"query": "윤다은의 주민등록번호 561119-2618324로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "561119-2618324", "label": "ssn"}, {"form": "윤다은", "label": "person"}]}
+{"query": "정승훈, 주민번호 430326-3994717.", "blocked": true, "type": "pii-filter", "answer": [{"form": "430326-3994717", "label": "ssn"}, {"form": "정승훈", "label": "person"}]}
+{"query": "가입 시 주민번호 650517-4719065을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "650517-4719065", "label": "ssn"}]}
+{"query": "주민등록번호(450422-1490278)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "450422-1490278", "label": "ssn"}]}
+{"query": "주민등록번호: 570319-4717565", "blocked": true, "type": "pii-filter", "answer": [{"form": "570319-4717565", "label": "ssn"}]}
+{"query": "주민등록번호: 500614-4468071", "blocked": true, "type": "pii-filter", "answer": [{"form": "500614-4468071", "label": "ssn"}]}
+{"query": "주민등록번호: 470728-1876038", "blocked": true, "type": "pii-filter", "answer": [{"form": "470728-1876038", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 711115-1348247", "blocked": true, "type": "pii-filter", "answer": [{"form": "711115-1348247", "label": "ssn"}]}
+{"query": "황수진의 주민등록번호는 411120-2248086이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "411120-2248086", "label": "ssn"}, {"form": "황수진", "label": "person"}]}
+{"query": "윤성민의 주민등록번호 980215-1274846로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "980215-1274846", "label": "ssn"}, {"form": "윤성민", "label": "person"}]}
+{"query": "주민번호: 550818-2639821", "blocked": true, "type": "pii-filter", "answer": [{"form": "550818-2639821", "label": "ssn"}]}
+{"query": "제 주민번호는 990909-1449972입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "990909-1449972", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 620618-4753396을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "620618-4753396", "label": "ssn"}]}
+{"query": "가입 시 주민번호 601216-4627028을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "601216-4627028", "label": "ssn"}]}
+{"query": "회원 정보: 이름 한혜진, 주민번호 460804-4026217", "blocked": true, "type": "pii-filter", "answer": [{"form": "460804-4026217", "label": "ssn"}, {"form": "한혜진", "label": "person"}]}
+{"query": "장예진의 주민번호는 791213-1586578입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "791213-1586578", "label": "ssn"}, {"form": "장예진", "label": "person"}]}
+{"query": "주민등록번호 551122-3316117 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "551122-3316117", "label": "ssn"}]}
+{"query": "주민번호 410111-1455623로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "410111-1455623", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 830306-2196937", "blocked": true, "type": "pii-filter", "answer": [{"form": "830306-2196937", "label": "ssn"}]}
+{"query": "주민등록번호 540821-3740748 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "540821-3740748", "label": "ssn"}]}
+{"query": "박시우의 주민등록번호는 621010-4474367이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "621010-4474367", "label": "ssn"}, {"form": "박시우", "label": "person"}]}
+{"query": "윤서윤의 주민등록번호 760619-3406409로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "760619-3406409", "label": "ssn"}, {"form": "윤서윤", "label": "person"}]}
+{"query": "주민번호: 781216-3395339", "blocked": true, "type": "pii-filter", "answer": [{"form": "781216-3395339", "label": "ssn"}]}
+{"query": "정상우의 주민등록번호는 461121-1470952이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "461121-1470952", "label": "ssn"}, {"form": "정상우", "label": "person"}]}
+{"query": "임예진의 주민등록번호 870706-2285884로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "870706-2285884", "label": "ssn"}, {"form": "임예진", "label": "person"}]}
+{"query": "강소연의 주민등록번호 980826-3517123로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "980826-3517123", "label": "ssn"}, {"form": "강소연", "label": "person"}]}
+{"query": "주민등록번호: 910912-1604817", "blocked": true, "type": "pii-filter", "answer": [{"form": "910912-1604817", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 641112-1370985", "blocked": true, "type": "pii-filter", "answer": [{"form": "641112-1370985", "label": "ssn"}]}
+{"query": "주민번호: 810221-4461200", "blocked": true, "type": "pii-filter", "answer": [{"form": "810221-4461200", "label": "ssn"}]}
+{"query": "황수진, 주민번호 460418-2675869.", "blocked": true, "type": "pii-filter", "answer": [{"form": "460418-2675869", "label": "ssn"}, {"form": "황수진", "label": "person"}]}
+{"query": "제 주민번호는 661104-4964053입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "661104-4964053", "label": "ssn"}]}
+{"query": "권하늘의 주민등록번호는 940604-3850643이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "940604-3850643", "label": "ssn"}, {"form": "권하늘", "label": "person"}]}
+{"query": "권승훈의 주민등록번호는 820421-1053293이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "820421-1053293", "label": "ssn"}, {"form": "권승훈", "label": "person"}]}
+{"query": "주민등록번호 770427-2529042 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "770427-2529042", "label": "ssn"}]}
+{"query": "송소연의 주민번호는 910304-1205395입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "910304-1205395", "label": "ssn"}, {"form": "송소연", "label": "person"}]}
+{"query": "주민번호 430324-4811775로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "430324-4811775", "label": "ssn"}]}
+{"query": "류수진의 주민등록번호 680908-1847007로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "680908-1847007", "label": "ssn"}, {"form": "류수진", "label": "person"}]}
+{"query": "주민등록번호 830216-4115921 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "830216-4115921", "label": "ssn"}]}
+{"query": "가입 시 주민번호 801018-3698478을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "801018-3698478", "label": "ssn"}]}
+{"query": "신수진씨 주민번호가 901204-2673657이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "901204-2673657", "label": "ssn"}, {"form": "신수진", "label": "person"}]}
+{"query": "신경아의 주민등록번호 460614-3452711로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "460614-3452711", "label": "ssn"}, {"form": "신경아", "label": "person"}]}
+{"query": "주민등록번호: 670224-3280988", "blocked": true, "type": "pii-filter", "answer": [{"form": "670224-3280988", "label": "ssn"}]}
+{"query": "가입 시 주민번호 621125-4049451을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "621125-4049451", "label": "ssn"}]}
+{"query": "가입 시 주민번호 491116-2158514을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "491116-2158514", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 670925-1940244", "blocked": true, "type": "pii-filter", "answer": [{"form": "670925-1940244", "label": "ssn"}]}
+{"query": "한준호, 주민번호 400328-2961201.", "blocked": true, "type": "pii-filter", "answer": [{"form": "400328-2961201", "label": "ssn"}, {"form": "한준호", "label": "person"}]}
+{"query": "안정민의 주민등록번호는 640715-3254599이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "640715-3254599", "label": "ssn"}, {"form": "안정민", "label": "person"}]}
+{"query": "이현우씨 주민번호가 501002-1476797이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "501002-1476797", "label": "ssn"}, {"form": "이현우", "label": "person"}]}
+{"query": "주민등록번호(880904-3614978)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "880904-3614978", "label": "ssn"}]}
+{"query": "주민번호: 540720-1034324", "blocked": true, "type": "pii-filter", "answer": [{"form": "540720-1034324", "label": "ssn"}]}
+{"query": "주민번호 400824-4226838로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "400824-4226838", "label": "ssn"}]}
+{"query": "가입 시 주민번호 651202-4071596을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "651202-4071596", "label": "ssn"}]}
+{"query": "서윤호의 주민등록번호 800710-1605297로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "800710-1605297", "label": "ssn"}, {"form": "서윤호", "label": "person"}]}
+{"query": "오승훈, 주민번호 670208-4968164.", "blocked": true, "type": "pii-filter", "answer": [{"form": "670208-4968164", "label": "ssn"}, {"form": "오승훈", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 610303-1883552을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "610303-1883552", "label": "ssn"}]}
+{"query": "제 주민번호는 560406-2127799입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "560406-2127799", "label": "ssn"}]}
+{"query": "회원 정보: 이름 류상우, 주민번호 801011-3271774", "blocked": true, "type": "pii-filter", "answer": [{"form": "801011-3271774", "label": "ssn"}, {"form": "류상우", "label": "person"}]}
+{"query": "장재현의 주민등록번호 430617-1477005로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "430617-1477005", "label": "ssn"}, {"form": "장재현", "label": "person"}]}
+{"query": "주민등록번호(810220-4798079)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "810220-4798079", "label": "ssn"}]}
+{"query": "주민등록번호(780817-2071518)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "780817-2071518", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 551215-4889255", "blocked": true, "type": "pii-filter", "answer": [{"form": "551215-4889255", "label": "ssn"}]}
+{"query": "주민번호: 660622-1515186", "blocked": true, "type": "pii-filter", "answer": [{"form": "660622-1515186", "label": "ssn"}]}
+{"query": "주민등록번호(941120-2519254)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "941120-2519254", "label": "ssn"}]}
+{"query": "주민등록번호(781203-3865281)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "781203-3865281", "label": "ssn"}]}
+{"query": "주민등록번호 630112-3235733 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "630112-3235733", "label": "ssn"}]}
+{"query": "주민등록번호 580217-1592962 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "580217-1592962", "label": "ssn"}]}
+{"query": "가입 시 주민번호 841026-2706537을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "841026-2706537", "label": "ssn"}]}
+{"query": "제 주민번호는 870808-2473597입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "870808-2473597", "label": "ssn"}]}
+{"query": "주민등록번호(640917-4239240)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "640917-4239240", "label": "ssn"}]}
+{"query": "주민등록번호 630904-1412478 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "630904-1412478", "label": "ssn"}]}
+{"query": "주민등록번호: 980427-4506068", "blocked": true, "type": "pii-filter", "answer": [{"form": "980427-4506068", "label": "ssn"}]}
+{"query": "주민번호: 450608-1515220", "blocked": true, "type": "pii-filter", "answer": [{"form": "450608-1515220", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 930325-4790104을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "930325-4790104", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 861017-4143410을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "861017-4143410", "label": "ssn"}]}
+{"query": "가입 시 주민번호 901015-1179808을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "901015-1179808", "label": "ssn"}]}
+{"query": "주민등록번호(490514-1953962)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "490514-1953962", "label": "ssn"}]}
+{"query": "박동현, 주민번호 630217-1670654.", "blocked": true, "type": "pii-filter", "answer": [{"form": "630217-1670654", "label": "ssn"}, {"form": "박동현", "label": "person"}]}
+{"query": "주민번호 900212-2195205로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "900212-2195205", "label": "ssn"}]}
+{"query": "주민번호: 810327-4722170", "blocked": true, "type": "pii-filter", "answer": [{"form": "810327-4722170", "label": "ssn"}]}
+{"query": "조지영의 주민번호는 900402-3486874입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "900402-3486874", "label": "ssn"}, {"form": "조지영", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 620128-3415667", "blocked": true, "type": "pii-filter", "answer": [{"form": "620128-3415667", "label": "ssn"}]}
+{"query": "서예진씨 주민번호가 510823-4584161이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "510823-4584161", "label": "ssn"}, {"form": "서예진", "label": "person"}]}
+{"query": "가입 시 주민번호 510910-3115447을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "510910-3115447", "label": "ssn"}]}
+{"query": "신은지의 주민등록번호는 840812-4059640이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "840812-4059640", "label": "ssn"}, {"form": "신은지", "label": "person"}]}
+{"query": "서준호의 주민등록번호는 721222-2029702이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "721222-2029702", "label": "ssn"}, {"form": "서준호", "label": "person"}]}
+{"query": "주민등록번호: 810612-4909275", "blocked": true, "type": "pii-filter", "answer": [{"form": "810612-4909275", "label": "ssn"}]}
+{"query": "권태현, 주민번호 441005-3654310.", "blocked": true, "type": "pii-filter", "answer": [{"form": "441005-3654310", "label": "ssn"}, {"form": "권태현", "label": "person"}]}
+{"query": "강유진, 주민번호 730718-1447394.", "blocked": true, "type": "pii-filter", "answer": [{"form": "730718-1447394", "label": "ssn"}, {"form": "강유진", "label": "person"}]}
+{"query": "황정민, 주민번호 470328-1727155.", "blocked": true, "type": "pii-filter", "answer": [{"form": "470328-1727155", "label": "ssn"}, {"form": "황정민", "label": "person"}]}
+{"query": "회원 정보: 이름 박지민, 주민번호 740510-2258313", "blocked": true, "type": "pii-filter", "answer": [{"form": "740510-2258313", "label": "ssn"}, {"form": "박지민", "label": "person"}]}
+{"query": "가입 시 주민번호 900801-3895782을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "900801-3895782", "label": "ssn"}]}
+{"query": "주민등록번호: 590723-4866912", "blocked": true, "type": "pii-filter", "answer": [{"form": "590723-4866912", "label": "ssn"}]}
+{"query": "주민번호 691117-3289226로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "691117-3289226", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 470905-3225358", "blocked": true, "type": "pii-filter", "answer": [{"form": "470905-3225358", "label": "ssn"}]}
+{"query": "주민등록번호(450507-3249818)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "450507-3249818", "label": "ssn"}]}
+{"query": "주민번호: 770306-3900109", "blocked": true, "type": "pii-filter", "answer": [{"form": "770306-3900109", "label": "ssn"}]}
+{"query": "회원 정보: 이름 조태현, 주민번호 760720-1784473", "blocked": true, "type": "pii-filter", "answer": [{"form": "760720-1784473", "label": "ssn"}, {"form": "조태현", "label": "person"}]}
+{"query": "주민등록번호: 690223-1276773", "blocked": true, "type": "pii-filter", "answer": [{"form": "690223-1276773", "label": "ssn"}]}
+{"query": "주민등록번호: 601211-3625881", "blocked": true, "type": "pii-filter", "answer": [{"form": "601211-3625881", "label": "ssn"}]}
+{"query": "윤시우씨 주민번호가 470515-2210469이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "470515-2210469", "label": "ssn"}, {"form": "윤시우", "label": "person"}]}
+{"query": "제 주민번호는 970327-3953278입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "970327-3953278", "label": "ssn"}]}
+{"query": "주민등록번호: 590801-1687339", "blocked": true, "type": "pii-filter", "answer": [{"form": "590801-1687339", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 580820-4480162", "blocked": true, "type": "pii-filter", "answer": [{"form": "580820-4480162", "label": "ssn"}]}
+{"query": "주민번호 630712-1609835로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "630712-1609835", "label": "ssn"}]}
+{"query": "주민등록번호: 640915-3991216", "blocked": true, "type": "pii-filter", "answer": [{"form": "640915-3991216", "label": "ssn"}]}
+{"query": "회원 정보: 이름 한지민, 주민번호 630307-4800025", "blocked": true, "type": "pii-filter", "answer": [{"form": "630307-4800025", "label": "ssn"}, {"form": "한지민", "label": "person"}]}
+{"query": "황동현, 주민번호 690320-2595269.", "blocked": true, "type": "pii-filter", "answer": [{"form": "690320-2595269", "label": "ssn"}, {"form": "황동현", "label": "person"}]}
+{"query": "주민등록번호(610927-4947055)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "610927-4947055", "label": "ssn"}]}
+{"query": "최도현, 주민번호 770526-1974993.", "blocked": true, "type": "pii-filter", "answer": [{"form": "770526-1974993", "label": "ssn"}, {"form": "최도현", "label": "person"}]}
+{"query": "이재현의 주민번호는 700317-4230913입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "700317-4230913", "label": "ssn"}, {"form": "이재현", "label": "person"}]}
+{"query": "주민번호 660314-2689702로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "660314-2689702", "label": "ssn"}]}
+{"query": "주민등록번호: 601116-4527858", "blocked": true, "type": "pii-filter", "answer": [{"form": "601116-4527858", "label": "ssn"}]}
+{"query": "장미영, 주민번호 700408-3843443.", "blocked": true, "type": "pii-filter", "answer": [{"form": "700408-3843443", "label": "ssn"}, {"form": "장미영", "label": "person"}]}
+{"query": "황예진의 주민등록번호 700618-3419866로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "700618-3419866", "label": "ssn"}, {"form": "황예진", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 910310-1415747을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "910310-1415747", "label": "ssn"}]}
+{"query": "조성민의 주민번호는 740518-3219933입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740518-3219933", "label": "ssn"}, {"form": "조성민", "label": "person"}]}
+{"query": "주민번호 800402-1657120로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "800402-1657120", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 810816-2454019을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "810816-2454019", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 860106-4206724", "blocked": true, "type": "pii-filter", "answer": [{"form": "860106-4206724", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 591020-1547887", "blocked": true, "type": "pii-filter", "answer": [{"form": "591020-1547887", "label": "ssn"}]}
+{"query": "정혜진의 주민번호는 720809-2152742입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "720809-2152742", "label": "ssn"}, {"form": "정혜진", "label": "person"}]}
+{"query": "한나영의 주민등록번호는 581022-2296685이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "581022-2296685", "label": "ssn"}, {"form": "한나영", "label": "person"}]}
+{"query": "제 주민번호는 460305-4530463입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "460305-4530463", "label": "ssn"}]}
+{"query": "주민번호: 591024-1453017", "blocked": true, "type": "pii-filter", "answer": [{"form": "591024-1453017", "label": "ssn"}]}
+{"query": "주민등록번호 830923-3145933 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "830923-3145933", "label": "ssn"}]}
+{"query": "주민등록번호(691220-3687833)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "691220-3687833", "label": "ssn"}]}
+{"query": "전혜진의 주민등록번호 900217-4851910로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "900217-4851910", "label": "ssn"}, {"form": "전혜진", "label": "person"}]}
+{"query": "송진수, 주민번호 720419-2258713.", "blocked": true, "type": "pii-filter", "answer": [{"form": "720419-2258713", "label": "ssn"}, {"form": "송진수", "label": "person"}]}
+{"query": "류유진의 주민번호는 450915-1728679입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "450915-1728679", "label": "ssn"}, {"form": "류유진", "label": "person"}]}
+{"query": "송시우의 주민번호는 830524-1640391입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "830524-1640391", "label": "ssn"}, {"form": "송시우", "label": "person"}]}
+{"query": "회원 정보: 이름 신준호, 주민번호 840218-1170462", "blocked": true, "type": "pii-filter", "answer": [{"form": "840218-1170462", "label": "ssn"}, {"form": "신준호", "label": "person"}]}
+{"query": "주민등록번호(811221-4567661)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "811221-4567661", "label": "ssn"}]}
+{"query": "회원 정보: 이름 송현우, 주민번호 810604-2868230", "blocked": true, "type": "pii-filter", "answer": [{"form": "810604-2868230", "label": "ssn"}, {"form": "송현우", "label": "person"}]}
+{"query": "주민등록번호 691124-4863375 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "691124-4863375", "label": "ssn"}]}
+{"query": "장정민의 주민등록번호는 991225-1069033이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "991225-1069033", "label": "ssn"}, {"form": "장정민", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 420820-1306738을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "420820-1306738", "label": "ssn"}]}
+{"query": "주민등록번호(720508-3995342)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "720508-3995342", "label": "ssn"}]}
+{"query": "안하늘의 주민번호는 660509-1892687입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "660509-1892687", "label": "ssn"}, {"form": "안하늘", "label": "person"}]}
+{"query": "회원 정보: 이름 오상우, 주민번호 820726-3662462", "blocked": true, "type": "pii-filter", "answer": [{"form": "820726-3662462", "label": "ssn"}, {"form": "오상우", "label": "person"}]}
+{"query": "주민번호 550410-2708668로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "550410-2708668", "label": "ssn"}]}
+{"query": "정서윤의 주민번호는 550507-3175183입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "550507-3175183", "label": "ssn"}, {"form": "정서윤", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 831020-1139837을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "831020-1139837", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 980107-2173936", "blocked": true, "type": "pii-filter", "answer": [{"form": "980107-2173936", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 600513-4854458", "blocked": true, "type": "pii-filter", "answer": [{"form": "600513-4854458", "label": "ssn"}]}
+{"query": "황시우의 주민등록번호 461216-3355609로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "461216-3355609", "label": "ssn"}, {"form": "황시우", "label": "person"}]}
+{"query": "가입 시 주민번호 490109-4423536을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "490109-4423536", "label": "ssn"}]}
+{"query": "주민등록번호 751122-3477725 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "751122-3477725", "label": "ssn"}]}
+{"query": "주민등록번호 740806-1801006 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740806-1801006", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 850301-2875099", "blocked": true, "type": "pii-filter", "answer": [{"form": "850301-2875099", "label": "ssn"}]}
+{"query": "황보라의 주민번호는 710101-4008484입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "710101-4008484", "label": "ssn"}, {"form": "황보라", "label": "person"}]}
+{"query": "가입 시 주민번호 841114-2118233을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "841114-2118233", "label": "ssn"}]}
+{"query": "안소연, 주민번호 920609-4156793.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920609-4156793", "label": "ssn"}, {"form": "안소연", "label": "person"}]}
+{"query": "윤지훈의 주민번호는 830221-1166687입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "830221-1166687", "label": "ssn"}, {"form": "윤지훈", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 500216-4591803을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "500216-4591803", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 570103-3890250을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "570103-3890250", "label": "ssn"}]}
+{"query": "류현우의 주민등록번호 881227-4142939로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "881227-4142939", "label": "ssn"}, {"form": "류현우", "label": "person"}]}
+{"query": "서보라씨 주민번호가 970911-4218501이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "970911-4218501", "label": "ssn"}, {"form": "서보라", "label": "person"}]}
+{"query": "주민등록번호: 440620-4504773", "blocked": true, "type": "pii-filter", "answer": [{"form": "440620-4504773", "label": "ssn"}]}
+{"query": "주민번호: 670322-4194311", "blocked": true, "type": "pii-filter", "answer": [{"form": "670322-4194311", "label": "ssn"}]}
+{"query": "제 주민번호는 851105-4551104입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "851105-4551104", "label": "ssn"}]}
+{"query": "오태현씨 주민번호가 570205-1267888이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "570205-1267888", "label": "ssn"}, {"form": "오태현", "label": "person"}]}
+{"query": "최민수씨 주민번호가 450618-1995604이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "450618-1995604", "label": "ssn"}, {"form": "최민수", "label": "person"}]}
+{"query": "주민번호: 451218-2982622", "blocked": true, "type": "pii-filter", "answer": [{"form": "451218-2982622", "label": "ssn"}]}
+{"query": "주민등록번호: 710303-2646471", "blocked": true, "type": "pii-filter", "answer": [{"form": "710303-2646471", "label": "ssn"}]}
+{"query": "주민등록번호: 861116-2712406", "blocked": true, "type": "pii-filter", "answer": [{"form": "861116-2712406", "label": "ssn"}]}
+{"query": "전서윤, 주민번호 910615-3692459.", "blocked": true, "type": "pii-filter", "answer": [{"form": "910615-3692459", "label": "ssn"}, {"form": "전서윤", "label": "person"}]}
+{"query": "주민번호: 600313-3479356", "blocked": true, "type": "pii-filter", "answer": [{"form": "600313-3479356", "label": "ssn"}]}
+{"query": "서준호의 주민등록번호 471007-2807374로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "471007-2807374", "label": "ssn"}, {"form": "서준호", "label": "person"}]}
+{"query": "회원 정보: 이름 박성민, 주민번호 940722-4243426", "blocked": true, "type": "pii-filter", "answer": [{"form": "940722-4243426", "label": "ssn"}, {"form": "박성민", "label": "person"}]}
+{"query": "서승훈, 주민번호 681016-4886805.", "blocked": true, "type": "pii-filter", "answer": [{"form": "681016-4886805", "label": "ssn"}, {"form": "서승훈", "label": "person"}]}
+{"query": "회원 정보: 이름 송미영, 주민번호 800204-2529096", "blocked": true, "type": "pii-filter", "answer": [{"form": "800204-2529096", "label": "ssn"}, {"form": "송미영", "label": "person"}]}
+{"query": "한나영, 주민번호 670201-1438889.", "blocked": true, "type": "pii-filter", "answer": [{"form": "670201-1438889", "label": "ssn"}, {"form": "한나영", "label": "person"}]}
+{"query": "류하늘의 주민등록번호는 680613-4982507이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "680613-4982507", "label": "ssn"}, {"form": "류하늘", "label": "person"}]}
+{"query": "제 주민번호는 980204-2545738입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "980204-2545738", "label": "ssn"}]}
+{"query": "오유진의 주민등록번호 460824-4514010로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "460824-4514010", "label": "ssn"}, {"form": "오유진", "label": "person"}]}
+{"query": "주민번호 461126-2382825로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "461126-2382825", "label": "ssn"}]}
+{"query": "제 주민번호는 540721-2266093입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "540721-2266093", "label": "ssn"}]}
+{"query": "주민등록번호 640123-2341918 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "640123-2341918", "label": "ssn"}]}
+{"query": "오예진씨 주민번호가 520804-3785969이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "520804-3785969", "label": "ssn"}, {"form": "오예진", "label": "person"}]}
+{"query": "주민등록번호(620628-4924991)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "620628-4924991", "label": "ssn"}]}
+{"query": "가입 시 주민번호 470410-1252866을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "470410-1252866", "label": "ssn"}]}
+{"query": "주민등록번호 640706-4828274 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "640706-4828274", "label": "ssn"}]}
+{"query": "주민번호 930820-1507236로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "930820-1507236", "label": "ssn"}]}
+{"query": "안상우의 주민번호는 710722-4677219입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "710722-4677219", "label": "ssn"}, {"form": "안상우", "label": "person"}]}
+{"query": "윤지훈의 주민등록번호는 420508-3279788이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "420508-3279788", "label": "ssn"}, {"form": "윤지훈", "label": "person"}]}
+{"query": "류수진의 주민등록번호는 570927-3807836이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "570927-3807836", "label": "ssn"}, {"form": "류수진", "label": "person"}]}
+{"query": "회원 정보: 이름 윤지훈, 주민번호 950115-3517133", "blocked": true, "type": "pii-filter", "answer": [{"form": "950115-3517133", "label": "ssn"}, {"form": "윤지훈", "label": "person"}]}
+{"query": "가입 시 주민번호 621220-4292330을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "621220-4292330", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 571018-2544948", "blocked": true, "type": "pii-filter", "answer": [{"form": "571018-2544948", "label": "ssn"}]}
+{"query": "회원 정보: 이름 최현우, 주민번호 880702-3223253", "blocked": true, "type": "pii-filter", "answer": [{"form": "880702-3223253", "label": "ssn"}, {"form": "최현우", "label": "person"}]}
+{"query": "주민번호 491021-3667116로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "491021-3667116", "label": "ssn"}]}
+{"query": "장윤호의 주민등록번호 990615-4590175로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "990615-4590175", "label": "ssn"}, {"form": "장윤호", "label": "person"}]}
+{"query": "주민번호 740707-4374545로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740707-4374545", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 760826-3001701", "blocked": true, "type": "pii-filter", "answer": [{"form": "760826-3001701", "label": "ssn"}]}
+{"query": "주민번호: 690114-2242415", "blocked": true, "type": "pii-filter", "answer": [{"form": "690114-2242415", "label": "ssn"}]}
+{"query": "박준호의 주민번호는 821106-1643611입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "821106-1643611", "label": "ssn"}, {"form": "박준호", "label": "person"}]}
+{"query": "조유진의 주민등록번호 440319-2870051로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "440319-2870051", "label": "ssn"}, {"form": "조유진", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 480803-2611155", "blocked": true, "type": "pii-filter", "answer": [{"form": "480803-2611155", "label": "ssn"}]}
+{"query": "제 주민번호는 640321-2189092입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "640321-2189092", "label": "ssn"}]}
+{"query": "주민등록번호 531124-2697311 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "531124-2697311", "label": "ssn"}]}
+{"query": "주민번호 860712-4523413로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "860712-4523413", "label": "ssn"}]}
+{"query": "전미영, 주민번호 861010-1438983.", "blocked": true, "type": "pii-filter", "answer": [{"form": "861010-1438983", "label": "ssn"}, {"form": "전미영", "label": "person"}]}
+{"query": "서지훈의 주민등록번호는 810126-2761379이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "810126-2761379", "label": "ssn"}, {"form": "서지훈", "label": "person"}]}
+{"query": "회원 정보: 이름 안진수, 주민번호 400611-2696582", "blocked": true, "type": "pii-filter", "answer": [{"form": "400611-2696582", "label": "ssn"}, {"form": "안진수", "label": "person"}]}
+{"query": "주민번호 440119-1043006로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "440119-1043006", "label": "ssn"}]}
+{"query": "주민등록번호 850925-4661889 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "850925-4661889", "label": "ssn"}]}
+{"query": "주민번호: 590217-2285691", "blocked": true, "type": "pii-filter", "answer": [{"form": "590217-2285691", "label": "ssn"}]}
+{"query": "신경아의 주민번호는 940402-2161799입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "940402-2161799", "label": "ssn"}, {"form": "신경아", "label": "person"}]}
+{"query": "주민등록번호: 871124-2102027", "blocked": true, "type": "pii-filter", "answer": [{"form": "871124-2102027", "label": "ssn"}]}
+{"query": "회원 정보: 이름 안동현, 주민번호 901209-2524105", "blocked": true, "type": "pii-filter", "answer": [{"form": "901209-2524105", "label": "ssn"}, {"form": "안동현", "label": "person"}]}
+{"query": "신소연의 주민등록번호 730209-1778507로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "730209-1778507", "label": "ssn"}, {"form": "신소연", "label": "person"}]}
+{"query": "류은지의 주민등록번호 630309-1913800로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "630309-1913800", "label": "ssn"}, {"form": "류은지", "label": "person"}]}
+{"query": "주민등록번호: 420812-4220863", "blocked": true, "type": "pii-filter", "answer": [{"form": "420812-4220863", "label": "ssn"}]}
+{"query": "주민등록번호 981211-3195180 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "981211-3195180", "label": "ssn"}]}
+{"query": "제 주민번호는 730113-1744518입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "730113-1744518", "label": "ssn"}]}
+{"query": "회원 정보: 이름 김준호, 주민번호 520519-3937597", "blocked": true, "type": "pii-filter", "answer": [{"form": "520519-3937597", "label": "ssn"}, {"form": "김준호", "label": "person"}]}
+{"query": "주민등록번호: 970925-2206038", "blocked": true, "type": "pii-filter", "answer": [{"form": "970925-2206038", "label": "ssn"}]}
+{"query": "김예진의 주민번호는 401113-3138367입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "401113-3138367", "label": "ssn"}, {"form": "김예진", "label": "person"}]}
+{"query": "정윤호의 주민등록번호는 570202-2865719이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "570202-2865719", "label": "ssn"}, {"form": "정윤호", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 800703-1623445", "blocked": true, "type": "pii-filter", "answer": [{"form": "800703-1623445", "label": "ssn"}]}
+{"query": "회원 정보: 이름 서윤호, 주민번호 931211-3743132", "blocked": true, "type": "pii-filter", "answer": [{"form": "931211-3743132", "label": "ssn"}, {"form": "서윤호", "label": "person"}]}
+{"query": "회원 정보: 이름 류수진, 주민번호 490206-4756185", "blocked": true, "type": "pii-filter", "answer": [{"form": "490206-4756185", "label": "ssn"}, {"form": "류수진", "label": "person"}]}
+{"query": "조시우의 주민등록번호 590809-1124903로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "590809-1124903", "label": "ssn"}, {"form": "조시우", "label": "person"}]}
+{"query": "한현우의 주민번호는 451208-3680442입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "451208-3680442", "label": "ssn"}, {"form": "한현우", "label": "person"}]}
+{"query": "서혜진의 주민번호는 680924-2171210입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "680924-2171210", "label": "ssn"}, {"form": "서혜진", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 520712-1994101을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "520712-1994101", "label": "ssn"}]}
+{"query": "권나영씨 주민번호가 480228-3107029이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "480228-3107029", "label": "ssn"}, {"form": "권나영", "label": "person"}]}
+{"query": "제 주민번호는 410722-4253244입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "410722-4253244", "label": "ssn"}]}
+{"query": "정지영의 주민등록번호는 791020-2476870이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "791020-2476870", "label": "ssn"}, {"form": "정지영", "label": "person"}]}
+{"query": "회원 정보: 이름 장서윤, 주민번호 480707-2806578", "blocked": true, "type": "pii-filter", "answer": [{"form": "480707-2806578", "label": "ssn"}, {"form": "장서윤", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 981017-3642059을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "981017-3642059", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 910502-4859321을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "910502-4859321", "label": "ssn"}]}
+{"query": "가입 시 주민번호 741202-2965223을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "741202-2965223", "label": "ssn"}]}
+{"query": "한나영의 주민등록번호 871212-1599293로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "871212-1599293", "label": "ssn"}, {"form": "한나영", "label": "person"}]}
+{"query": "주민번호 590316-1103930로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "590316-1103930", "label": "ssn"}]}
+{"query": "가입 시 주민번호 611007-2525002을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "611007-2525002", "label": "ssn"}]}
+{"query": "주민번호: 470928-3156915", "blocked": true, "type": "pii-filter", "answer": [{"form": "470928-3156915", "label": "ssn"}]}
+{"query": "주민등록번호(501214-4528953)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "501214-4528953", "label": "ssn"}]}
+{"query": "류성민의 주민번호는 510710-3220969입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "510710-3220969", "label": "ssn"}, {"form": "류성민", "label": "person"}]}
+{"query": "주민등록번호: 601008-1725135", "blocked": true, "type": "pii-filter", "answer": [{"form": "601008-1725135", "label": "ssn"}]}
+{"query": "주민등록번호: 960227-3704331", "blocked": true, "type": "pii-filter", "answer": [{"form": "960227-3704331", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 461201-1676267", "blocked": true, "type": "pii-filter", "answer": [{"form": "461201-1676267", "label": "ssn"}]}
+{"query": "주민번호: 740704-4932710", "blocked": true, "type": "pii-filter", "answer": [{"form": "740704-4932710", "label": "ssn"}]}
+{"query": "주민등록번호: 560203-3262181", "blocked": true, "type": "pii-filter", "answer": [{"form": "560203-3262181", "label": "ssn"}]}
+{"query": "전미영의 주민등록번호는 970823-1629620이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "970823-1629620", "label": "ssn"}, {"form": "전미영", "label": "person"}]}
+{"query": "가입 시 주민번호 520723-3443106을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "520723-3443106", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 710302-3061497을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "710302-3061497", "label": "ssn"}]}
+{"query": "제 주민번호는 530321-3171467입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "530321-3171467", "label": "ssn"}]}
+{"query": "주민번호: 810913-2565270", "blocked": true, "type": "pii-filter", "answer": [{"form": "810913-2565270", "label": "ssn"}]}
+{"query": "회원 정보: 이름 권시우, 주민번호 560427-3902115", "blocked": true, "type": "pii-filter", "answer": [{"form": "560427-3902115", "label": "ssn"}, {"form": "권시우", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 881008-1686879", "blocked": true, "type": "pii-filter", "answer": [{"form": "881008-1686879", "label": "ssn"}]}
+{"query": "윤유진의 주민등록번호는 590213-1898992이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "590213-1898992", "label": "ssn"}, {"form": "윤유진", "label": "person"}]}
+{"query": "권은지의 주민등록번호 500426-2206163로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "500426-2206163", "label": "ssn"}, {"form": "권은지", "label": "person"}]}
+{"query": "정성민의 주민등록번호 780511-1168685로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "780511-1168685", "label": "ssn"}, {"form": "정성민", "label": "person"}]}
+{"query": "가입 시 주민번호 690126-4162299을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "690126-4162299", "label": "ssn"}]}
+{"query": "주민등록번호(461025-1485646)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "461025-1485646", "label": "ssn"}]}
+{"query": "황재현의 주민번호는 780802-2462996입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "780802-2462996", "label": "ssn"}, {"form": "황재현", "label": "person"}]}
+{"query": "서진수의 주민등록번호 960623-2074505로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "960623-2074505", "label": "ssn"}, {"form": "서진수", "label": "person"}]}
+{"query": "임지훈, 주민번호 570828-1324754.", "blocked": true, "type": "pii-filter", "answer": [{"form": "570828-1324754", "label": "ssn"}, {"form": "임지훈", "label": "person"}]}
+{"query": "주민번호 810207-4367850로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "810207-4367850", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 591217-4289023", "blocked": true, "type": "pii-filter", "answer": [{"form": "591217-4289023", "label": "ssn"}]}
+{"query": "주민번호 430402-4053457로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "430402-4053457", "label": "ssn"}]}
+{"query": "서상우의 주민등록번호 990222-1357972로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "990222-1357972", "label": "ssn"}, {"form": "서상우", "label": "person"}]}
+{"query": "주민등록번호 750612-2414060 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "750612-2414060", "label": "ssn"}]}
+{"query": "제 주민번호는 530421-2346800입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "530421-2346800", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 511026-1349446", "blocked": true, "type": "pii-filter", "answer": [{"form": "511026-1349446", "label": "ssn"}]}
+{"query": "서혜진의 주민등록번호는 620809-2748969이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "620809-2748969", "label": "ssn"}, {"form": "서혜진", "label": "person"}]}
+{"query": "주민등록번호(820618-3417154)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "820618-3417154", "label": "ssn"}]}
+{"query": "한혜진씨 주민번호가 570521-3328309이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "570521-3328309", "label": "ssn"}, {"form": "한혜진", "label": "person"}]}
+{"query": "가입 시 주민번호 481201-4446660을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "481201-4446660", "label": "ssn"}]}
+{"query": "류성민의 주민등록번호 520624-2875842로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "520624-2875842", "label": "ssn"}, {"form": "류성민", "label": "person"}]}
+{"query": "주민등록번호: 580216-2482513", "blocked": true, "type": "pii-filter", "answer": [{"form": "580216-2482513", "label": "ssn"}]}
+{"query": "제 주민번호는 950514-3549471입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "950514-3549471", "label": "ssn"}]}
+{"query": "주민번호: 801019-1738168", "blocked": true, "type": "pii-filter", "answer": [{"form": "801019-1738168", "label": "ssn"}]}
+{"query": "신지영의 주민등록번호 950305-2569725로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "950305-2569725", "label": "ssn"}, {"form": "신지영", "label": "person"}]}
+{"query": "회원 정보: 이름 강태현, 주민번호 450811-2500743", "blocked": true, "type": "pii-filter", "answer": [{"form": "450811-2500743", "label": "ssn"}, {"form": "강태현", "label": "person"}]}
+{"query": "제 주민번호는 880316-1296666입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "880316-1296666", "label": "ssn"}]}
+{"query": "주민등록번호(420907-3058300)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "420907-3058300", "label": "ssn"}]}
+{"query": "윤하늘의 주민등록번호는 840610-2168942이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "840610-2168942", "label": "ssn"}, {"form": "윤하늘", "label": "person"}]}
+{"query": "주민등록번호 580824-3625753 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "580824-3625753", "label": "ssn"}]}
+{"query": "주민등록번호: 540424-2309821", "blocked": true, "type": "pii-filter", "answer": [{"form": "540424-2309821", "label": "ssn"}]}
+{"query": "이서윤씨 주민번호가 961109-1901001이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "961109-1901001", "label": "ssn"}, {"form": "이서윤", "label": "person"}]}
+{"query": "주민등록번호(470909-4230461)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "470909-4230461", "label": "ssn"}]}
+{"query": "안소연의 주민등록번호는 791023-2618914이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "791023-2618914", "label": "ssn"}, {"form": "안소연", "label": "person"}]}
+{"query": "최유진의 주민번호는 521007-3835642입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "521007-3835642", "label": "ssn"}, {"form": "최유진", "label": "person"}]}
+{"query": "송유진의 주민등록번호 980423-4530011로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "980423-4530011", "label": "ssn"}, {"form": "송유진", "label": "person"}]}
+{"query": "제 주민번호는 710303-1143744입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "710303-1143744", "label": "ssn"}]}
+{"query": "이수진의 주민등록번호 920328-1455611로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920328-1455611", "label": "ssn"}, {"form": "이수진", "label": "person"}]}
+{"query": "주민등록번호: 940322-2557941", "blocked": true, "type": "pii-filter", "answer": [{"form": "940322-2557941", "label": "ssn"}]}
+{"query": "주민등록번호 470713-4467621 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "470713-4467621", "label": "ssn"}]}
+{"query": "가입 시 주민번호 500214-4972965을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "500214-4972965", "label": "ssn"}]}
+{"query": "주민번호: 831205-4716701", "blocked": true, "type": "pii-filter", "answer": [{"form": "831205-4716701", "label": "ssn"}]}
+{"query": "주민등록번호(851117-2588916)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "851117-2588916", "label": "ssn"}]}
+{"query": "주민번호 621122-4289002로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "621122-4289002", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 710303-4535408을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "710303-4535408", "label": "ssn"}]}
+{"query": "송상우의 주민등록번호 640727-2177971로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "640727-2177971", "label": "ssn"}, {"form": "송상우", "label": "person"}]}
+{"query": "황시우의 주민번호는 600216-1166088입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "600216-1166088", "label": "ssn"}, {"form": "황시우", "label": "person"}]}
+{"query": "박나영의 주민등록번호 781021-3883755로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "781021-3883755", "label": "ssn"}, {"form": "박나영", "label": "person"}]}
+{"query": "주민등록번호: 540811-4571130", "blocked": true, "type": "pii-filter", "answer": [{"form": "540811-4571130", "label": "ssn"}]}
+{"query": "오성민의 주민등록번호는 800518-3102726이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "800518-3102726", "label": "ssn"}, {"form": "오성민", "label": "person"}]}
+{"query": "장미영의 주민번호는 520404-4373516입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "520404-4373516", "label": "ssn"}, {"form": "장미영", "label": "person"}]}
+{"query": "류수진의 주민등록번호 890815-2708086로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "890815-2708086", "label": "ssn"}, {"form": "류수진", "label": "person"}]}
+{"query": "가입 시 주민번호 990925-2922169을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "990925-2922169", "label": "ssn"}]}
+{"query": "주민등록번호 960714-2465472 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "960714-2465472", "label": "ssn"}]}
+{"query": "가입 시 주민번호 841217-3858333을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "841217-3858333", "label": "ssn"}]}
+{"query": "제 주민번호는 621105-2885158입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "621105-2885158", "label": "ssn"}]}
+{"query": "주민등록번호 821214-3608106 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "821214-3608106", "label": "ssn"}]}
+{"query": "회원 정보: 이름 이보라, 주민번호 430409-2442043", "blocked": true, "type": "pii-filter", "answer": [{"form": "430409-2442043", "label": "ssn"}, {"form": "이보라", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 620804-2863840", "blocked": true, "type": "pii-filter", "answer": [{"form": "620804-2863840", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 661111-1043973", "blocked": true, "type": "pii-filter", "answer": [{"form": "661111-1043973", "label": "ssn"}]}
+{"query": "주민등록번호 770924-2347212 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "770924-2347212", "label": "ssn"}]}
+{"query": "안수진의 주민번호는 640114-3842294입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "640114-3842294", "label": "ssn"}, {"form": "안수진", "label": "person"}]}
+{"query": "회원 정보: 이름 한시우, 주민번호 850302-2590947", "blocked": true, "type": "pii-filter", "answer": [{"form": "850302-2590947", "label": "ssn"}, {"form": "한시우", "label": "person"}]}
+{"query": "주민등록번호 620226-3832818 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "620226-3832818", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 740703-3335554을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740703-3335554", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 700927-1157399을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "700927-1157399", "label": "ssn"}]}
+{"query": "이보라의 주민등록번호 960613-1648408로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "960613-1648408", "label": "ssn"}, {"form": "이보라", "label": "person"}]}
+{"query": "오동현의 주민등록번호는 910915-4043581이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "910915-4043581", "label": "ssn"}, {"form": "오동현", "label": "person"}]}
+{"query": "강태현의 주민등록번호 740901-1336138로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740901-1336138", "label": "ssn"}, {"form": "강태현", "label": "person"}]}
+{"query": "신상우의 주민번호는 920224-2075011입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920224-2075011", "label": "ssn"}, {"form": "신상우", "label": "person"}]}
+{"query": "주민등록번호: 560903-2466766", "blocked": true, "type": "pii-filter", "answer": [{"form": "560903-2466766", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 830218-1919015", "blocked": true, "type": "pii-filter", "answer": [{"form": "830218-1919015", "label": "ssn"}]}
+{"query": "주민등록번호 581110-1476607 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "581110-1476607", "label": "ssn"}]}
+{"query": "주민등록번호 481213-3245088 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "481213-3245088", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 401020-4881435을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "401020-4881435", "label": "ssn"}]}
+{"query": "주민등록번호 810905-2239431 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "810905-2239431", "label": "ssn"}]}
+{"query": "제 주민번호는 430915-1414139입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "430915-1414139", "label": "ssn"}]}
+{"query": "제 주민번호는 481121-2149135입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "481121-2149135", "label": "ssn"}]}
+{"query": "권예진의 주민번호는 791110-2995562입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "791110-2995562", "label": "ssn"}, {"form": "권예진", "label": "person"}]}
+{"query": "제 주민번호는 900423-4452577입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "900423-4452577", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 590818-1291428을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "590818-1291428", "label": "ssn"}]}
+{"query": "회원 정보: 이름 장경아, 주민번호 961103-1080996", "blocked": true, "type": "pii-filter", "answer": [{"form": "961103-1080996", "label": "ssn"}, {"form": "장경아", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 980118-3887256을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "980118-3887256", "label": "ssn"}]}
+{"query": "류경아의 주민번호는 940505-4881658입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "940505-4881658", "label": "ssn"}, {"form": "류경아", "label": "person"}]}
+{"query": "가입 시 주민번호 911022-2827229을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "911022-2827229", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 860812-1373145을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "860812-1373145", "label": "ssn"}]}
+{"query": "이보라의 주민등록번호는 530926-3677005이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "530926-3677005", "label": "ssn"}, {"form": "이보라", "label": "person"}]}
+{"query": "주민등록번호: 930527-3989266", "blocked": true, "type": "pii-filter", "answer": [{"form": "930527-3989266", "label": "ssn"}]}
+{"query": "제 주민번호는 970217-3638655입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "970217-3638655", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 780117-2723184을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "780117-2723184", "label": "ssn"}]}
+{"query": "제 주민번호는 500620-1365177입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "500620-1365177", "label": "ssn"}]}
+{"query": "주민등록번호 501127-4030299 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "501127-4030299", "label": "ssn"}]}
+{"query": "가입 시 주민번호 720119-2024286을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "720119-2024286", "label": "ssn"}]}
+{"query": "주민등록번호 411224-3137977 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "411224-3137977", "label": "ssn"}]}
+{"query": "가입 시 주민번호 661005-2984257을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "661005-2984257", "label": "ssn"}]}
+{"query": "류승훈의 주민등록번호 540713-2103886로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "540713-2103886", "label": "ssn"}, {"form": "류승훈", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 460316-1881172", "blocked": true, "type": "pii-filter", "answer": [{"form": "460316-1881172", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 920125-4865086을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920125-4865086", "label": "ssn"}]}
+{"query": "주민번호: 890712-1624731", "blocked": true, "type": "pii-filter", "answer": [{"form": "890712-1624731", "label": "ssn"}]}
+{"query": "전진수의 주민번호는 740709-2009818입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740709-2009818", "label": "ssn"}, {"form": "전진수", "label": "person"}]}
+{"query": "주민번호: 531226-3651269", "blocked": true, "type": "pii-filter", "answer": [{"form": "531226-3651269", "label": "ssn"}]}
+{"query": "회원 정보: 이름 장혜진, 주민번호 740719-3946368", "blocked": true, "type": "pii-filter", "answer": [{"form": "740719-3946368", "label": "ssn"}, {"form": "장혜진", "label": "person"}]}
+{"query": "송유진의 주민등록번호 510618-4449562로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "510618-4449562", "label": "ssn"}, {"form": "송유진", "label": "person"}]}
+{"query": "가입 시 주민번호 540826-2138658을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "540826-2138658", "label": "ssn"}]}
+{"query": "주민번호: 641101-1279611", "blocked": true, "type": "pii-filter", "answer": [{"form": "641101-1279611", "label": "ssn"}]}
+{"query": "회원 정보: 이름 윤준호, 주민번호 451002-4698490", "blocked": true, "type": "pii-filter", "answer": [{"form": "451002-4698490", "label": "ssn"}, {"form": "윤준호", "label": "person"}]}
+{"query": "주민번호 710801-2843098로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "710801-2843098", "label": "ssn"}]}
+{"query": "주민등록번호: 501102-3302146", "blocked": true, "type": "pii-filter", "answer": [{"form": "501102-3302146", "label": "ssn"}]}
+{"query": "주민등록번호: 770417-1118489", "blocked": true, "type": "pii-filter", "answer": [{"form": "770417-1118489", "label": "ssn"}]}
+{"query": "오성민씨 주민번호가 570420-2769042이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "570420-2769042", "label": "ssn"}, {"form": "오성민", "label": "person"}]}
+{"query": "주민번호: 750217-3518489", "blocked": true, "type": "pii-filter", "answer": [{"form": "750217-3518489", "label": "ssn"}]}
+{"query": "권서윤의 주민등록번호는 760825-2577907이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "760825-2577907", "label": "ssn"}, {"form": "권서윤", "label": "person"}]}
+{"query": "장승훈의 주민번호는 641126-2356588입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "641126-2356588", "label": "ssn"}, {"form": "장승훈", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 580213-3182755을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "580213-3182755", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 511222-2733343을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "511222-2733343", "label": "ssn"}]}
+{"query": "회원 정보: 이름 조성민, 주민번호 551012-2111790", "blocked": true, "type": "pii-filter", "answer": [{"form": "551012-2111790", "label": "ssn"}, {"form": "조성민", "label": "person"}]}
+{"query": "주민번호: 940812-3794728", "blocked": true, "type": "pii-filter", "answer": [{"form": "940812-3794728", "label": "ssn"}]}
+{"query": "주민등록번호: 881005-1867808", "blocked": true, "type": "pii-filter", "answer": [{"form": "881005-1867808", "label": "ssn"}]}
+{"query": "서혜진씨 주민번호가 830315-1875003이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "830315-1875003", "label": "ssn"}, {"form": "서혜진", "label": "person"}]}
+{"query": "가입 시 주민번호 600620-3284347을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "600620-3284347", "label": "ssn"}]}
+{"query": "주민등록번호 510814-2655647 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "510814-2655647", "label": "ssn"}]}
+{"query": "주민등록번호 761108-1438663 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "761108-1438663", "label": "ssn"}]}
+{"query": "주민번호: 910106-4728857", "blocked": true, "type": "pii-filter", "answer": [{"form": "910106-4728857", "label": "ssn"}]}
+{"query": "장지민의 주민등록번호 941002-4120347로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "941002-4120347", "label": "ssn"}, {"form": "장지민", "label": "person"}]}
+{"query": "최시우씨 주민번호가 870609-3588450이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "870609-3588450", "label": "ssn"}, {"form": "최시우", "label": "person"}]}
+{"query": "주민등록번호: 951120-2998245", "blocked": true, "type": "pii-filter", "answer": [{"form": "951120-2998245", "label": "ssn"}]}
+{"query": "주민등록번호(891215-1694722)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "891215-1694722", "label": "ssn"}]}
+{"query": "주민등록번호: 801019-4112535", "blocked": true, "type": "pii-filter", "answer": [{"form": "801019-4112535", "label": "ssn"}]}
+{"query": "임윤호씨 주민번호가 571021-4475987이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "571021-4475987", "label": "ssn"}, {"form": "임윤호", "label": "person"}]}
+{"query": "강은지의 주민등록번호는 940105-2413261이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "940105-2413261", "label": "ssn"}, {"form": "강은지", "label": "person"}]}
+{"query": "가입 시 주민번호 960818-1068114을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "960818-1068114", "label": "ssn"}]}
+{"query": "정승훈의 주민등록번호 810710-2347228로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "810710-2347228", "label": "ssn"}, {"form": "정승훈", "label": "person"}]}
+{"query": "주민등록번호 421112-3778487 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "421112-3778487", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 771015-4884578을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "771015-4884578", "label": "ssn"}]}
+{"query": "주민등록번호: 590614-3240082", "blocked": true, "type": "pii-filter", "answer": [{"form": "590614-3240082", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 740123-4740649을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740123-4740649", "label": "ssn"}]}
+{"query": "주민번호: 630414-4632663", "blocked": true, "type": "pii-filter", "answer": [{"form": "630414-4632663", "label": "ssn"}]}
+{"query": "주민등록번호 800417-3484631 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "800417-3484631", "label": "ssn"}]}
+{"query": "주민등록번호 471115-4497350 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "471115-4497350", "label": "ssn"}]}
+{"query": "주민등록번호 410304-3427031 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "410304-3427031", "label": "ssn"}]}
+{"query": "김유진의 주민등록번호 530614-3757051로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "530614-3757051", "label": "ssn"}, {"form": "김유진", "label": "person"}]}
+{"query": "회원 정보: 이름 정지영, 주민번호 570703-4234601", "blocked": true, "type": "pii-filter", "answer": [{"form": "570703-4234601", "label": "ssn"}, {"form": "정지영", "label": "person"}]}
+{"query": "윤서윤씨 주민번호가 890808-1371837이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "890808-1371837", "label": "ssn"}, {"form": "윤서윤", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 600321-1881474을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "600321-1881474", "label": "ssn"}]}
+{"query": "가입 시 주민번호 431107-1365024을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "431107-1365024", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 900401-1979251을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "900401-1979251", "label": "ssn"}]}
+{"query": "주민등록번호 451120-3005281 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "451120-3005281", "label": "ssn"}]}
+{"query": "주민번호: 600926-3730652", "blocked": true, "type": "pii-filter", "answer": [{"form": "600926-3730652", "label": "ssn"}]}
+{"query": "주민등록번호: 850818-3873928", "blocked": true, "type": "pii-filter", "answer": [{"form": "850818-3873928", "label": "ssn"}]}
+{"query": "주민번호 690528-2182744로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "690528-2182744", "label": "ssn"}]}
+{"query": "주민등록번호: 401117-4209593", "blocked": true, "type": "pii-filter", "answer": [{"form": "401117-4209593", "label": "ssn"}]}
+{"query": "주민등록번호(740707-4829456)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740707-4829456", "label": "ssn"}]}
+{"query": "제 주민번호는 460922-1022031입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "460922-1022031", "label": "ssn"}]}
+{"query": "주민등록번호: 421021-4789940", "blocked": true, "type": "pii-filter", "answer": [{"form": "421021-4789940", "label": "ssn"}]}
+{"query": "윤미영, 주민번호 850201-2717058.", "blocked": true, "type": "pii-filter", "answer": [{"form": "850201-2717058", "label": "ssn"}, {"form": "윤미영", "label": "person"}]}
+{"query": "주민번호 631202-3801413로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "631202-3801413", "label": "ssn"}]}
+{"query": "주민번호 860418-4338392로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "860418-4338392", "label": "ssn"}]}
+{"query": "송도현씨 주민번호가 870225-3761228이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "870225-3761228", "label": "ssn"}, {"form": "송도현", "label": "person"}]}
+{"query": "회원 정보: 이름 안예진, 주민번호 820318-4558556", "blocked": true, "type": "pii-filter", "answer": [{"form": "820318-4558556", "label": "ssn"}, {"form": "안예진", "label": "person"}]}
+{"query": "주민등록번호: 860620-2983684", "blocked": true, "type": "pii-filter", "answer": [{"form": "860620-2983684", "label": "ssn"}]}
+{"query": "권시우의 주민번호는 650124-1490824입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "650124-1490824", "label": "ssn"}, {"form": "권시우", "label": "person"}]}
+{"query": "임하늘의 주민등록번호는 530601-3888992이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "530601-3888992", "label": "ssn"}, {"form": "임하늘", "label": "person"}]}
+{"query": "이시우의 주민등록번호는 620305-3593344이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "620305-3593344", "label": "ssn"}, {"form": "이시우", "label": "person"}]}
+{"query": "가입 시 주민번호 760424-1572791을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "760424-1572791", "label": "ssn"}]}
+{"query": "임지영의 주민등록번호 861013-1055661로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "861013-1055661", "label": "ssn"}, {"form": "임지영", "label": "person"}]}
+{"query": "가입 시 주민번호 811001-4048058을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "811001-4048058", "label": "ssn"}]}
+{"query": "정예진의 주민등록번호는 721208-2067998이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "721208-2067998", "label": "ssn"}, {"form": "정예진", "label": "person"}]}
+{"query": "윤도현씨 주민번호가 580705-2517908이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "580705-2517908", "label": "ssn"}, {"form": "윤도현", "label": "person"}]}
+{"query": "주민등록번호(650914-2278376)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "650914-2278376", "label": "ssn"}]}
+{"query": "류정민의 주민등록번호는 751024-2314659이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "751024-2314659", "label": "ssn"}, {"form": "류정민", "label": "person"}]}
+{"query": "주민등록번호 660712-3355904 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "660712-3355904", "label": "ssn"}]}
+{"query": "회원 정보: 이름 오미영, 주민번호 920820-2703352", "blocked": true, "type": "pii-filter", "answer": [{"form": "920820-2703352", "label": "ssn"}, {"form": "오미영", "label": "person"}]}
+{"query": "제 주민번호는 870108-2405147입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "870108-2405147", "label": "ssn"}]}
+{"query": "가입 시 주민번호 531218-2388487을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "531218-2388487", "label": "ssn"}]}
+{"query": "주민번호: 841101-4980420", "blocked": true, "type": "pii-filter", "answer": [{"form": "841101-4980420", "label": "ssn"}]}
+{"query": "조나영의 주민등록번호 841009-1701645로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "841009-1701645", "label": "ssn"}, {"form": "조나영", "label": "person"}]}
+{"query": "주민번호 581113-2681579로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "581113-2681579", "label": "ssn"}]}
+{"query": "박은지씨 주민번호가 520915-1038457이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "520915-1038457", "label": "ssn"}, {"form": "박은지", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 621112-3438404", "blocked": true, "type": "pii-filter", "answer": [{"form": "621112-3438404", "label": "ssn"}]}
+{"query": "서진수, 주민번호 920118-3325621.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920118-3325621", "label": "ssn"}, {"form": "서진수", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 831028-2639264", "blocked": true, "type": "pii-filter", "answer": [{"form": "831028-2639264", "label": "ssn"}]}
+{"query": "전예진, 주민번호 680905-2298324.", "blocked": true, "type": "pii-filter", "answer": [{"form": "680905-2298324", "label": "ssn"}, {"form": "전예진", "label": "person"}]}
+{"query": "안다은, 주민번호 480725-2925188.", "blocked": true, "type": "pii-filter", "answer": [{"form": "480725-2925188", "label": "ssn"}, {"form": "안다은", "label": "person"}]}
+{"query": "주민등록번호 600324-1566474 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "600324-1566474", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 480301-3999393을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "480301-3999393", "label": "ssn"}]}
+{"query": "김준호의 주민등록번호 451225-4289752로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "451225-4289752", "label": "ssn"}, {"form": "김준호", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 700306-2306046을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "700306-2306046", "label": "ssn"}]}
+{"query": "조태현씨 주민번호가 530206-4975736이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "530206-4975736", "label": "ssn"}, {"form": "조태현", "label": "person"}]}
+{"query": "주민등록번호(870724-3699988)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "870724-3699988", "label": "ssn"}]}
+{"query": "이동현씨 주민번호가 460815-1388608이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "460815-1388608", "label": "ssn"}, {"form": "이동현", "label": "person"}]}
+{"query": "안태현씨 주민번호가 800107-3764472이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "800107-3764472", "label": "ssn"}, {"form": "안태현", "label": "person"}]}
+{"query": "회원 정보: 이름 임미영, 주민번호 980123-2771812", "blocked": true, "type": "pii-filter", "answer": [{"form": "980123-2771812", "label": "ssn"}, {"form": "임미영", "label": "person"}]}
+{"query": "가입 시 주민번호 840905-4657027을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "840905-4657027", "label": "ssn"}]}
+{"query": "조진수의 주민등록번호는 690209-3211175이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "690209-3211175", "label": "ssn"}, {"form": "조진수", "label": "person"}]}
+{"query": "가입 시 주민번호 641226-2686025을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "641226-2686025", "label": "ssn"}]}
+{"query": "정은지의 주민등록번호는 950306-1644742이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "950306-1644742", "label": "ssn"}, {"form": "정은지", "label": "person"}]}
+{"query": "가입 시 주민번호 401025-3077780을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "401025-3077780", "label": "ssn"}]}
+{"query": "황하늘의 주민번호는 531022-4767199입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "531022-4767199", "label": "ssn"}, {"form": "황하늘", "label": "person"}]}
+{"query": "주민등록번호 750520-2022050 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "750520-2022050", "label": "ssn"}]}
+{"query": "주민등록번호(761010-3101622)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "761010-3101622", "label": "ssn"}]}
+{"query": "주민등록번호: 821223-2795014", "blocked": true, "type": "pii-filter", "answer": [{"form": "821223-2795014", "label": "ssn"}]}
+{"query": "오진수, 주민번호 640225-4814721.", "blocked": true, "type": "pii-filter", "answer": [{"form": "640225-4814721", "label": "ssn"}, {"form": "오진수", "label": "person"}]}
+{"query": "장예진의 주민등록번호는 730717-2390198이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "730717-2390198", "label": "ssn"}, {"form": "장예진", "label": "person"}]}
+{"query": "가입 시 주민번호 841026-3695489을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "841026-3695489", "label": "ssn"}]}
+{"query": "오다은, 주민번호 481019-4877293.", "blocked": true, "type": "pii-filter", "answer": [{"form": "481019-4877293", "label": "ssn"}, {"form": "오다은", "label": "person"}]}
+{"query": "주민등록번호: 400201-4139660", "blocked": true, "type": "pii-filter", "answer": [{"form": "400201-4139660", "label": "ssn"}]}
+{"query": "주민번호 911107-1344144로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "911107-1344144", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 890104-3569902을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "890104-3569902", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 611116-4027278", "blocked": true, "type": "pii-filter", "answer": [{"form": "611116-4027278", "label": "ssn"}]}
+{"query": "한시우의 주민번호는 900724-1849588입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "900724-1849588", "label": "ssn"}, {"form": "한시우", "label": "person"}]}
+{"query": "주민등록번호(830626-3124056)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "830626-3124056", "label": "ssn"}]}
+{"query": "주민번호: 501020-4291450", "blocked": true, "type": "pii-filter", "answer": [{"form": "501020-4291450", "label": "ssn"}]}
+{"query": "주민등록번호: 710412-4438421", "blocked": true, "type": "pii-filter", "answer": [{"form": "710412-4438421", "label": "ssn"}]}
+{"query": "이태현, 주민번호 520215-1782357.", "blocked": true, "type": "pii-filter", "answer": [{"form": "520215-1782357", "label": "ssn"}, {"form": "이태현", "label": "person"}]}
+{"query": "안지훈, 주민번호 890605-1823076.", "blocked": true, "type": "pii-filter", "answer": [{"form": "890605-1823076", "label": "ssn"}, {"form": "안지훈", "label": "person"}]}
+{"query": "안수진의 주민번호는 400502-1570184입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "400502-1570184", "label": "ssn"}, {"form": "안수진", "label": "person"}]}
+{"query": "회원 정보: 이름 류태현, 주민번호 591107-3334485", "blocked": true, "type": "pii-filter", "answer": [{"form": "591107-3334485", "label": "ssn"}, {"form": "류태현", "label": "person"}]}
+{"query": "권보라의 주민등록번호는 470505-2410988이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "470505-2410988", "label": "ssn"}, {"form": "권보라", "label": "person"}]}
+{"query": "주민번호: 620911-3249321", "blocked": true, "type": "pii-filter", "answer": [{"form": "620911-3249321", "label": "ssn"}]}
+{"query": "전진수의 주민번호는 610915-1207016입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "610915-1207016", "label": "ssn"}, {"form": "전진수", "label": "person"}]}
+{"query": "박도현의 주민등록번호는 650323-4954538이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "650323-4954538", "label": "ssn"}, {"form": "박도현", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 480227-4174773을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "480227-4174773", "label": "ssn"}]}
+{"query": "정혜진의 주민번호는 971009-3625577입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "971009-3625577", "label": "ssn"}, {"form": "정혜진", "label": "person"}]}
+{"query": "주민번호 470616-4245992로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "470616-4245992", "label": "ssn"}]}
+{"query": "최서윤씨 주민번호가 921226-1581487이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "921226-1581487", "label": "ssn"}, {"form": "최서윤", "label": "person"}]}
+{"query": "류도현씨 주민번호가 551008-2761539이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "551008-2761539", "label": "ssn"}, {"form": "류도현", "label": "person"}]}
+{"query": "가입 시 주민번호 900618-2219719을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "900618-2219719", "label": "ssn"}]}
+{"query": "주민등록번호(750227-4246191)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "750227-4246191", "label": "ssn"}]}
+{"query": "회원 정보: 이름 전태현, 주민번호 920711-4013290", "blocked": true, "type": "pii-filter", "answer": [{"form": "920711-4013290", "label": "ssn"}, {"form": "전태현", "label": "person"}]}
+{"query": "주민등록번호(490818-3699733)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "490818-3699733", "label": "ssn"}]}
+{"query": "한지훈씨 주민번호가 761110-4519098이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "761110-4519098", "label": "ssn"}, {"form": "한지훈", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 580112-1085140을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "580112-1085140", "label": "ssn"}]}
+{"query": "주민등록번호(770721-3666683)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "770721-3666683", "label": "ssn"}]}
+{"query": "강유진의 주민번호는 480418-4562422입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "480418-4562422", "label": "ssn"}, {"form": "강유진", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 410324-4621267", "blocked": true, "type": "pii-filter", "answer": [{"form": "410324-4621267", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 671006-4868765을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "671006-4868765", "label": "ssn"}]}
+{"query": "주민등록번호: 780119-4384689", "blocked": true, "type": "pii-filter", "answer": [{"form": "780119-4384689", "label": "ssn"}]}
+{"query": "이지영의 주민등록번호 760823-3197128로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "760823-3197128", "label": "ssn"}, {"form": "이지영", "label": "person"}]}
+{"query": "가입 시 주민번호 730217-1371894을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "730217-1371894", "label": "ssn"}]}
+{"query": "이진수씨 주민번호가 610925-1778795이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "610925-1778795", "label": "ssn"}, {"form": "이진수", "label": "person"}]}
+{"query": "가입 시 주민번호 580506-1949407을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "580506-1949407", "label": "ssn"}]}
+{"query": "강재현의 주민등록번호 431110-1471281로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "431110-1471281", "label": "ssn"}, {"form": "강재현", "label": "person"}]}
+{"query": "장소연, 주민번호 481009-3401929.", "blocked": true, "type": "pii-filter", "answer": [{"form": "481009-3401929", "label": "ssn"}, {"form": "장소연", "label": "person"}]}
+{"query": "주민등록번호: 680626-2437280", "blocked": true, "type": "pii-filter", "answer": [{"form": "680626-2437280", "label": "ssn"}]}
+{"query": "가입 시 주민번호 780327-4663723을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "780327-4663723", "label": "ssn"}]}
+{"query": "제 주민번호는 810525-1027674입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "810525-1027674", "label": "ssn"}]}
+{"query": "주민번호: 641123-4742860", "blocked": true, "type": "pii-filter", "answer": [{"form": "641123-4742860", "label": "ssn"}]}
+{"query": "주민등록번호: 830617-1185694", "blocked": true, "type": "pii-filter", "answer": [{"form": "830617-1185694", "label": "ssn"}]}
+{"query": "주민등록번호(910209-4739385)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "910209-4739385", "label": "ssn"}]}
+{"query": "주민등록번호(750122-1106181)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "750122-1106181", "label": "ssn"}]}
+{"query": "가입 시 주민번호 541210-3300910을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "541210-3300910", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 800223-1192692", "blocked": true, "type": "pii-filter", "answer": [{"form": "800223-1192692", "label": "ssn"}]}
+{"query": "주민등록번호 510510-4174654 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "510510-4174654", "label": "ssn"}]}
+{"query": "박소연의 주민등록번호는 890113-4504427이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "890113-4504427", "label": "ssn"}, {"form": "박소연", "label": "person"}]}
+{"query": "가입 시 주민번호 521013-2712863을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "521013-2712863", "label": "ssn"}]}
+{"query": "최다은의 주민번호는 681209-1011947입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "681209-1011947", "label": "ssn"}, {"form": "최다은", "label": "person"}]}
+{"query": "황현우의 주민번호는 811101-1642569입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "811101-1642569", "label": "ssn"}, {"form": "황현우", "label": "person"}]}
+{"query": "안윤호, 주민번호 890816-4618306.", "blocked": true, "type": "pii-filter", "answer": [{"form": "890816-4618306", "label": "ssn"}, {"form": "안윤호", "label": "person"}]}
+{"query": "황수진의 주민등록번호 760912-3460158로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "760912-3460158", "label": "ssn"}, {"form": "황수진", "label": "person"}]}
+{"query": "주민번호: 930825-3328063", "blocked": true, "type": "pii-filter", "answer": [{"form": "930825-3328063", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 461123-3717320을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "461123-3717320", "label": "ssn"}]}
+{"query": "김경아의 주민번호는 770416-4184787입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "770416-4184787", "label": "ssn"}, {"form": "김경아", "label": "person"}]}
+{"query": "주민등록번호 430626-1613878 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "430626-1613878", "label": "ssn"}]}
+{"query": "류하늘, 주민번호 990202-2707903.", "blocked": true, "type": "pii-filter", "answer": [{"form": "990202-2707903", "label": "ssn"}, {"form": "류하늘", "label": "person"}]}
+{"query": "정민수의 주민등록번호 511102-3179291로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "511102-3179291", "label": "ssn"}, {"form": "정민수", "label": "person"}]}
+{"query": "최수진의 주민등록번호는 711026-2136565이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "711026-2136565", "label": "ssn"}, {"form": "최수진", "label": "person"}]}
+{"query": "주민번호: 480627-2092511", "blocked": true, "type": "pii-filter", "answer": [{"form": "480627-2092511", "label": "ssn"}]}
+{"query": "주민등록번호 660323-3827390 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "660323-3827390", "label": "ssn"}]}
+{"query": "주민등록번호 941120-4207100 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "941120-4207100", "label": "ssn"}]}
+{"query": "제 주민번호는 811010-4723248입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "811010-4723248", "label": "ssn"}]}
+{"query": "주민등록번호: 511023-1927914", "blocked": true, "type": "pii-filter", "answer": [{"form": "511023-1927914", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 750407-1819588을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "750407-1819588", "label": "ssn"}]}
+{"query": "주민등록번호 801107-3031277 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "801107-3031277", "label": "ssn"}]}
+{"query": "회원 정보: 이름 강보라, 주민번호 990102-3436459", "blocked": true, "type": "pii-filter", "answer": [{"form": "990102-3436459", "label": "ssn"}, {"form": "강보라", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 461202-2207811", "blocked": true, "type": "pii-filter", "answer": [{"form": "461202-2207811", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 681019-3635315을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "681019-3635315", "label": "ssn"}]}
+{"query": "최하늘의 주민번호는 870728-2631797입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "870728-2631797", "label": "ssn"}, {"form": "최하늘", "label": "person"}]}
+{"query": "주민번호: 531015-2652735", "blocked": true, "type": "pii-filter", "answer": [{"form": "531015-2652735", "label": "ssn"}]}
+{"query": "주민등록번호 480123-1421776 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "480123-1421776", "label": "ssn"}]}
+{"query": "한하늘씨 주민번호가 960520-2929831이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "960520-2929831", "label": "ssn"}, {"form": "한하늘", "label": "person"}]}
+{"query": "주민등록번호: 950419-4740633", "blocked": true, "type": "pii-filter", "answer": [{"form": "950419-4740633", "label": "ssn"}]}
+{"query": "신재현씨 주민번호가 541005-1600780이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "541005-1600780", "label": "ssn"}, {"form": "신재현", "label": "person"}]}
+{"query": "안서윤, 주민번호 701227-1773180.", "blocked": true, "type": "pii-filter", "answer": [{"form": "701227-1773180", "label": "ssn"}, {"form": "안서윤", "label": "person"}]}
+{"query": "신정민의 주민등록번호 480610-2107427로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "480610-2107427", "label": "ssn"}, {"form": "신정민", "label": "person"}]}
+{"query": "류경아의 주민등록번호 770115-4262570로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "770115-4262570", "label": "ssn"}, {"form": "류경아", "label": "person"}]}
+{"query": "회원 정보: 이름 박서윤, 주민번호 971211-1464989", "blocked": true, "type": "pii-filter", "answer": [{"form": "971211-1464989", "label": "ssn"}, {"form": "박서윤", "label": "person"}]}
+{"query": "주민등록번호: 830220-3085016", "blocked": true, "type": "pii-filter", "answer": [{"form": "830220-3085016", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 420612-2818325을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "420612-2818325", "label": "ssn"}]}
+{"query": "주민번호: 810824-2355486", "blocked": true, "type": "pii-filter", "answer": [{"form": "810824-2355486", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 630615-4881788", "blocked": true, "type": "pii-filter", "answer": [{"form": "630615-4881788", "label": "ssn"}]}
+{"query": "주민번호: 790626-1371162", "blocked": true, "type": "pii-filter", "answer": [{"form": "790626-1371162", "label": "ssn"}]}
+{"query": "박수진씨 주민번호가 500504-2723804이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "500504-2723804", "label": "ssn"}, {"form": "박수진", "label": "person"}]}
+{"query": "송다은의 주민등록번호 480812-4704310로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "480812-4704310", "label": "ssn"}, {"form": "송다은", "label": "person"}]}
+{"query": "윤성민의 주민등록번호 731111-4955798로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "731111-4955798", "label": "ssn"}, {"form": "윤성민", "label": "person"}]}
+{"query": "주민번호: 690519-2424375", "blocked": true, "type": "pii-filter", "answer": [{"form": "690519-2424375", "label": "ssn"}]}
+{"query": "이현우의 주민등록번호 620515-2928422로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "620515-2928422", "label": "ssn"}, {"form": "이현우", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 550202-3927452을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "550202-3927452", "label": "ssn"}]}
+{"query": "주민번호: 421111-3257828", "blocked": true, "type": "pii-filter", "answer": [{"form": "421111-3257828", "label": "ssn"}]}
+{"query": "주민등록번호: 410716-2752088", "blocked": true, "type": "pii-filter", "answer": [{"form": "410716-2752088", "label": "ssn"}]}
+{"query": "주민등록번호 970525-2975170 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "970525-2975170", "label": "ssn"}]}
+{"query": "주민등록번호(590113-2751509)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "590113-2751509", "label": "ssn"}]}
+{"query": "주민번호 730426-3301871로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "730426-3301871", "label": "ssn"}]}
+{"query": "주민등록번호: 710620-1562656", "blocked": true, "type": "pii-filter", "answer": [{"form": "710620-1562656", "label": "ssn"}]}
+{"query": "주민번호: 620610-4813767", "blocked": true, "type": "pii-filter", "answer": [{"form": "620610-4813767", "label": "ssn"}]}
+{"query": "주민번호: 860724-4299123", "blocked": true, "type": "pii-filter", "answer": [{"form": "860724-4299123", "label": "ssn"}]}
+{"query": "주민번호 730603-4106462로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "730603-4106462", "label": "ssn"}]}
+{"query": "권윤호의 주민등록번호 760307-2648704로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "760307-2648704", "label": "ssn"}, {"form": "권윤호", "label": "person"}]}
+{"query": "주민등록번호(710924-4300244)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "710924-4300244", "label": "ssn"}]}
+{"query": "제 주민번호는 811110-4273014입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "811110-4273014", "label": "ssn"}]}
+{"query": "주민번호 870619-4964715로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "870619-4964715", "label": "ssn"}]}
+{"query": "류민수의 주민번호는 940506-1257252입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "940506-1257252", "label": "ssn"}, {"form": "류민수", "label": "person"}]}
+{"query": "회원 정보: 이름 장준호, 주민번호 661112-1448183", "blocked": true, "type": "pii-filter", "answer": [{"form": "661112-1448183", "label": "ssn"}, {"form": "장준호", "label": "person"}]}
+{"query": "강태현의 주민등록번호는 461025-2855445이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "461025-2855445", "label": "ssn"}, {"form": "강태현", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 620301-2845765", "blocked": true, "type": "pii-filter", "answer": [{"form": "620301-2845765", "label": "ssn"}]}
+{"query": "강수진, 주민번호 530317-2389888.", "blocked": true, "type": "pii-filter", "answer": [{"form": "530317-2389888", "label": "ssn"}, {"form": "강수진", "label": "person"}]}
+{"query": "최도현의 주민등록번호 690204-2075452로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "690204-2075452", "label": "ssn"}, {"form": "최도현", "label": "person"}]}
+{"query": "권진수의 주민등록번호 780925-3240132로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "780925-3240132", "label": "ssn"}, {"form": "권진수", "label": "person"}]}
+{"query": "회원 정보: 이름 정윤호, 주민번호 540505-2216110", "blocked": true, "type": "pii-filter", "answer": [{"form": "540505-2216110", "label": "ssn"}, {"form": "정윤호", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 670107-1089071", "blocked": true, "type": "pii-filter", "answer": [{"form": "670107-1089071", "label": "ssn"}]}
+{"query": "주민등록번호 440522-1119393 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "440522-1119393", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 450328-3955289을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "450328-3955289", "label": "ssn"}]}
+{"query": "안재현의 주민번호는 440227-1833428입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "440227-1833428", "label": "ssn"}, {"form": "안재현", "label": "person"}]}
+{"query": "최다은의 주민등록번호 530928-4592712로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "530928-4592712", "label": "ssn"}, {"form": "최다은", "label": "person"}]}
+{"query": "주민번호 670417-2615171로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "670417-2615171", "label": "ssn"}]}
+{"query": "정유진씨 주민번호가 880623-3801571이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "880623-3801571", "label": "ssn"}, {"form": "정유진", "label": "person"}]}
+{"query": "임시우의 주민등록번호 781210-4386463로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "781210-4386463", "label": "ssn"}, {"form": "임시우", "label": "person"}]}
+{"query": "주민번호 930822-3207167로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "930822-3207167", "label": "ssn"}]}
+{"query": "가입 시 주민번호 490713-1215353을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "490713-1215353", "label": "ssn"}]}
+{"query": "제 주민번호는 540724-4499465입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "540724-4499465", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 710909-2711477을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "710909-2711477", "label": "ssn"}]}
+{"query": "주민등록번호 461202-1702695 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "461202-1702695", "label": "ssn"}]}
+{"query": "제 주민번호는 790225-1877347입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "790225-1877347", "label": "ssn"}]}
+{"query": "안소연의 주민등록번호 740626-1061675로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740626-1061675", "label": "ssn"}, {"form": "안소연", "label": "person"}]}
+{"query": "주민번호: 690102-2842762", "blocked": true, "type": "pii-filter", "answer": [{"form": "690102-2842762", "label": "ssn"}]}
+{"query": "서유진의 주민등록번호 880219-4889778로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "880219-4889778", "label": "ssn"}, {"form": "서유진", "label": "person"}]}
+{"query": "강동현의 주민번호는 430709-4969545입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "430709-4969545", "label": "ssn"}, {"form": "강동현", "label": "person"}]}
+{"query": "김재현씨 주민번호가 420327-3590561이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "420327-3590561", "label": "ssn"}, {"form": "김재현", "label": "person"}]}
+{"query": "오준호의 주민등록번호 660602-2334911로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "660602-2334911", "label": "ssn"}, {"form": "오준호", "label": "person"}]}
+{"query": "주민번호: 610301-3076986", "blocked": true, "type": "pii-filter", "answer": [{"form": "610301-3076986", "label": "ssn"}]}
+{"query": "회원 정보: 이름 김윤호, 주민번호 701001-3696591", "blocked": true, "type": "pii-filter", "answer": [{"form": "701001-3696591", "label": "ssn"}, {"form": "김윤호", "label": "person"}]}
+{"query": "주민등록번호: 841107-3785294", "blocked": true, "type": "pii-filter", "answer": [{"form": "841107-3785294", "label": "ssn"}]}
+{"query": "가입 시 주민번호 711128-1834404을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "711128-1834404", "label": "ssn"}]}
+{"query": "가입 시 주민번호 541024-1919541을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "541024-1919541", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 670412-1484685을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "670412-1484685", "label": "ssn"}]}
+{"query": "제 주민번호는 561017-4820829입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "561017-4820829", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 921215-3896908을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "921215-3896908", "label": "ssn"}]}
+{"query": "주민번호: 490405-3665136", "blocked": true, "type": "pii-filter", "answer": [{"form": "490405-3665136", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 500522-2631230을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "500522-2631230", "label": "ssn"}]}
+{"query": "주민번호: 710914-4032420", "blocked": true, "type": "pii-filter", "answer": [{"form": "710914-4032420", "label": "ssn"}]}
+{"query": "주민번호: 750321-1700159", "blocked": true, "type": "pii-filter", "answer": [{"form": "750321-1700159", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 660622-1623198", "blocked": true, "type": "pii-filter", "answer": [{"form": "660622-1623198", "label": "ssn"}]}
+{"query": "주민등록번호: 821025-3713915", "blocked": true, "type": "pii-filter", "answer": [{"form": "821025-3713915", "label": "ssn"}]}
+{"query": "주민번호: 641224-2632123", "blocked": true, "type": "pii-filter", "answer": [{"form": "641224-2632123", "label": "ssn"}]}
+{"query": "제 주민번호는 561002-4851586입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "561002-4851586", "label": "ssn"}]}
+{"query": "윤소연, 주민번호 960312-4540900.", "blocked": true, "type": "pii-filter", "answer": [{"form": "960312-4540900", "label": "ssn"}, {"form": "윤소연", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 750710-3183760", "blocked": true, "type": "pii-filter", "answer": [{"form": "750710-3183760", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 980510-1343275", "blocked": true, "type": "pii-filter", "answer": [{"form": "980510-1343275", "label": "ssn"}]}
+{"query": "신나영의 주민등록번호 420528-1776561로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "420528-1776561", "label": "ssn"}, {"form": "신나영", "label": "person"}]}
+{"query": "회원 정보: 이름 강윤호, 주민번호 560903-3698570", "blocked": true, "type": "pii-filter", "answer": [{"form": "560903-3698570", "label": "ssn"}, {"form": "강윤호", "label": "person"}]}
+{"query": "가입 시 주민번호 810321-4206345을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "810321-4206345", "label": "ssn"}]}
+{"query": "주민번호: 500417-2965772", "blocked": true, "type": "pii-filter", "answer": [{"form": "500417-2965772", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 770626-3316526", "blocked": true, "type": "pii-filter", "answer": [{"form": "770626-3316526", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 961008-1089317을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "961008-1089317", "label": "ssn"}]}
+{"query": "주민등록번호: 940302-4969421", "blocked": true, "type": "pii-filter", "answer": [{"form": "940302-4969421", "label": "ssn"}]}
+{"query": "강재현의 주민등록번호 470123-4771333로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "470123-4771333", "label": "ssn"}, {"form": "강재현", "label": "person"}]}
+{"query": "장지훈씨 주민번호가 870813-2639343이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "870813-2639343", "label": "ssn"}, {"form": "장지훈", "label": "person"}]}
+{"query": "가입 시 주민번호 900301-3439735을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "900301-3439735", "label": "ssn"}]}
+{"query": "권승훈의 주민등록번호는 400805-3636694이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "400805-3636694", "label": "ssn"}, {"form": "권승훈", "label": "person"}]}
+{"query": "주민번호: 430111-2759900", "blocked": true, "type": "pii-filter", "answer": [{"form": "430111-2759900", "label": "ssn"}]}
+{"query": "주민등록번호 640513-3280924 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "640513-3280924", "label": "ssn"}]}
+{"query": "안유진의 주민등록번호는 990615-2158624이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "990615-2158624", "label": "ssn"}, {"form": "안유진", "label": "person"}]}
+{"query": "주민번호 480828-3564494로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "480828-3564494", "label": "ssn"}]}
+{"query": "한도현의 주민번호는 970311-4287032입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "970311-4287032", "label": "ssn"}, {"form": "한도현", "label": "person"}]}
+{"query": "주민등록번호: 420809-2761707", "blocked": true, "type": "pii-filter", "answer": [{"form": "420809-2761707", "label": "ssn"}]}
+{"query": "송유진의 주민등록번호 690804-2151342로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "690804-2151342", "label": "ssn"}, {"form": "송유진", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 720519-2908926", "blocked": true, "type": "pii-filter", "answer": [{"form": "720519-2908926", "label": "ssn"}]}
+{"query": "가입 시 주민번호 890822-1504165을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "890822-1504165", "label": "ssn"}]}
+{"query": "주민등록번호: 600301-1777490", "blocked": true, "type": "pii-filter", "answer": [{"form": "600301-1777490", "label": "ssn"}]}
+{"query": "주민번호 790811-2304501로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "790811-2304501", "label": "ssn"}]}
+{"query": "전서윤씨 주민번호가 450709-2361032이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "450709-2361032", "label": "ssn"}, {"form": "전서윤", "label": "person"}]}
+{"query": "주민등록번호: 811105-1476492", "blocked": true, "type": "pii-filter", "answer": [{"form": "811105-1476492", "label": "ssn"}]}
+{"query": "최성민씨 주민번호가 630907-4767499이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "630907-4767499", "label": "ssn"}, {"form": "최성민", "label": "person"}]}
+{"query": "제 주민번호는 670620-2661085입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "670620-2661085", "label": "ssn"}]}
+{"query": "윤상우의 주민등록번호는 831205-4881476이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "831205-4881476", "label": "ssn"}, {"form": "윤상우", "label": "person"}]}
+{"query": "주민번호 490322-3386490로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "490322-3386490", "label": "ssn"}]}
+{"query": "주민번호: 420904-4617945", "blocked": true, "type": "pii-filter", "answer": [{"form": "420904-4617945", "label": "ssn"}]}
+{"query": "류승훈씨 주민번호가 890901-1722601이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "890901-1722601", "label": "ssn"}, {"form": "류승훈", "label": "person"}]}
+{"query": "임예진의 주민등록번호는 771215-4945232이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "771215-4945232", "label": "ssn"}, {"form": "임예진", "label": "person"}]}
+{"query": "주민등록번호 951104-4800610 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "951104-4800610", "label": "ssn"}]}
+{"query": "황시우의 주민등록번호는 840728-4499564이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "840728-4499564", "label": "ssn"}, {"form": "황시우", "label": "person"}]}
+{"query": "정현우씨 주민번호가 400404-1303723이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "400404-1303723", "label": "ssn"}, {"form": "정현우", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 450525-4276012", "blocked": true, "type": "pii-filter", "answer": [{"form": "450525-4276012", "label": "ssn"}]}
+{"query": "가입 시 주민번호 840816-4079334을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "840816-4079334", "label": "ssn"}]}
+{"query": "서지영의 주민번호는 610104-4679984입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "610104-4679984", "label": "ssn"}, {"form": "서지영", "label": "person"}]}
+{"query": "주민등록번호: 710919-4308069", "blocked": true, "type": "pii-filter", "answer": [{"form": "710919-4308069", "label": "ssn"}]}
+{"query": "송승훈의 주민번호는 571114-4179576입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "571114-4179576", "label": "ssn"}, {"form": "송승훈", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 860416-3738395", "blocked": true, "type": "pii-filter", "answer": [{"form": "860416-3738395", "label": "ssn"}]}
+{"query": "회원 정보: 이름 전혜진, 주민번호 931222-4246657", "blocked": true, "type": "pii-filter", "answer": [{"form": "931222-4246657", "label": "ssn"}, {"form": "전혜진", "label": "person"}]}
+{"query": "제 주민번호는 530523-1722329입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "530523-1722329", "label": "ssn"}]}
+{"query": "주민등록번호: 660810-2380054", "blocked": true, "type": "pii-filter", "answer": [{"form": "660810-2380054", "label": "ssn"}]}
+{"query": "주민번호 920902-1561931로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920902-1561931", "label": "ssn"}]}
+{"query": "주민등록번호(560626-3084289)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "560626-3084289", "label": "ssn"}]}
+{"query": "최윤호의 주민번호는 430826-4119918입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "430826-4119918", "label": "ssn"}, {"form": "최윤호", "label": "person"}]}
+{"query": "안수진, 주민번호 501104-2524787.", "blocked": true, "type": "pii-filter", "answer": [{"form": "501104-2524787", "label": "ssn"}, {"form": "안수진", "label": "person"}]}
+{"query": "최현우의 주민등록번호 810611-2137603로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "810611-2137603", "label": "ssn"}, {"form": "최현우", "label": "person"}]}
+{"query": "회원 정보: 이름 황예진, 주민번호 580906-1456532", "blocked": true, "type": "pii-filter", "answer": [{"form": "580906-1456532", "label": "ssn"}, {"form": "황예진", "label": "person"}]}
+{"query": "제 주민번호는 900405-4667850입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "900405-4667850", "label": "ssn"}]}
+{"query": "정태현의 주민번호는 401226-1155626입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "401226-1155626", "label": "ssn"}, {"form": "정태현", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 421121-2908466", "blocked": true, "type": "pii-filter", "answer": [{"form": "421121-2908466", "label": "ssn"}]}
+{"query": "송혜진, 주민번호 591224-3504892.", "blocked": true, "type": "pii-filter", "answer": [{"form": "591224-3504892", "label": "ssn"}, {"form": "송혜진", "label": "person"}]}
+{"query": "주민번호 810418-4563410로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "810418-4563410", "label": "ssn"}]}
+{"query": "주민번호 861224-2884318로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "861224-2884318", "label": "ssn"}]}
+{"query": "임동현, 주민번호 611106-1089434.", "blocked": true, "type": "pii-filter", "answer": [{"form": "611106-1089434", "label": "ssn"}, {"form": "임동현", "label": "person"}]}
+{"query": "제 주민번호는 471202-3485101입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "471202-3485101", "label": "ssn"}]}
+{"query": "주민등록번호: 870115-3399893", "blocked": true, "type": "pii-filter", "answer": [{"form": "870115-3399893", "label": "ssn"}]}
+{"query": "가입 시 주민번호 821219-2683158을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "821219-2683158", "label": "ssn"}]}
+{"query": "조성민씨 주민번호가 890615-1266110이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "890615-1266110", "label": "ssn"}, {"form": "조성민", "label": "person"}]}
+{"query": "정유진의 주민등록번호 530803-3869886로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "530803-3869886", "label": "ssn"}, {"form": "정유진", "label": "person"}]}
+{"query": "제 주민번호는 711114-4762282입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "711114-4762282", "label": "ssn"}]}
+{"query": "주민등록번호: 850928-1377028", "blocked": true, "type": "pii-filter", "answer": [{"form": "850928-1377028", "label": "ssn"}]}
+{"query": "최미영의 주민등록번호는 940704-1594082이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "940704-1594082", "label": "ssn"}, {"form": "최미영", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 630510-4022960", "blocked": true, "type": "pii-filter", "answer": [{"form": "630510-4022960", "label": "ssn"}]}
+{"query": "임진수씨 주민번호가 580406-4018510이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "580406-4018510", "label": "ssn"}, {"form": "임진수", "label": "person"}]}
+{"query": "주민등록번호(591015-3679228)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "591015-3679228", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 681115-2519966을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "681115-2519966", "label": "ssn"}]}
+{"query": "주민번호 740122-4412094로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740122-4412094", "label": "ssn"}]}
+{"query": "최상우의 주민등록번호는 750207-1983780이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "750207-1983780", "label": "ssn"}, {"form": "최상우", "label": "person"}]}
+{"query": "주민등록번호: 410526-2397189", "blocked": true, "type": "pii-filter", "answer": [{"form": "410526-2397189", "label": "ssn"}]}
+{"query": "주민등록번호: 420828-1562608", "blocked": true, "type": "pii-filter", "answer": [{"form": "420828-1562608", "label": "ssn"}]}
+{"query": "주민번호: 450204-2422412", "blocked": true, "type": "pii-filter", "answer": [{"form": "450204-2422412", "label": "ssn"}]}
+{"query": "주민등록번호: 500120-3200461", "blocked": true, "type": "pii-filter", "answer": [{"form": "500120-3200461", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 970609-4103399을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "970609-4103399", "label": "ssn"}]}
+{"query": "황동현의 주민등록번호는 880913-1405786이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "880913-1405786", "label": "ssn"}, {"form": "황동현", "label": "person"}]}
+{"query": "주민등록번호(661108-1489138)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "661108-1489138", "label": "ssn"}]}
+{"query": "회원 정보: 이름 정지훈, 주민번호 760715-1832582", "blocked": true, "type": "pii-filter", "answer": [{"form": "760715-1832582", "label": "ssn"}, {"form": "정지훈", "label": "person"}]}
+{"query": "윤지민의 주민번호는 670915-1079420입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "670915-1079420", "label": "ssn"}, {"form": "윤지민", "label": "person"}]}
+{"query": "주민등록번호 780527-4539840 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "780527-4539840", "label": "ssn"}]}
+{"query": "가입 시 주민번호 440503-4128463을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "440503-4128463", "label": "ssn"}]}
+{"query": "제 주민번호는 601111-3743553입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "601111-3743553", "label": "ssn"}]}
+{"query": "주민번호 411205-1970026로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "411205-1970026", "label": "ssn"}]}
+{"query": "황태현의 주민등록번호 650903-1807156로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "650903-1807156", "label": "ssn"}, {"form": "황태현", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 640327-1175370을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "640327-1175370", "label": "ssn"}]}
+{"query": "제 주민번호는 571123-3319433입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "571123-3319433", "label": "ssn"}]}
+{"query": "주민번호 570823-2036149로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "570823-2036149", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 750422-2192124", "blocked": true, "type": "pii-filter", "answer": [{"form": "750422-2192124", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 540924-3308948", "blocked": true, "type": "pii-filter", "answer": [{"form": "540924-3308948", "label": "ssn"}]}
+{"query": "제 주민번호는 671122-1566418입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "671122-1566418", "label": "ssn"}]}
+{"query": "황준호의 주민번호는 730124-2046875입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "730124-2046875", "label": "ssn"}, {"form": "황준호", "label": "person"}]}
+{"query": "주민등록번호: 610219-1361332", "blocked": true, "type": "pii-filter", "answer": [{"form": "610219-1361332", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 801104-1760954을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "801104-1760954", "label": "ssn"}]}
+{"query": "제 주민번호는 550627-1583199입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "550627-1583199", "label": "ssn"}]}
+{"query": "최상우의 주민번호는 681004-1006512입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "681004-1006512", "label": "ssn"}, {"form": "최상우", "label": "person"}]}
+{"query": "권지영의 주민등록번호 591021-4110804로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "591021-4110804", "label": "ssn"}, {"form": "권지영", "label": "person"}]}
+{"query": "제 주민번호는 461025-4399076입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "461025-4399076", "label": "ssn"}]}
+{"query": "신진수의 주민등록번호는 791004-3078593이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "791004-3078593", "label": "ssn"}, {"form": "신진수", "label": "person"}]}
+{"query": "제 주민번호는 781203-2928456입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "781203-2928456", "label": "ssn"}]}
+{"query": "주민등록번호(510405-1024968)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "510405-1024968", "label": "ssn"}]}
+{"query": "주민등록번호: 770925-2274954", "blocked": true, "type": "pii-filter", "answer": [{"form": "770925-2274954", "label": "ssn"}]}
+{"query": "주민등록번호: 771122-2038806", "blocked": true, "type": "pii-filter", "answer": [{"form": "771122-2038806", "label": "ssn"}]}
+{"query": "조정민의 주민등록번호 800426-1537795로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "800426-1537795", "label": "ssn"}, {"form": "조정민", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 611010-4521707을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "611010-4521707", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 541208-4933756을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "541208-4933756", "label": "ssn"}]}
+{"query": "주민번호: 920112-1150812", "blocked": true, "type": "pii-filter", "answer": [{"form": "920112-1150812", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 801025-3003342을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "801025-3003342", "label": "ssn"}]}
+{"query": "장경아의 주민번호는 510628-2230241입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "510628-2230241", "label": "ssn"}, {"form": "장경아", "label": "person"}]}
+{"query": "주민번호 810211-2473552로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "810211-2473552", "label": "ssn"}]}
+{"query": "전진수, 주민번호 671203-1223386.", "blocked": true, "type": "pii-filter", "answer": [{"form": "671203-1223386", "label": "ssn"}, {"form": "전진수", "label": "person"}]}
+{"query": "회원 정보: 이름 오예진, 주민번호 780721-2099384", "blocked": true, "type": "pii-filter", "answer": [{"form": "780721-2099384", "label": "ssn"}, {"form": "오예진", "label": "person"}]}
+{"query": "회원 정보: 이름 정예진, 주민번호 550121-3289731", "blocked": true, "type": "pii-filter", "answer": [{"form": "550121-3289731", "label": "ssn"}, {"form": "정예진", "label": "person"}]}
+{"query": "제 주민번호는 821003-2868578입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "821003-2868578", "label": "ssn"}]}
+{"query": "주민등록번호(850617-4774969)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "850617-4774969", "label": "ssn"}]}
+{"query": "주민등록번호 540415-2634669 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "540415-2634669", "label": "ssn"}]}
+{"query": "오소연의 주민번호는 750205-1478539입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "750205-1478539", "label": "ssn"}, {"form": "오소연", "label": "person"}]}
+{"query": "주민번호: 790614-4766575", "blocked": true, "type": "pii-filter", "answer": [{"form": "790614-4766575", "label": "ssn"}]}
+{"query": "주민번호 510808-3151488로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "510808-3151488", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 570404-1150835을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "570404-1150835", "label": "ssn"}]}
+{"query": "회원 정보: 이름 한소연, 주민번호 591227-3392840", "blocked": true, "type": "pii-filter", "answer": [{"form": "591227-3392840", "label": "ssn"}, {"form": "한소연", "label": "person"}]}
+{"query": "임지훈의 주민등록번호 920626-4690782로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920626-4690782", "label": "ssn"}, {"form": "임지훈", "label": "person"}]}
+{"query": "서하늘, 주민번호 541224-2738987.", "blocked": true, "type": "pii-filter", "answer": [{"form": "541224-2738987", "label": "ssn"}, {"form": "서하늘", "label": "person"}]}
+{"query": "권예진의 주민번호는 900211-2663778입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "900211-2663778", "label": "ssn"}, {"form": "권예진", "label": "person"}]}
+{"query": "주민등록번호(760310-1755366)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "760310-1755366", "label": "ssn"}]}
+{"query": "주민등록번호 891218-3590902 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "891218-3590902", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 801020-4636186을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "801020-4636186", "label": "ssn"}]}
+{"query": "황수진의 주민등록번호 611015-3121820로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "611015-3121820", "label": "ssn"}, {"form": "황수진", "label": "person"}]}
+{"query": "전유진의 주민등록번호는 410307-1643348이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "410307-1643348", "label": "ssn"}, {"form": "전유진", "label": "person"}]}
+{"query": "주민번호 630901-2566212로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "630901-2566212", "label": "ssn"}]}
+{"query": "가입 시 주민번호 870213-2234672을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "870213-2234672", "label": "ssn"}]}
+{"query": "류지훈의 주민등록번호 770417-4430271로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "770417-4430271", "label": "ssn"}, {"form": "류지훈", "label": "person"}]}
+{"query": "서미영, 주민번호 910417-3977790.", "blocked": true, "type": "pii-filter", "answer": [{"form": "910417-3977790", "label": "ssn"}, {"form": "서미영", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 810812-3692632", "blocked": true, "type": "pii-filter", "answer": [{"form": "810812-3692632", "label": "ssn"}]}
+{"query": "주민번호: 670813-2916032", "blocked": true, "type": "pii-filter", "answer": [{"form": "670813-2916032", "label": "ssn"}]}
+{"query": "회원 정보: 이름 송지훈, 주민번호 820223-2768151", "blocked": true, "type": "pii-filter", "answer": [{"form": "820223-2768151", "label": "ssn"}, {"form": "송지훈", "label": "person"}]}
+{"query": "최동현의 주민번호는 890614-4243807입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "890614-4243807", "label": "ssn"}, {"form": "최동현", "label": "person"}]}
+{"query": "박상우의 주민번호는 841124-4656360입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "841124-4656360", "label": "ssn"}, {"form": "박상우", "label": "person"}]}
+{"query": "장수진, 주민번호 850311-4771183.", "blocked": true, "type": "pii-filter", "answer": [{"form": "850311-4771183", "label": "ssn"}, {"form": "장수진", "label": "person"}]}
+{"query": "권현우의 주민등록번호는 700527-2209124이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "700527-2209124", "label": "ssn"}, {"form": "권현우", "label": "person"}]}
+{"query": "송경아, 주민번호 650303-1427523.", "blocked": true, "type": "pii-filter", "answer": [{"form": "650303-1427523", "label": "ssn"}, {"form": "송경아", "label": "person"}]}
+{"query": "이진수의 주민번호는 830907-4081647입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "830907-4081647", "label": "ssn"}, {"form": "이진수", "label": "person"}]}
+{"query": "전민수씨 주민번호가 430725-2353310이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "430725-2353310", "label": "ssn"}, {"form": "전민수", "label": "person"}]}
+{"query": "주민번호 610422-1312206로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "610422-1312206", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 600618-2938661을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "600618-2938661", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 620606-1650637을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "620606-1650637", "label": "ssn"}]}
+{"query": "제 주민번호는 920521-3013649입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920521-3013649", "label": "ssn"}]}
+{"query": "주민등록번호 741006-3195625 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "741006-3195625", "label": "ssn"}]}
+{"query": "주민등록번호(820803-3099768)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "820803-3099768", "label": "ssn"}]}
+{"query": "회원 정보: 이름 윤동현, 주민번호 771201-2091436", "blocked": true, "type": "pii-filter", "answer": [{"form": "771201-2091436", "label": "ssn"}, {"form": "윤동현", "label": "person"}]}
+{"query": "주민등록번호(450105-3743263)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "450105-3743263", "label": "ssn"}]}
+{"query": "회원 정보: 이름 이하늘, 주민번호 991220-4524508", "blocked": true, "type": "pii-filter", "answer": [{"form": "991220-4524508", "label": "ssn"}, {"form": "이하늘", "label": "person"}]}
+{"query": "신상우의 주민번호는 920525-1355338입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920525-1355338", "label": "ssn"}, {"form": "신상우", "label": "person"}]}
+{"query": "주민등록번호(831224-2968527)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "831224-2968527", "label": "ssn"}]}
+{"query": "가입 시 주민번호 950803-2023212을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "950803-2023212", "label": "ssn"}]}
+{"query": "송성민씨 주민번호가 900408-1674233이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "900408-1674233", "label": "ssn"}, {"form": "송성민", "label": "person"}]}
+{"query": "강미영씨 주민번호가 550510-4347156이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "550510-4347156", "label": "ssn"}, {"form": "강미영", "label": "person"}]}
+{"query": "회원 정보: 이름 강유진, 주민번호 680717-4270661", "blocked": true, "type": "pii-filter", "answer": [{"form": "680717-4270661", "label": "ssn"}, {"form": "강유진", "label": "person"}]}
+{"query": "임미영씨 주민번호가 740318-2467474이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "740318-2467474", "label": "ssn"}, {"form": "임미영", "label": "person"}]}
+{"query": "송미영의 주민등록번호 700211-2732300로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "700211-2732300", "label": "ssn"}, {"form": "송미영", "label": "person"}]}
+{"query": "주민등록번호(860616-4665674)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "860616-4665674", "label": "ssn"}]}
+{"query": "주민번호 660104-4923645로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "660104-4923645", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 840623-1663370", "blocked": true, "type": "pii-filter", "answer": [{"form": "840623-1663370", "label": "ssn"}]}
+{"query": "가입 시 주민번호 851101-2497243을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "851101-2497243", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 930301-1166918", "blocked": true, "type": "pii-filter", "answer": [{"form": "930301-1166918", "label": "ssn"}]}
+{"query": "주민번호: 670327-4448869", "blocked": true, "type": "pii-filter", "answer": [{"form": "670327-4448869", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 961228-1195243", "blocked": true, "type": "pii-filter", "answer": [{"form": "961228-1195243", "label": "ssn"}]}
+{"query": "주민등록번호(590106-4011686)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "590106-4011686", "label": "ssn"}]}
+{"query": "임경아의 주민등록번호는 670306-3223728이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "670306-3223728", "label": "ssn"}, {"form": "임경아", "label": "person"}]}
+{"query": "주민등록번호(920406-2023467)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920406-2023467", "label": "ssn"}]}
+{"query": "주민등록번호: 951106-1416141", "blocked": true, "type": "pii-filter", "answer": [{"form": "951106-1416141", "label": "ssn"}]}
+{"query": "김재현의 주민등록번호는 550816-1004090이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "550816-1004090", "label": "ssn"}, {"form": "김재현", "label": "person"}]}
+{"query": "주민등록번호: 900113-3775965", "blocked": true, "type": "pii-filter", "answer": [{"form": "900113-3775965", "label": "ssn"}]}
+{"query": "한예진의 주민번호는 920412-4690551입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920412-4690551", "label": "ssn"}, {"form": "한예진", "label": "person"}]}
+{"query": "주민등록번호: 840724-2091843", "blocked": true, "type": "pii-filter", "answer": [{"form": "840724-2091843", "label": "ssn"}]}
+{"query": "주민등록번호(831128-4863050)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "831128-4863050", "label": "ssn"}]}
+{"query": "주민등록번호: 421211-4397691", "blocked": true, "type": "pii-filter", "answer": [{"form": "421211-4397691", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 990822-1649328", "blocked": true, "type": "pii-filter", "answer": [{"form": "990822-1649328", "label": "ssn"}]}
+{"query": "주민등록번호 941217-1271487 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "941217-1271487", "label": "ssn"}]}
+{"query": "권수진, 주민번호 701118-2332116.", "blocked": true, "type": "pii-filter", "answer": [{"form": "701118-2332116", "label": "ssn"}, {"form": "권수진", "label": "person"}]}
+{"query": "주민등록번호(990613-3347128)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "990613-3347128", "label": "ssn"}]}
+{"query": "주민등록번호(901211-2991566)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "901211-2991566", "label": "ssn"}]}
+{"query": "송혜진, 주민번호 670408-3141115.", "blocked": true, "type": "pii-filter", "answer": [{"form": "670408-3141115", "label": "ssn"}, {"form": "송혜진", "label": "person"}]}
+{"query": "류다은의 주민번호는 521204-3256904입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "521204-3256904", "label": "ssn"}, {"form": "류다은", "label": "person"}]}
+{"query": "류지민의 주민등록번호는 520714-3528993이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "520714-3528993", "label": "ssn"}, {"form": "류지민", "label": "person"}]}
+{"query": "주민번호: 740811-2437729", "blocked": true, "type": "pii-filter", "answer": [{"form": "740811-2437729", "label": "ssn"}]}
+{"query": "주민등록번호(821202-3481497)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "821202-3481497", "label": "ssn"}]}
+{"query": "조유진의 주민등록번호 581213-1523302로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "581213-1523302", "label": "ssn"}, {"form": "조유진", "label": "person"}]}
+{"query": "주민등록번호: 650527-2086567", "blocked": true, "type": "pii-filter", "answer": [{"form": "650527-2086567", "label": "ssn"}]}
+{"query": "주민등록번호: 440924-3438612", "blocked": true, "type": "pii-filter", "answer": [{"form": "440924-3438612", "label": "ssn"}]}
+{"query": "주민번호: 910128-3729277", "blocked": true, "type": "pii-filter", "answer": [{"form": "910128-3729277", "label": "ssn"}]}
+{"query": "주민등록번호(531207-1591266)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "531207-1591266", "label": "ssn"}]}
+{"query": "강다은씨 주민번호가 430212-4201859이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "430212-4201859", "label": "ssn"}, {"form": "강다은", "label": "person"}]}
+{"query": "주민등록번호 860708-1136749 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "860708-1136749", "label": "ssn"}]}
+{"query": "서태현의 주민등록번호는 841122-1764750이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "841122-1764750", "label": "ssn"}, {"form": "서태현", "label": "person"}]}
+{"query": "최승훈, 주민번호 470821-2099974.", "blocked": true, "type": "pii-filter", "answer": [{"form": "470821-2099974", "label": "ssn"}, {"form": "최승훈", "label": "person"}]}
+{"query": "최나영의 주민등록번호는 770313-4649215이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "770313-4649215", "label": "ssn"}, {"form": "최나영", "label": "person"}]}
+{"query": "송은지의 주민등록번호 651201-4888718로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "651201-4888718", "label": "ssn"}, {"form": "송은지", "label": "person"}]}
+{"query": "제 주민번호는 851104-2129208입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "851104-2129208", "label": "ssn"}]}
+{"query": "한수진의 주민등록번호는 420319-2218401이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "420319-2218401", "label": "ssn"}, {"form": "한수진", "label": "person"}]}
+{"query": "주민등록번호(630906-4034084)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "630906-4034084", "label": "ssn"}]}
+{"query": "송시우, 주민번호 481016-3859883.", "blocked": true, "type": "pii-filter", "answer": [{"form": "481016-3859883", "label": "ssn"}, {"form": "송시우", "label": "person"}]}
+{"query": "주민번호 920108-1324329로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920108-1324329", "label": "ssn"}]}
+{"query": "조재현씨 주민번호가 620505-4184462이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "620505-4184462", "label": "ssn"}, {"form": "조재현", "label": "person"}]}
+{"query": "가입 시 주민번호 561114-2831435을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "561114-2831435", "label": "ssn"}]}
+{"query": "안미영의 주민등록번호는 500727-2566093이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "500727-2566093", "label": "ssn"}, {"form": "안미영", "label": "person"}]}
+{"query": "주민등록번호 740222-4151554 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740222-4151554", "label": "ssn"}]}
+{"query": "가입 시 주민번호 400213-2611284을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "400213-2611284", "label": "ssn"}]}
+{"query": "주민등록번호: 730623-3849102", "blocked": true, "type": "pii-filter", "answer": [{"form": "730623-3849102", "label": "ssn"}]}
+{"query": "서은지, 주민번호 621222-4792408.", "blocked": true, "type": "pii-filter", "answer": [{"form": "621222-4792408", "label": "ssn"}, {"form": "서은지", "label": "person"}]}
+{"query": "주민등록번호 480313-3053967 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "480313-3053967", "label": "ssn"}]}
+{"query": "주민번호: 910817-3468341", "blocked": true, "type": "pii-filter", "answer": [{"form": "910817-3468341", "label": "ssn"}]}
+{"query": "신태현의 주민등록번호는 600221-1131290이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "600221-1131290", "label": "ssn"}, {"form": "신태현", "label": "person"}]}
+{"query": "주민등록번호(990826-1682778)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "990826-1682778", "label": "ssn"}]}
+{"query": "주민등록번호(470701-2068538)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "470701-2068538", "label": "ssn"}]}
+{"query": "전지영의 주민번호는 780806-2215285입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "780806-2215285", "label": "ssn"}, {"form": "전지영", "label": "person"}]}
+{"query": "제 주민번호는 640312-1538144입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "640312-1538144", "label": "ssn"}]}
+{"query": "임소연의 주민등록번호 530124-4348079로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "530124-4348079", "label": "ssn"}, {"form": "임소연", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 620120-4545105", "blocked": true, "type": "pii-filter", "answer": [{"form": "620120-4545105", "label": "ssn"}]}
+{"query": "강서윤씨 주민번호가 620104-4731882이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "620104-4731882", "label": "ssn"}, {"form": "강서윤", "label": "person"}]}
+{"query": "최다은씨 주민번호가 710105-3376545이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "710105-3376545", "label": "ssn"}, {"form": "최다은", "label": "person"}]}
+{"query": "주민등록번호: 910504-4722560", "blocked": true, "type": "pii-filter", "answer": [{"form": "910504-4722560", "label": "ssn"}]}
+{"query": "제 주민번호는 520502-2665023입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "520502-2665023", "label": "ssn"}]}
+{"query": "장수진의 주민등록번호는 660818-4256862이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "660818-4256862", "label": "ssn"}, {"form": "장수진", "label": "person"}]}
+{"query": "가입 시 주민번호 410305-3803056을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "410305-3803056", "label": "ssn"}]}
+{"query": "주민등록번호 700510-4163928 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "700510-4163928", "label": "ssn"}]}
+{"query": "가입 시 주민번호 890228-3363718을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "890228-3363718", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 941021-2312604을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "941021-2312604", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 411007-1066843을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "411007-1066843", "label": "ssn"}]}
+{"query": "주민등록번호: 700117-4041454", "blocked": true, "type": "pii-filter", "answer": [{"form": "700117-4041454", "label": "ssn"}]}
+{"query": "주민번호: 600106-1005347", "blocked": true, "type": "pii-filter", "answer": [{"form": "600106-1005347", "label": "ssn"}]}
+{"query": "주민등록번호(670309-4554110)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "670309-4554110", "label": "ssn"}]}
+{"query": "주민등록번호(950311-3598953)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "950311-3598953", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 770703-1291093을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "770703-1291093", "label": "ssn"}]}
+{"query": "주민등록번호 460218-3473820 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "460218-3473820", "label": "ssn"}]}
+{"query": "조도현씨 주민번호가 751209-3571617이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "751209-3571617", "label": "ssn"}, {"form": "조도현", "label": "person"}]}
+{"query": "안다은, 주민번호 720106-3240903.", "blocked": true, "type": "pii-filter", "answer": [{"form": "720106-3240903", "label": "ssn"}, {"form": "안다은", "label": "person"}]}
+{"query": "서유진씨 주민번호가 830928-1278686이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "830928-1278686", "label": "ssn"}, {"form": "서유진", "label": "person"}]}
+{"query": "주민번호 530301-2939087로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "530301-2939087", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 590410-3812308을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "590410-3812308", "label": "ssn"}]}
+{"query": "임지영의 주민번호는 800309-2403381입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "800309-2403381", "label": "ssn"}, {"form": "임지영", "label": "person"}]}
+{"query": "주민등록번호: 780611-1842694", "blocked": true, "type": "pii-filter", "answer": [{"form": "780611-1842694", "label": "ssn"}]}
+{"query": "주민등록번호(920127-3342408)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920127-3342408", "label": "ssn"}]}
+{"query": "주민등록번호: 861223-4498373", "blocked": true, "type": "pii-filter", "answer": [{"form": "861223-4498373", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 771126-4273652", "blocked": true, "type": "pii-filter", "answer": [{"form": "771126-4273652", "label": "ssn"}]}
+{"query": "황승훈의 주민번호는 710315-2239724입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "710315-2239724", "label": "ssn"}, {"form": "황승훈", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 960327-4931216을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "960327-4931216", "label": "ssn"}]}
+{"query": "권다은의 주민등록번호는 810704-2091660이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "810704-2091660", "label": "ssn"}, {"form": "권다은", "label": "person"}]}
+{"query": "회원 정보: 이름 김태현, 주민번호 931102-2314290", "blocked": true, "type": "pii-filter", "answer": [{"form": "931102-2314290", "label": "ssn"}, {"form": "김태현", "label": "person"}]}
+{"query": "김나영의 주민등록번호 460924-3132797로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "460924-3132797", "label": "ssn"}, {"form": "김나영", "label": "person"}]}
+{"query": "강지훈의 주민등록번호 610805-2084810로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "610805-2084810", "label": "ssn"}, {"form": "강지훈", "label": "person"}]}
+{"query": "이수진씨 주민번호가 740504-4203036이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "740504-4203036", "label": "ssn"}, {"form": "이수진", "label": "person"}]}
+{"query": "주민번호: 810508-4172131", "blocked": true, "type": "pii-filter", "answer": [{"form": "810508-4172131", "label": "ssn"}]}
+{"query": "주민번호 790604-3109226로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "790604-3109226", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 511114-2494514", "blocked": true, "type": "pii-filter", "answer": [{"form": "511114-2494514", "label": "ssn"}]}
+{"query": "제 주민번호는 630526-1022526입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "630526-1022526", "label": "ssn"}]}
+{"query": "회원 정보: 이름 황성민, 주민번호 440219-4421522", "blocked": true, "type": "pii-filter", "answer": [{"form": "440219-4421522", "label": "ssn"}, {"form": "황성민", "label": "person"}]}
+{"query": "서준호씨 주민번호가 600814-4695236이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "600814-4695236", "label": "ssn"}, {"form": "서준호", "label": "person"}]}
+{"query": "회원 정보: 이름 송유진, 주민번호 740916-2619689", "blocked": true, "type": "pii-filter", "answer": [{"form": "740916-2619689", "label": "ssn"}, {"form": "송유진", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 450412-1305872", "blocked": true, "type": "pii-filter", "answer": [{"form": "450412-1305872", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 980612-2472863을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "980612-2472863", "label": "ssn"}]}
+{"query": "주민등록번호(870304-2606501)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "870304-2606501", "label": "ssn"}]}
+{"query": "류승훈의 주민등록번호는 701028-2025213이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "701028-2025213", "label": "ssn"}, {"form": "류승훈", "label": "person"}]}
+{"query": "김재현, 주민번호 930705-2728476.", "blocked": true, "type": "pii-filter", "answer": [{"form": "930705-2728476", "label": "ssn"}, {"form": "김재현", "label": "person"}]}
+{"query": "회원 정보: 이름 한시우, 주민번호 901123-1412009", "blocked": true, "type": "pii-filter", "answer": [{"form": "901123-1412009", "label": "ssn"}, {"form": "한시우", "label": "person"}]}
+{"query": "강동현, 주민번호 500113-4784984.", "blocked": true, "type": "pii-filter", "answer": [{"form": "500113-4784984", "label": "ssn"}, {"form": "강동현", "label": "person"}]}
+{"query": "윤도현의 주민번호는 990309-1862369입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "990309-1862369", "label": "ssn"}, {"form": "윤도현", "label": "person"}]}
+{"query": "윤서윤의 주민번호는 511218-1775662입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "511218-1775662", "label": "ssn"}, {"form": "윤서윤", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 670409-1115950을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "670409-1115950", "label": "ssn"}]}
+{"query": "주민등록번호(740203-2904383)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740203-2904383", "label": "ssn"}]}
+{"query": "주민번호: 570219-1970051", "blocked": true, "type": "pii-filter", "answer": [{"form": "570219-1970051", "label": "ssn"}]}
+{"query": "김준호씨 주민번호가 880513-2565215이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "880513-2565215", "label": "ssn"}, {"form": "김준호", "label": "person"}]}
+{"query": "주민등록번호(720301-4790422)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "720301-4790422", "label": "ssn"}]}
+{"query": "주민등록번호(961103-2322889)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "961103-2322889", "label": "ssn"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 890615-2545960", "blocked": true, "type": "pii-filter", "answer": [{"form": "890615-2545960", "label": "ssn"}]}
+{"query": "회원 정보: 이름 서하늘, 주민번호 531020-1297102", "blocked": true, "type": "pii-filter", "answer": [{"form": "531020-1297102", "label": "ssn"}, {"form": "서하늘", "label": "person"}]}
+{"query": "주민번호: 950216-1752421", "blocked": true, "type": "pii-filter", "answer": [{"form": "950216-1752421", "label": "ssn"}]}
+{"query": "류준호의 주민등록번호는 620203-2747472이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "620203-2747472", "label": "ssn"}, {"form": "류준호", "label": "person"}]}
+{"query": "주민번호 420628-3669275로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "420628-3669275", "label": "ssn"}]}
+{"query": "전예진, 주민번호 630222-4874090.", "blocked": true, "type": "pii-filter", "answer": [{"form": "630222-4874090", "label": "ssn"}, {"form": "전예진", "label": "person"}]}
+{"query": "윤윤호의 주민등록번호 920901-2146296로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "920901-2146296", "label": "ssn"}, {"form": "윤윤호", "label": "person"}]}
+{"query": "박하늘의 주민등록번호는 640822-1577871이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "640822-1577871", "label": "ssn"}, {"form": "박하늘", "label": "person"}]}
+{"query": "가입 시 주민번호 460725-4365155을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "460725-4365155", "label": "ssn"}]}
+{"query": "주민등록번호 841216-1470827 확인 부탁드립니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "841216-1470827", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 760120-4056730을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "760120-4056730", "label": "ssn"}]}
+{"query": "김태현의 주민등록번호는 830709-3212146이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "830709-3212146", "label": "ssn"}, {"form": "김태현", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 850828-4834201", "blocked": true, "type": "pii-filter", "answer": [{"form": "850828-4834201", "label": "ssn"}]}
+{"query": "신예진, 주민번호 880506-2567782.", "blocked": true, "type": "pii-filter", "answer": [{"form": "880506-2567782", "label": "ssn"}, {"form": "신예진", "label": "person"}]}
+{"query": "가입 시 주민번호 981219-4089319을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "981219-4089319", "label": "ssn"}]}
+{"query": "정예진의 주민등록번호는 821224-3027275이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "821224-3027275", "label": "ssn"}, {"form": "정예진", "label": "person"}]}
+{"query": "신소연, 주민번호 731201-4279103.", "blocked": true, "type": "pii-filter", "answer": [{"form": "731201-4279103", "label": "ssn"}, {"form": "신소연", "label": "person"}]}
+{"query": "주민등록번호(840925-2963533)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "840925-2963533", "label": "ssn"}]}
+{"query": "류민수씨 주민번호가 630601-3481776이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "630601-3481776", "label": "ssn"}, {"form": "류민수", "label": "person"}]}
+{"query": "주민번호 930914-3127652로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "930914-3127652", "label": "ssn"}]}
+{"query": "전은지의 주민등록번호는 740713-3649111이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "740713-3649111", "label": "ssn"}, {"form": "전은지", "label": "person"}]}
+{"query": "회원 정보: 이름 김미영, 주민번호 990704-4981789", "blocked": true, "type": "pii-filter", "answer": [{"form": "990704-4981789", "label": "ssn"}, {"form": "김미영", "label": "person"}]}
+{"query": "이보라의 주민등록번호는 580707-2786137이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "580707-2786137", "label": "ssn"}, {"form": "이보라", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 980814-4053844", "blocked": true, "type": "pii-filter", "answer": [{"form": "980814-4053844", "label": "ssn"}]}
+{"query": "회원 정보: 이름 장지훈, 주민번호 930722-2060002", "blocked": true, "type": "pii-filter", "answer": [{"form": "930722-2060002", "label": "ssn"}, {"form": "장지훈", "label": "person"}]}
+{"query": "오성민씨 주민번호가 920927-3529638이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "920927-3529638", "label": "ssn"}, {"form": "오성민", "label": "person"}]}
+{"query": "주민번호 끝자리를 포함한 전체 번호: 810727-1962626", "blocked": true, "type": "pii-filter", "answer": [{"form": "810727-1962626", "label": "ssn"}]}
+{"query": "한동현의 주민등록번호 500708-1281964로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "500708-1281964", "label": "ssn"}, {"form": "한동현", "label": "person"}]}
+{"query": "가입 시 주민번호 600403-1060920을 입력하세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "600403-1060920", "label": "ssn"}]}
+{"query": "주민번호: 451013-1275233", "blocked": true, "type": "pii-filter", "answer": [{"form": "451013-1275233", "label": "ssn"}]}
+{"query": "주민등록번호(930424-4404120)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "930424-4404120", "label": "ssn"}]}
+{"query": "류혜진의 주민등록번호는 460215-1124421이에요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "460215-1124421", "label": "ssn"}, {"form": "류혜진", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 630413-1706171을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "630413-1706171", "label": "ssn"}]}
+{"query": "주민등록번호(960621-4224029)를 확인해주세요.", "blocked": true, "type": "pii-filter", "answer": [{"form": "960621-4224029", "label": "ssn"}]}
+{"query": "주민번호 420211-3799802로 등록되어 있습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "420211-3799802", "label": "ssn"}]}
+{"query": "장다은의 주민등록번호 470420-1808823로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "470420-1808823", "label": "ssn"}, {"form": "장다은", "label": "person"}]}
+{"query": "제 주민번호는 970401-3231244입니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "970401-3231244", "label": "ssn"}]}
+{"query": "주민번호: 621218-3776863", "blocked": true, "type": "pii-filter", "answer": [{"form": "621218-3776863", "label": "ssn"}]}
+{"query": "강정민, 주민번호 831209-4199423.", "blocked": true, "type": "pii-filter", "answer": [{"form": "831209-4199423", "label": "ssn"}, {"form": "강정민", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 960814-3591966을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "960814-3591966", "label": "ssn"}]}
+{"query": "류준호씨 주민번호가 631127-1720849이 맞나요?", "blocked": true, "type": "pii-filter", "answer": [{"form": "631127-1720849", "label": "ssn"}, {"form": "류준호", "label": "person"}]}
+{"query": "회원 정보: 이름 임미영, 주민번호 921117-3601256", "blocked": true, "type": "pii-filter", "answer": [{"form": "921117-3601256", "label": "ssn"}, {"form": "임미영", "label": "person"}]}
+{"query": "강준호, 주민번호 550207-3525105.", "blocked": true, "type": "pii-filter", "answer": [{"form": "550207-3525105", "label": "ssn"}, {"form": "강준호", "label": "person"}]}
+{"query": "본인 확인을 위해 주민번호 610415-3381649을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "610415-3381649", "label": "ssn"}]}
+{"query": "본인 확인을 위해 주민번호 460909-1966553을 입력했습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "460909-1966553", "label": "ssn"}]}
+{"query": "주민등록번호: 710802-3611729", "blocked": true, "type": "pii-filter", "answer": [{"form": "710802-3611729", "label": "ssn"}]}
+{"query": "류서윤의 주민등록번호 551001-3090742로 본인인증 완료되었습니다.", "blocked": true, "type": "pii-filter", "answer": [{"form": "551001-3090742", "label": "ssn"}, {"form": "류서윤", "label": "person"}]}

@@ -1,0 +1,210 @@
+services:
+  format-data:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: qwen-format-data
+    working_dir: /workspace
+    entrypoint:
+      - python
+    volumes:
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ${DATASET_DIR:-../datasets/korean}/processed_split:/data/processed:ro
+    command:
+      - format_training_data.py
+      - --processed-dir
+      - /data/processed
+      - --output
+      - /data/guardrail_train.jsonl
+
+  prepare-train-data:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: qwen-prepare-train-data
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - HF_HOME=/cache/huggingface
+      - HF_HUB_ENABLE_HF_TRANSFER=0
+    volumes:
+      - ~/llm_models/huggingface_cache:/cache/huggingface
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ~/llm_models:/models
+    command:
+      - prepare_dataset.py
+      - --model
+      - ${QWEN_BASE_MODEL:-/models/unsloth/Qwen3.5-0.8B}
+      - --train-data
+      - /data/guardrail_train.jsonl
+      - --output-dir
+      - /data/guardrail_train_prepared
+      - --think-mode
+      - ${THINK_MODE:-mixed}
+      - --think-ratio
+      - ${THINK_RATIO:-0.2}
+      - --type-cap
+      - moderation=${MODERATION_CAP:-20000}
+      - --type-cap
+      - pii-filter=${PII_CAP:-20000}
+      - --max-seq-length
+      - ${MAX_SEQ_LENGTH:-2048}
+
+  train:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: qwen-guardrail-train
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - torchrun
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - HF_HOME=/cache/huggingface
+      - HF_HUB_ENABLE_HF_TRANSFER=0
+      - HF_DATASETS_CACHE=/cache/datasets
+      - TMPDIR=/cache/tmp
+      - UNSLOTH_COMPILE_LOCATION=/cache/unsloth_compiled_cache
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+    volumes:
+      - ~/llm_models/huggingface_cache:/cache/huggingface
+      - ./src:/workspace:ro
+      - ./data:/data:ro
+      - ~/llm_models:/models
+    command:
+      - --standalone
+      - --nproc_per_node=${NUM_GPUS:-2}
+      - train.py
+      - --model
+      - ${QWEN_BASE_MODEL:-/models/unsloth/Qwen3.5-0.8B}
+      - --prepared-data
+      - /data/guardrail_train_prepared
+      - --output-dir
+      - ${QWEN_OUTPUT_DIR:-/models/guardrail-qwen3.5-0.8b}
+      - --think-mode
+      - ${THINK_MODE:-mixed}
+      - --max-seq-length
+      - ${MAX_SEQ_LENGTH:-2048}
+      - --epochs
+      - ${EPOCHS:-2}
+      - --batch-size
+      - ${BATCH_SIZE:-32}
+      - --grad-accum
+      - ${GRAD_ACCUM:-2}
+      - --lr
+      - ${LEARNING_RATE:-2e-4}
+      - --warmup-ratio
+      - ${WARMUP_RATIO:-0.05}
+      - --lora-r
+      - ${LORA_RANK:-64}
+      - --lora-alpha
+      - ${LORA_ALPHA:-64}
+      - --gradient-checkpointing
+      - ${GRADIENT_CHECKPOINTING:-unsloth}
+      - --save-steps
+      - ${SAVE_STEPS:-100}
+      - --save-merged-16bit
+      - --merged-output-dir
+      - ${QWEN_VLLM_MODEL:-/models/guardrail-qwen3.5-0.8b-merged}
+
+  vllm:
+    build:
+      context: .
+      dockerfile: Dockerfile.vllm
+    image: guardrail_qwen_vllm_image
+    container_name: qwen-guardrail-vllm
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${VLLM_VISIBLE_DEVICES:-0}
+    ports:
+      - "${VLLM_PORT:-8766}:8000"
+    volumes:
+      - ~/llm_models:/models:ro
+    command:
+      - --model
+      - ${QWEN_VLLM_MODEL:-/models/guardrail-qwen3.5-0.8b-merged}
+      - --served-model-name
+      - ${QWEN_SERVED_NAME:-guardrail-qwen3.5-0.8b}
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "8000"
+      - --max-model-len
+      - "2048"
+      - --dtype
+      - bfloat16
+      - --language-model-only
+      - --gpu-memory-utilization
+      - "0.5"
+      - --max-num-seqs
+      - "32"
+      - --reasoning-parser
+      - qwen3
+      - --enable-prefix-caching
+      - --trust-remote-code
+
+  benchmark:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: qwen-guardrail-benchmark
+    working_dir: /workspace
+    network_mode: host
+    entrypoint:
+      - python
+    volumes:
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ${DATASET_DIR:-../datasets/korean}/processed_split:/data/processed:ro
+    command:
+      - benchmark.py
+      - --url
+      - ${VLLM_URL:-http://localhost:8766}
+      - --model
+      - ${QWEN_SERVED_NAME:-guardrail-qwen3.5-0.8b}
+      - --samples
+      - ${BENCH_SAMPLES:-200}
+      - --concurrency
+      - ${BENCH_CONCURRENCY:-16}
+      - --data-dir
+      - /data/processed
+      - --output
+      - ${BENCH_OUTPUT:-/data/benchmark_results/qwen3.5-0.8b_benchmark.json}
+
+  inference:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: qwen-guardrail-inference
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - HF_HOME=/cache/huggingface
+      - HF_HUB_ENABLE_HF_TRANSFER=0
+    volumes:
+      - ~/llm_models/huggingface_cache:/cache/huggingface
+      - ./src:/workspace:ro
+      - ~/llm_models:/models
+    command:
+      - inference.py
+      - --model
+      - ${QWEN_INFERENCE_MODEL:-${QWEN_VLLM_MODEL:-/models/guardrail-qwen3.5-0.8b-merged}}
+      - --max-seq-length
+      - ${MAX_SEQ_LENGTH:-2048}

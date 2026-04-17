@@ -1,0 +1,670 @@
+{
+  "base": {
+    "KDPII": {
+      "dataset": "KDPII",
+      "total": 200,
+      "elapsed_sec": 17.5,
+      "ms_per_record": 87.4,
+      "binary": {
+        "tp": 45,
+        "fp": 16,
+        "tn": 113,
+        "fn": 26,
+        "accuracy": 0.79,
+        "precision": 0.7377,
+        "recall": 0.6338,
+        "f1": 0.6818
+      },
+      "entity_level": {
+        "tp": 17,
+        "fp": 53,
+        "fn": 75,
+        "precision": 0.2429,
+        "recall": 0.1848,
+        "f1": 0.2099
+      },
+      "per_label": {
+        "address": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.5
+        },
+        "bank_account": {
+          "tp": 0,
+          "fp": 1,
+          "fn": 2,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "credit_card": {
+          "tp": 0,
+          "fp": 2,
+          "fn": 4,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "cv_position": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "cv_sex": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "date_of_birth": {
+          "tp": 3,
+          "fp": 1,
+          "fn": 2,
+          "precision": 0.75,
+          "recall": 0.6
+        },
+        "email": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "fd_major": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "id_number": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.3333
+        },
+        "location": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 8,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "organization": {
+          "tp": 6,
+          "fp": 12,
+          "fn": 16,
+          "precision": 0.3333,
+          "recall": 0.2727
+        },
+        "password": {
+          "tp": 0,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0
+        },
+        "person": {
+          "tp": 1,
+          "fp": 30,
+          "fn": 6,
+          "precision": 0.0323,
+          "recall": 0.1429
+        },
+        "phone": {
+          "tp": 4,
+          "fp": 3,
+          "fn": 2,
+          "precision": 0.5714,
+          "recall": 0.6667
+        },
+        "qt_age": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "qt_grade": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "qt_length": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "qt_passport_number": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "qt_weight": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "ssn": {
+          "tp": 0,
+          "fp": 2,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0
+        },
+        "tm_blood_type": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "username": {
+          "tp": 0,
+          "fp": 1,
+          "fn": 5,
+          "precision": 0.0,
+          "recall": 0.0
+        }
+      }
+    },
+    "synthetic_pii_finance": {
+      "dataset": "synthetic_pii_finance",
+      "total": 200,
+      "elapsed_sec": 92.5,
+      "ms_per_record": 462.3,
+      "binary": {
+        "tp": 196,
+        "fp": 0,
+        "tn": 0,
+        "fn": 4,
+        "accuracy": 0.98,
+        "precision": 1.0,
+        "recall": 0.98,
+        "f1": 0.9899
+      },
+      "entity_level": {
+        "tp": 497,
+        "fp": 300,
+        "fn": 538,
+        "precision": 0.6236,
+        "recall": 0.4802,
+        "f1": 0.5426
+      },
+      "per_label": {
+        "address": {
+          "tp": 90,
+          "fp": 34,
+          "fn": 44,
+          "precision": 0.7258,
+          "recall": 0.6716
+        },
+        "bank_account": {
+          "tp": 11,
+          "fp": 16,
+          "fn": 6,
+          "precision": 0.4074,
+          "recall": 0.6471
+        },
+        "credit_card": {
+          "tp": 10,
+          "fp": 3,
+          "fn": 1,
+          "precision": 0.7692,
+          "recall": 0.9091
+        },
+        "date": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 314,
+          "precision": 1.0,
+          "recall": 0.0032
+        },
+        "date_of_birth": {
+          "tp": 7,
+          "fp": 11,
+          "fn": 0,
+          "precision": 0.3889,
+          "recall": 1.0
+        },
+        "driver_license": {
+          "tp": 6,
+          "fp": 3,
+          "fn": 0,
+          "precision": 0.6667,
+          "recall": 1.0
+        },
+        "email": {
+          "tp": 42,
+          "fp": 13,
+          "fn": 6,
+          "precision": 0.7636,
+          "recall": 0.875
+        },
+        "id_number": {
+          "tp": 4,
+          "fp": 10,
+          "fn": 3,
+          "precision": 0.2857,
+          "recall": 0.5714
+        },
+        "ip_address": {
+          "tp": 4,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.5,
+          "recall": 0.5
+        },
+        "location": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "organization": {
+          "tp": 115,
+          "fp": 128,
+          "fn": 20,
+          "precision": 0.4733,
+          "recall": 0.8519
+        },
+        "passport": {
+          "tp": 6,
+          "fp": 1,
+          "fn": 1,
+          "precision": 0.8571,
+          "recall": 0.8571
+        },
+        "password": {
+          "tp": 8,
+          "fp": 1,
+          "fn": 3,
+          "precision": 0.8889,
+          "recall": 0.7273
+        },
+        "person": {
+          "tp": 163,
+          "fp": 30,
+          "fn": 130,
+          "precision": 0.8446,
+          "recall": 0.5563
+        },
+        "phone": {
+          "tp": 28,
+          "fp": 21,
+          "fn": 3,
+          "precision": 0.5714,
+          "recall": 0.9032
+        },
+        "ssn": {
+          "tp": 2,
+          "fp": 2,
+          "fn": 1,
+          "precision": 0.5,
+          "recall": 0.6667
+        },
+        "url": {
+          "tp": 0,
+          "fp": 20,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0
+        },
+        "username": {
+          "tp": 0,
+          "fp": 5,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0
+        }
+      }
+    }
+  },
+  "finetuned": {
+    "KDPII": {
+      "dataset": "KDPII",
+      "total": 200,
+      "elapsed_sec": 18.5,
+      "ms_per_record": 92.7,
+      "binary": {
+        "tp": 29,
+        "fp": 18,
+        "tn": 111,
+        "fn": 42,
+        "accuracy": 0.7,
+        "precision": 0.617,
+        "recall": 0.4085,
+        "f1": 0.4915
+      },
+      "entity_level": {
+        "tp": 24,
+        "fp": 30,
+        "fn": 68,
+        "precision": 0.4444,
+        "recall": 0.2609,
+        "f1": 0.3288
+      },
+      "per_label": {
+        "address": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "bank_account": {
+          "tp": 0,
+          "fp": 1,
+          "fn": 2,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "credit_card": {
+          "tp": 0,
+          "fp": 1,
+          "fn": 4,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "cv_position": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "cv_sex": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "date_of_birth": {
+          "tp": 0,
+          "fp": 2,
+          "fn": 5,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "driver_license": {
+          "tp": 0,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0
+        },
+        "email": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "fd_major": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "id_number": {
+          "tp": 1,
+          "fp": 1,
+          "fn": 2,
+          "precision": 0.5,
+          "recall": 0.3333
+        },
+        "location": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 7,
+          "precision": 1.0,
+          "recall": 0.125
+        },
+        "organization": {
+          "tp": 10,
+          "fp": 9,
+          "fn": 12,
+          "precision": 0.5263,
+          "recall": 0.4545
+        },
+        "password": {
+          "tp": 0,
+          "fp": 4,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0
+        },
+        "person": {
+          "tp": 2,
+          "fp": 8,
+          "fn": 5,
+          "precision": 0.2,
+          "recall": 0.2857
+        },
+        "phone": {
+          "tp": 3,
+          "fp": 3,
+          "fn": 3,
+          "precision": 0.5,
+          "recall": 0.5
+        },
+        "qt_age": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "qt_grade": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "qt_length": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "qt_passport_number": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "qt_weight": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "tm_blood_type": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.5
+        },
+        "username": {
+          "tp": 1,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.2,
+          "recall": 0.2
+        }
+      }
+    },
+    "synthetic_pii_finance": {
+      "dataset": "synthetic_pii_finance",
+      "total": 200,
+      "elapsed_sec": 95.1,
+      "ms_per_record": 475.4,
+      "binary": {
+        "tp": 195,
+        "fp": 0,
+        "tn": 0,
+        "fn": 5,
+        "accuracy": 0.975,
+        "precision": 1.0,
+        "recall": 0.975,
+        "f1": 0.9873
+      },
+      "entity_level": {
+        "tp": 621,
+        "fp": 296,
+        "fn": 414,
+        "precision": 0.6772,
+        "recall": 0.6,
+        "f1": 0.6363
+      },
+      "per_label": {
+        "address": {
+          "tp": 111,
+          "fp": 40,
+          "fn": 23,
+          "precision": 0.7351,
+          "recall": 0.8284
+        },
+        "bank_account": {
+          "tp": 15,
+          "fp": 8,
+          "fn": 2,
+          "precision": 0.6522,
+          "recall": 0.8824
+        },
+        "credit_card": {
+          "tp": 9,
+          "fp": 8,
+          "fn": 2,
+          "precision": 0.5294,
+          "recall": 0.8182
+        },
+        "date": {
+          "tp": 61,
+          "fp": 0,
+          "fn": 254,
+          "precision": 1.0,
+          "recall": 0.1937
+        },
+        "date_of_birth": {
+          "tp": 7,
+          "fp": 16,
+          "fn": 0,
+          "precision": 0.3043,
+          "recall": 1.0
+        },
+        "driver_license": {
+          "tp": 6,
+          "fp": 10,
+          "fn": 0,
+          "precision": 0.375,
+          "recall": 1.0
+        },
+        "email": {
+          "tp": 42,
+          "fp": 13,
+          "fn": 6,
+          "precision": 0.7636,
+          "recall": 0.875
+        },
+        "id_number": {
+          "tp": 7,
+          "fp": 24,
+          "fn": 0,
+          "precision": 0.2258,
+          "recall": 1.0
+        },
+        "ip_address": {
+          "tp": 5,
+          "fp": 2,
+          "fn": 3,
+          "precision": 0.7143,
+          "recall": 0.625
+        },
+        "location": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "organization": {
+          "tp": 106,
+          "fp": 72,
+          "fn": 29,
+          "precision": 0.5955,
+          "recall": 0.7852
+        },
+        "passport": {
+          "tp": 7,
+          "fp": 3,
+          "fn": 0,
+          "precision": 0.7,
+          "recall": 1.0
+        },
+        "password": {
+          "tp": 9,
+          "fp": 24,
+          "fn": 2,
+          "precision": 0.2727,
+          "recall": 0.8182
+        },
+        "person": {
+          "tp": 204,
+          "fp": 46,
+          "fn": 89,
+          "precision": 0.816,
+          "recall": 0.6962
+        },
+        "phone": {
+          "tp": 29,
+          "fp": 21,
+          "fn": 2,
+          "precision": 0.58,
+          "recall": 0.9355
+        },
+        "ssn": {
+          "tp": 3,
+          "fp": 8,
+          "fn": 0,
+          "precision": 0.2727,
+          "recall": 1.0
+        },
+        "url": {
+          "tp": 0,
+          "fp": 16,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0
+        },
+        "username": {
+          "tp": 0,
+          "fp": 20,
+          "fn": 0,
+          "precision": 0.0,
+          "recall": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,116 @@
+services:
+  gliner2-format:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: gliner2-pii-format
+    working_dir: /workspace
+    entrypoint:
+      - python
+    volumes:
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ${DATASET_DIR:-../datasets/korean}/processed:/data/processed:ro
+    command:
+      - format_pii_gliner2.py
+
+  gliner2-gen-rrn:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: gliner2-gen-rrn
+    working_dir: /workspace
+    network_mode: host
+    entrypoint:
+      - python
+    volumes:
+      - ./src:/workspace:ro
+      - ./data:/data
+    command:
+      - generate_korean_rrn.py
+      - --count
+      - ${RRN_COUNT:-1000}
+      - --url
+      - ${GEMMA_URL:-http://localhost:8765}
+      - --model
+      - ${GEMMA_MODEL:-gemma4-guardrail-ko}
+      - --concurrency
+      - ${RRN_CONCURRENCY:-16}
+      - --output
+      - /data/korean_rrn_synthetic.jsonl
+
+  gliner2-benchmark:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: gliner2-pii-benchmark
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - HF_HOME=/home/appuser/.cache/huggingface
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ${DATASET_DIR:-../datasets/korean}/processed_split:/data/processed:ro
+      - ~/llm_models:/models
+    command: python benchmark_pii_heldout.py
+      --model ${GLINER_MODEL:-fastino/gliner2-multi-v1}
+      --adapter ${GLINER_ADAPTER:-/models/gliner2-multi-korean-pii-lora/checkpoint-epoch-6}
+      --samples ${BENCH_SAMPLES:-200}
+      --data-dir /data/processed
+      --output ${BENCH_OUTPUT:-/data/benchmark_results/gliner2_pii_heldout_benchmark.json}
+
+  gliner2-train:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: gliner2-pii-train
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - HF_HOME=/home/appuser/.cache/huggingface
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ~/llm_models:/models
+    command: python train_pii.py
+      --model fastino/gliner2-multi-v1
+      --train-data /data/pii_gliner2_train.jsonl
+      --output-dir /models/gliner2-multi-korean-pii-lora
+      --epochs ${GLINER_EPOCHS:-10}
+      --batch-size ${GLINER_BATCH_SIZE:-16}
+      --grad-accum ${GLINER_GRAD_ACCUM:-5}
+      --encoder-lr ${GLINER_ENCODER_LR:-1e-5}
+      --task-lr ${GLINER_TASK_LR:-5e-4}
+      --warmup-ratio 0.1
+      --korean-tokens 0
+      --gradient-checkpointing
+      --lora
+      --bf16
+
+  gliner2-inference:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: gliner2-pii-inference
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - HF_HOME=/home/appuser/.cache/huggingface
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./src:/workspace:ro
+      - ~/llm_models:/models
+    command: python inference.py

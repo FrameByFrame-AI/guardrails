@@ -1,0 +1,278 @@
+services:
+  format-data:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: guardrail-format-data
+    working_dir: /workspace
+    entrypoint:
+      - python
+    volumes:
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ${DATASET_DIR:-../datasets/korean}/processed_split:/data/processed:ro
+    command:
+      - format_training_data.py
+      - --processed-dir
+      - /data/processed
+      - --output
+      - /data/guardrail_train.jsonl
+
+  augment-adversarial:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: guardrail-augment-adversarial
+    working_dir: /workspace
+    entrypoint:
+      - python
+    volumes:
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ${DATASET_DIR:-../datasets/korean}/processed_split:/data/processed:ro
+    command:
+      - augment_adversarial.py
+      - --input-dir
+      - /data/processed
+      - --include-datasets
+      - ${AUG_INCLUDE_DATASETS:-prompt-injections-benchmark,llm-red-teaming-dataset,PIGuard,RaccoonBench,slang,league-of-legends_filtering_list_2020}
+      - --output
+      - /data/adversarial_augmented.jsonl
+      - --variants
+      - ${AUG_VARIANTS:-2}
+      - --max-records
+      - ${AUG_MAX_RECORDS:-5000}
+
+  generate-legitimate-unicode:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: guardrail-generate-legitimate
+    working_dir: /workspace
+    entrypoint:
+      - python
+    volumes:
+      - ./src:/workspace:ro
+      - ./data:/data
+    command:
+      - generate_legitimate_unicode.py
+      - --output
+      - /data/legitimate_unicode.jsonl
+      - --count
+      - ${LEGIT_COUNT:-500}
+
+  build-augmented-dataset:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: guardrail-build-augmented
+    working_dir: /workspace
+    entrypoint:
+      - python
+    volumes:
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ${DATASET_DIR:-../datasets/korean}/processed_split:/data/processed:ro
+    command:
+      - build_augmented_dataset.py
+      - --dataset-dir
+      - /data/processed
+      - --adversarial
+      - /data/adversarial_augmented.jsonl
+      - --legitimate
+      - /data/legitimate_unicode.jsonl
+      - --output-dir
+      - /data/processed_augmented
+      - --copy-test
+
+  prepare-train-data:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: guardrail-prepare-train-data
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - HF_HOME=/cache/huggingface
+      - HF_HUB_ENABLE_HF_TRANSFER=0
+    volumes:
+      - ~/llm_models/huggingface_cache:/cache/huggingface
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ~/llm_models:/models
+    command:
+      - prepare_dataset.py
+      - --model
+      - ${GEMMA_MODEL:-/models/unsloth/gemma-4-E2B-it}
+      - --train-data
+      - /data/guardrail_train.jsonl
+      - --output-dir
+      - /data/guardrail_train_prepared
+      - --think-mode
+      - ${THINK_MODE:-mixed}
+      - --think-ratio
+      - ${THINK_RATIO:-0.2}
+      - --type-cap
+      - moderation=${MODERATION_CAP:-20000}
+      - --type-cap
+      - pii-filter=${PII_CAP:-20000}
+      - --max-seq-length
+      - ${MAX_SEQ_LENGTH:-2048}
+
+  train:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: guardrail-gemma-train
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - torchrun
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - HF_HOME=/cache/huggingface
+      - HF_HUB_ENABLE_HF_TRANSFER=0
+      - HF_DATASETS_CACHE=/cache/datasets
+      - TMPDIR=/cache/tmp
+      - UNSLOTH_COMPILE_LOCATION=/cache/unsloth_compiled_cache
+    volumes:
+      - ~/llm_models/huggingface_cache:/cache/huggingface
+      - ./src:/workspace:ro
+      - ./data:/data:ro
+      - ~/llm_models:/models
+    command:
+      - --standalone
+      - --nproc_per_node=${NUM_GPUS:-gpu}
+      - train.py
+      - --model
+      - ${GEMMA_MODEL:-/models/unsloth/gemma-4-E2B-it}
+      - --prepared-data
+      - /data/guardrail_train_prepared
+      - --output-dir
+      - ${OUTPUT_DIR:-/models/guardrail-gemma4-e2b}
+      - --model-family
+      - ${MODEL_FAMILY:-gemma-4}
+      - --think-mode
+      - ${THINK_MODE:-mixed}
+      - --max-seq-length
+      - ${MAX_SEQ_LENGTH:-2048}
+      - --epochs
+      - ${EPOCHS:-2}
+      - --batch-size
+      - ${BATCH_SIZE:-16}
+      - --grad-accum
+      - ${GRAD_ACCUM:-4}
+      - --lr
+      - ${LEARNING_RATE:-2e-4}
+      - --warmup-steps
+      - ${WARMUP_STEPS:-5}
+      - --lora-r
+      - ${LORA_RANK:-64}
+      - --lora-alpha
+      - ${LORA_ALPHA:-64}
+      - --save-steps
+      - ${SAVE_STEPS:-500}
+      - --init-lora-from
+      - ${INIT_LORA_FROM:-}
+
+  vllm:
+    build:
+      context: .
+      dockerfile: Dockerfile.vllm
+    image: guardrail_gemma_vllm_image
+    container_name: gemma-guardrail-vllm
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${VLLM_VISIBLE_DEVICES:-0}
+    ports:
+      - "${VLLM_PORT:-8765}:8000"
+    volumes:
+      - ~/llm_models:/models:ro
+    command:
+      - --model
+      - ${GEMMA_VLLM_MODEL:-/models/gemma4-guardrail-ko}
+      - --served-model-name
+      - ${GEMMA_SERVED_NAME:-gemma4-guardrail-ko}
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "8000"
+      - --max-model-len
+      - "2048"
+      - --dtype
+      - bfloat16
+      - --language-model-only
+      - --gpu-memory-utilization
+      - "0.85"
+      - --max-num-seqs
+      - "32"
+      - --enable-prefix-caching
+      - --trust-remote-code
+
+  benchmark:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: guardrail-gemma-benchmark
+    working_dir: /workspace
+    network_mode: host
+    entrypoint:
+      - python
+    volumes:
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ${DATASET_DIR:-../datasets/korean}/processed_split:/data/processed:ro
+    command:
+      - benchmark.py
+      - --url
+      - ${VLLM_URL:-http://localhost:8765}
+      - --model
+      - ${GEMMA_SERVED_NAME:-gemma4-guardrail-ko}
+      - --samples
+      - ${BENCH_SAMPLES:-200}
+      - --concurrency
+      - ${BENCH_CONCURRENCY:-16}
+      - --data-dir
+      - /data/processed
+      - --output
+      - ${BENCH_OUTPUT:-/data/benchmark_results/gemma4-guardrail-ko_heldout_benchmark.json}
+
+  inference:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: guardrail-gemma-inference
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - HF_HOME=/cache/huggingface
+      - HF_HUB_ENABLE_HF_TRANSFER=0
+      - HF_DATASETS_CACHE=/cache/datasets
+      - TMPDIR=/cache/tmp
+      - UNSLOTH_COMPILE_LOCATION=/cache/unsloth_compiled_cache
+    volumes:
+      - ~/llm_models/huggingface_cache:/cache/huggingface
+      - ./src:/workspace:ro
+      - ~/llm_models:/models
+    command:
+      - inference.py

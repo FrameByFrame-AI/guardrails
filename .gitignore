@@ -1,0 +1,81 @@
+# External git repositories (dataset sources & research code)
+korean-guardrail-dataset/
+M0gician/
+PIGuard/
+gliner2_korean_pii/
+
+# Local dataset symlinks (point at the external repos above)
+datasets/*
+
+# Large data files (regenerate via `docker compose run --rm format-data`)
+*/data/*.jsonl
+*/data/processed/
+*/data/processed_split/
+*/data/guardrail_train_prepared/
+*/data/processed_augmented/
+*/data/*.safetensors
+
+# Leftover processed folders at project root (earlier scaffolding)
+*/processed/
+
+# Model checkpoints / weights
+*/models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Unsloth / HF auto-generated compiled cache
+**/unsloth_compiled_cache/
+**/unsloth-compiled-cache/
+
+# Keep only the benchmark result JSONs under */data/
+!*/data/benchmark_results/
+!*/data/benchmark_results/*.json
+
+# Keep our synthetic Korean RRN dataset (small, original contribution)
+!finetune-gliner2/data/korean_rrn_synthetic.jsonl
+
+# Training logs
+*.log
+*.out
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# HuggingFace caches
+huggingface_cache/
+.cache/
+
+# Env / secrets
+.env
+.env.local
+*.pem
+*.key
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Agent / assistant config
+.claude/
+.codex/
+.codex
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model output directories (not under data/)
+*-merged/
+*-merged-16bit/
+
+# Notebook outputs (optional — uncomment if you want to commit clean notebooks only)
+# *.ipynb
