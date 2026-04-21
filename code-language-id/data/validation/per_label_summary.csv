@@ -1,0 +1,108 @@
+canonical_language,total,matched,match_rate_pct,top_mismatched_pred_1,top_mismatched_pred_2,top_mismatched_pred_3
+Julia,1503,1448,96.34,Kotlin:8,Python:8,MATLAB:7
+Pascal,1498,1052,70.23,Delphi:217,Perl:73,Modula-2:16
+Go,1496,1478,98.8,C:2,Icon:2,Groovy:2
+Raku,1487,1188,79.89,Perl:256,NQP:5,REXX:4
+Python,1464,1444,98.63,Racket:4,R:3,Starlark:3
+Nim,1463,1265,86.47,Pascal:46,OCC:18,V:14
+Perl,1461,1383,94.66,Prolog:14,Python:12,AL:5
+J,1381,1141,82.62,APL:152,Java:14,Ruby:12
+Haskell,1365,1340,98.17,Python:5,Java:3,XML:3
+C,1354,1267,93.57,Objective-C:68,LPC:4,HLSL:2
+Mathematica/Wolfram Language,1353,1258,92.98,Python:17,MIDI:9,MATLAB:5
+Kotlin,1352,1335,98.74,Groovy:4,C:3,Gradle:3
+Java,1333,1313,98.5,C++:4,JavaScript:4,Julia:4
+Racket,1332,1225,91.97,Scheme:46,Scribble:26,Raku:6
+Ruby,1321,1287,97.43,Python:11,Rust:5,Processing:3
+C++,1309,1294,98.85,Clojure:4,Elixir:1,APL:1
+Tcl,1260,1187,94.21,C:5,Ruby:5,Bash:5
+C#,1203,1179,98.0,Razor:17,Elixir:1,PowerShell:1
+Ada,1189,1160,97.56,Lua:5,VHDL:4,ALGOL 68:3
+Rust,1183,1168,98.73,TOML:8,Scala:2,Scheme:1
+Factor,1182,857,72.5,Forth:277,APL:10,Python:4
+Scala,1181,1135,96.1,Kotlin:11,Java:6,Tcl:3
+Lua,1164,1113,95.62,Python:8,Ruby:4,Mathematica:4
+D,1139,952,83.58,XML:74,Java:64,C:6
+Common Lisp,1100,1055,95.91,ACL2:11,Scheme:9,AutoLISP:3
+AutoHotkey,1082,1022,94.45,AutoIt:6,BASIC:5,JavaScript:4
+JavaScript,1072,1001,93.38,TypeScript:16,JScript:12,HTML:10
+F#,1058,980,92.63,GLSL:38,OCaml:13,Forth:11
+Wren,1046,158,15.11,Fantom:569,V:122,Dome:42
+Clojure,1016,984,96.85,Common Lisp:13,Scheme:4,F#:2
+Fortran,991,922,93.04,Text:13,FreeBASIC:11,Python:7
+PureBasic,987,522,52.89,PostScript:117,Protocol Buffers:73,Brainfuck:27
+OCaml,966,911,94.31,F#:27,Hack:4,C:3
+R,943,857,90.88,REBOL:12,Python:10,Not a programming language:9
+Swift,941,916,97.34,Go:7,Rust:4,Kotlin:3
+Awk,934,901,96.47,JavaScript:5,C:5,Python:5
+Forth,932,884,94.85,APL:4,Fortran:4,Smalltalk:3
+Elixir,914,894,97.81,Ruby:9,Python:3,Julia:2
+Erlang,906,878,96.91,Prolog:4,Forth:3,APL:3
+PowerShell,886,855,96.5,PHP:5,C#:5,Bash:3
+Groovy,885,729,82.37,Java:89,Kotlin:32,Ruby:7
+Visual Basic .NET,848,611,72.05,SQL:95,VBA:59,VB6:22
+REXX,844,799,94.67,Fortran:5,Python:5,R:4
+PHP,843,751,89.09,Blade:56,HTML:18,C:4
+Prolog,829,795,95.9,JSON:8,Java:5,C:4
+Scheme,815,713,87.48,XML:26,Common Lisp:22,Racket:14
+AppleScript,800,767,95.88,Python:5,APL:4,JavaScript:3
+COBOL,732,690,94.26,Fortran:4,PHP:4,C++:3
+FreeBASIC,731,695,95.08,BASIC:13,Go:3,VB.NET:3
+Smalltalk,721,673,93.34,RNA:17,Python:8,Mathematica:3
+Oz,703,592,84.21,Mercury:14,Smalltalk:11,Erlang:10
+PicoLisp,703,18,2.56,Common Lisp:547,Lisp:24,Clojure:24
+MATLAB,702,550,78.35,R:72,Fortran:15,Python:14
+Standard ML,701,406,57.92,Base64:92,JSON:29,Java:28
+Lasso,686,82,11.95,ILASP:334,Wolfram Language:40,Forth:18
+Crystal,665,438,65.86,Ruby:217,Python:3,:1
+APL,657,603,91.78,Dyalog APL:10,Smalltalk:4,Drools:4
+Stata,643,425,66.1,Tcl:118,XML:26,Mata:7
+CoffeeScript,637,572,89.8,JavaScript:21,YAML:12,JSON:9
+Batchfile,635,545,85.83,Makefile:21,Bash:13,Shell:8
+GAP,608,419,68.91,Maple:56,Mathematica:55,ANTLR:9
+jq,599,479,79.97,Bash:22,Python:10,Wolfram Language:9
+Emacs Lisp,596,513,86.07,Common Lisp:68,Scheme:7,Clojure:4
+Rebol,588,513,87.24,Forth:18,Red:11,YAML:8
+Red,588,267,45.41,Rebol:107,Red/System:30,REBOL:24
+Eiffel,587,532,90.63,CSV:19,Python:6,Event Calculus:3
+Ring,585,154,26.32,Xojo:84,Forth:81,XBasic:55
+Pike,585,170,29.06,LPC:228,D:51,C:39
+Fantom,584,162,27.74,V:59,Fan:49,Haxe:46
+ActionScript,556,482,86.69,ActionScript 3:37,JavaScript:12,AngelScript:5
+MAXScript,552,269,48.73,C:27,AutoHotkey:24,F#:22
+Dart,543,528,97.24,D:3,C:3,Kotlin:2
+Processing,537,359,66.85,Java:137,C:11,C++:11
+Vala,537,282,52.51,C#:151,D:48,C:17
+Ceylon,534,408,76.4,V:21,D:18,Java:18
+Io,529,294,55.58,Smalltalk:30,JSON:18,Nginx:17
+Zig,525,522,99.43,JavaScript:1,Rust:1,Java:1
+ATS,523,496,94.84,Haskell:5,F#:4,Standard ML:2
+AutoIt,519,514,99.04,Visual Basic:1,Assembly:1,PowerShell:1
+M4,517,346,66.92,Autoconf:123,Fortran:6,Dockerfile:6
+LFE,515,229,44.47,Common Lisp:125,Erlang:118,Scheme:9
+LabVIEW,511,37,7.24,XML:420,Wolfram Language:8,Mathematica:5
+ABAP,508,505,99.41,Ada:1,Shell:1,SQL:1
+Logtalk,506,370,73.12,Prolog:130,Python:1,Ruby:1
+Haxe,503,468,93.04,ActionScript:11,TypeScript:5,V:3
+ColdFusion,501,153,30.54,CFML:319,HTML:19,JavaScript:4
+IDL,500,99,19.8,CSV:212,R:50,ASCII:36
+SAS,494,462,93.52,PDDL:22,R:4,Makefile:2
+Scilab,487,333,68.38,MATLAB:50,Octave:21,Python:11
+VBA,349,314,89.97,VB.NET:12,VB6:8,VBScript:8
+BASIC,321,246,76.64,FreeBASIC:33,QBasic:15,Fortran:4
+V,294,157,53.4,Go:48,Zig:29,Forth:19
+VBScript,280,271,96.79,VB.NET:2,VBA:2,FreeBASIC:2
+E,241,13,5.39,Wolfram Language:40,Io:15,Kotlin:14
+Euphoria,212,159,75.0,Fortran:8,C:6,Forth:6
+ARM Assembly,194,136,70.1,Assembly:54,C:1,Not a programming language:1
+M,185,0,0.0,MUMPS:100,ObjectScript:68,BASIC:4
+Component Pascal,183,0,0.0,Oberon:42,JavaScript:33,XML:31
+Modula-2,169,84,49.7,Pascal:69,Oberon:14,VHDL:1
+BQN,162,4,2.47,J:110,APL:37,Mathematica:6
+Befunge,160,18,11.25,Brainfuck:47,APL:33,V:24
+Objective-C,140,133,95.0,OCaml:3,C:2,C#:1
+NewLisp,135,20,14.81,Common Lisp:54,Scheme:25,Clojure:23
+Nemerle,129,28,21.71,F#:43,C#:30,Wolfram Language:6
+Modula-3,110,3,2.73,Modula-2:52,Oberon:36,Pascal:13
+Mercury,108,22,20.37,Prolog:83,Haskell:1,Python:1
+QuickBASIC,98,0,0.0,BASIC:46,QBasic:17,FreeBASIC:17

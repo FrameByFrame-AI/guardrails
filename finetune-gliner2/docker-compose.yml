@@ -1,116 +1,145 @@
 services:
-  gliner2-format:
+  format-guardrail-gliner2:
     build:
       context: .
       args:
         UID: ${UID:-1000}
         GID: ${GID:-1000}
-    container_name: gliner2-pii-format
+    container_name: gliner2-format-guardrail-gliner2
     working_dir: /workspace
     entrypoint:
       - python
     volumes:
-      - ./src:/workspace:ro
-      - ./data:/data
-      - ${DATASET_DIR:-../datasets/korean}/processed:/data/processed:ro
-    command:
-      - format_pii_gliner2.py
-
-  gliner2-gen-rrn:
-    build:
-      context: .
-      args:
-        UID: ${UID:-1000}
-        GID: ${GID:-1000}
-    container_name: gliner2-gen-rrn
-    working_dir: /workspace
-    network_mode: host
-    entrypoint:
-      - python
-    volumes:
-      - ./src:/workspace:ro
-      - ./data:/data
-    command:
-      - generate_korean_rrn.py
-      - --count
-      - ${RRN_COUNT:-1000}
-      - --url
-      - ${GEMMA_URL:-http://localhost:8765}
-      - --model
-      - ${GEMMA_MODEL:-gemma4-guardrail-ko}
-      - --concurrency
-      - ${RRN_CONCURRENCY:-16}
-      - --output
-      - /data/korean_rrn_synthetic.jsonl
-
-  gliner2-benchmark:
-    build:
-      context: .
-      args:
-        UID: ${UID:-1000}
-        GID: ${GID:-1000}
-    container_name: gliner2-pii-benchmark
-    runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-      - HF_HOME=/home/appuser/.cache/huggingface
-    volumes:
-      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
       - ./src:/workspace:ro
       - ./data:/data
       - ${DATASET_DIR:-../datasets/korean}/processed_split:/data/processed:ro
-      - ~/llm_models:/models
-    command: python benchmark_pii_heldout.py
-      --model ${GLINER_MODEL:-fastino/gliner2-multi-v1}
-      --adapter ${GLINER_ADAPTER:-/models/gliner2-multi-korean-pii-lora/checkpoint-epoch-6}
-      --samples ${BENCH_SAMPLES:-200}
-      --data-dir /data/processed
-      --output ${BENCH_OUTPUT:-/data/benchmark_results/gliner2_pii_heldout_benchmark.json}
+    command:
+      - format_guardrail_gliner2.py
+      - --input-dir
+      - /data/processed
+      - --output-dir
+      - /data
+      - --max-per-dataset
+      - ${GUARD_MAX_PER_DATASET:-15000}
+      - --rare-harmful-floor
+      - ${GUARD_RARE_HARMFUL_FLOOR:-4000}
+      - --rare-adversarial-floor
+      - ${GUARD_RARE_ADV_FLOOR:-12000}
 
-  gliner2-train:
+  train-guardrail-gliner2:
     build:
       context: .
       args:
         UID: ${UID:-1000}
         GID: ${GID:-1000}
-    container_name: gliner2-pii-train
+    container_name: guardrail-gliner2-train
     runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - torchrun
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ~/llm_models:/models
+    command:
+      - --standalone
+      - --nproc_per_node=${NUM_GPUS:-2}
+      - train_pii.py
+      - --model
+      - ${GLINER_BASE_MODEL:-fastino/gliner2-multi-v1}
+      - --train-data
+      - /data/guardrail_gliner2_train.jsonl
+      - --output-dir
+      - ${GLINER_OUTPUT_DIR:-/models/guardrail-gliner2}
+      - --epochs
+      - ${GLINER_EPOCHS:-5}
+      - --batch-size
+      - ${GLINER_BATCH_SIZE:-8}
+      - --grad-accum
+      - ${GLINER_GRAD_ACCUM:-4}
+      - --encoder-lr
+      - ${GLINER_ENCODER_LR:-1e-5}
+      - --task-lr
+      - ${GLINER_TASK_LR:-1e-4}
+      - --warmup-ratio
+      - "0.1"
+      - --korean-tokens
+      - "0"
+      - --gradient-checkpointing
+      - --lora
+      - --bf16
+
+  benchmark-gliner2-guard:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: gliner2-guard-benchmark
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${GUARD_BENCH_GPU:-1}
       - HF_HOME=/home/appuser/.cache/huggingface
     volumes:
       - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
       - ./src:/workspace:ro
       - ./data:/data
       - ~/llm_models:/models
-    command: python train_pii.py
-      --model fastino/gliner2-multi-v1
-      --train-data /data/pii_gliner2_train.jsonl
-      --output-dir /models/gliner2-multi-korean-pii-lora
-      --epochs ${GLINER_EPOCHS:-10}
-      --batch-size ${GLINER_BATCH_SIZE:-16}
-      --grad-accum ${GLINER_GRAD_ACCUM:-5}
-      --encoder-lr ${GLINER_ENCODER_LR:-1e-5}
-      --task-lr ${GLINER_TASK_LR:-5e-4}
-      --warmup-ratio 0.1
-      --korean-tokens 0
-      --gradient-checkpointing
-      --lora
-      --bf16
+    command: python benchmark_guardrail_gliner2.py
+      --model ${GUARD_MODEL:-/models/hivetrace-gliner-guard-omni}
+      --adapter "${GUARD_ADAPTER:-}"
+      --test-data /data/guardrail_gliner2_test.jsonl
+      --samples ${BENCH_SAMPLES:-2000}
+      --output ${BENCH_OUTPUT:-/data/benchmark_results/guardrail_gliner2_benchmark.json}
 
-  gliner2-inference:
+  benchmark-toxicchat:
     build:
       context: .
       args:
         UID: ${UID:-1000}
         GID: ${GID:-1000}
-    container_name: gliner2-pii-inference
+    container_name: gliner2-toxicchat-benchmark
     runtime: nvidia
     environment:
-      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_VISIBLE_DEVICES=${GUARD_BENCH_GPU:-1}
       - HF_HOME=/home/appuser/.cache/huggingface
     volumes:
       - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
       - ./src:/workspace:ro
+      - ./data:/data
       - ~/llm_models:/models
-    command: python inference.py
+    command: python benchmark_toxicchat.py
+      --model ${GUARD_MODEL:-/models/guardrail-gliner2-v4}
+      --adapter "${GUARD_ADAPTER:-}"
+      --split ${TC_SPLIT:-test}
+      --samples ${BENCH_SAMPLES:-2000}
+      --output ${BENCH_OUTPUT:-/data/benchmark_results/toxicchat_guardrail_gliner2.json}
+
+  benchmark-llama-guard:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: llama-guard-benchmark
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${LG_GPU:-0,1}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ~/llm_models:/models
+    command: python benchmark_llama_guard.py
+      --model-path ${LG_MODEL_PATH:-/models/RedHatAI-Llama-Guard-4-12B-FP8-dynamic}
+      --test-data /data/guardrail_gliner2_test.jsonl
+      --samples ${BENCH_SAMPLES:-2000}
+      --batch-size ${LG_BATCH_SIZE:-4}
+      --output ${BENCH_OUTPUT:-/data/benchmark_results/llama_guard_4_benchmark.json}

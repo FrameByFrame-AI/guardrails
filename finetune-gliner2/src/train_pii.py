@@ -15,6 +15,7 @@ Usage (inside docker):
 
 import argparse
 import json
+import os
 from pathlib import Path
 from collections import Counter
 from types import MethodType
@@ -279,10 +280,21 @@ def main():
 
     has_eval = args.val_ratio > 0
 
+    # Pick up LOCAL_RANK from torchrun (default -1 = single GPU)
+    local_rank = int(os.environ.get("LOCAL_RANK", -1))
+
+    # Initialize distributed process group when launched via torchrun
+    if local_rank >= 0:
+        import torch.distributed as dist
+        if not dist.is_initialized():
+            dist.init_process_group(backend="nccl")
+
     # Training config
+
     config = TrainingConfig(
         output_dir=args.output_dir,
         experiment_name="gliner2-korean-pii",
+        local_rank=local_rank,
         num_epochs=args.epochs,
         batch_size=args.batch_size,
         encoder_lr=args.encoder_lr,
@@ -341,14 +353,17 @@ def main():
 
     if args.val_ratio > 0:
         import random
-        lines = train_path.read_text(encoding="utf-8").strip().splitlines()
+        with train_path.open(encoding="utf-8") as f:
+            lines = [l for l in f if l.strip()]
         random.Random(42).shuffle(lines)
         split_idx = int(len(lines) * (1.0 - args.val_ratio))
 
         val_path = train_path.with_suffix(".val.jsonl")
         train_split_path = train_path.with_suffix(".train.jsonl")
-        train_split_path.write_text("\n".join(lines[:split_idx]) + "\n", encoding="utf-8")
-        val_path.write_text("\n".join(lines[split_idx:]) + "\n", encoding="utf-8")
+        with train_split_path.open("w", encoding="utf-8") as f:
+            f.writelines(lines[:split_idx])
+        with val_path.open("w", encoding="utf-8") as f:
+            f.writelines(lines[split_idx:])
 
         print(f"Train: {split_idx} | Val: {len(lines) - split_idx}")
         results = trainer.train(
@@ -360,8 +375,9 @@ def main():
 
     print(f"\nTraining complete!")
     if results:
-        # Print summary only, not full step-by-step history
-        summary = {k: v for k, v in results.items() if k not in ("history", "metrics_history", "train_history")}
+        skip = {"history", "metrics_history", "train_history", "eval_metrics_history",
+                "training_history", "log_history", "eval_history"}
+        summary = {k: v for k, v in results.items() if k not in skip and "history" not in k.lower()}
         print(f"Summary: {json.dumps(summary, indent=2, default=str)}")
 
     model.save_pretrained(args.output_dir)

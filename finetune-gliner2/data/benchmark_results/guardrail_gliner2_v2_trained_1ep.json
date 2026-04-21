@@ -1,0 +1,169 @@
+{
+  "model": "fastino/gliner2-multi-v1",
+  "adapter": "/models/guardrail-gliner2/best",
+  "samples": 2000,
+  "elapsed_sec": 322.0,
+  "ms_per_record": 161,
+  "safety": {
+    "accuracy": 0.83,
+    "per_label": {
+      "unsafe": {
+        "tp": 1153,
+        "fp": 301,
+        "fn": 39
+      },
+      "safe": {
+        "tp": 507,
+        "fp": 39,
+        "fn": 301
+      }
+    }
+  },
+  "adversarial": {
+    "binary_f1": 0.8262,
+    "binary_precision": 0.8962,
+    "binary_recall": 0.7664,
+    "binary_tp": 164,
+    "binary_fp": 19,
+    "binary_tn": 1767,
+    "binary_fn": 50,
+    "per_label": {
+      "prompt_injection": {
+        "tp": 91,
+        "fp": 23,
+        "fn": 48
+      },
+      "jailbreak": {
+        "tp": 36,
+        "fp": 13,
+        "fn": 17
+      },
+      "indirect_injection": {
+        "tp": 20,
+        "fp": 1,
+        "fn": 2
+      }
+    }
+  },
+  "harmful": {
+    "binary_f1": 0.8271,
+    "binary_precision": 0.9303,
+    "binary_recall": 0.7445,
+    "binary_tp": 641,
+    "binary_fp": 48,
+    "binary_tn": 1091,
+    "binary_fn": 220,
+    "per_label": {
+      "harassment": {
+        "tp": 301,
+        "fp": 76,
+        "fn": 162
+      },
+      "profanity": {
+        "tp": 27,
+        "fp": 9,
+        "fn": 93
+      },
+      "hate_speech": {
+        "tp": 194,
+        "fp": 107,
+        "fn": 212
+      },
+      "criminal_planning": {
+        "tp": 9,
+        "fp": 8,
+        "fn": 9
+      },
+      "violence": {
+        "tp": 2,
+        "fp": 1,
+        "fn": 17
+      },
+      "sexual_content": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 15
+      },
+      "weapons": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2
+      },
+      "unauthorized_advice": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      "drugs": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2
+      }
+    }
+  },
+  "entities": {
+    "f1": 0.3342,
+    "precision": 0.2238,
+    "recall": 0.6598,
+    "tp": 322,
+    "fp": 1117,
+    "fn": 166,
+    "per_label": {
+      "person": {
+        "tp": 135,
+        "fp": 935,
+        "fn": 106
+      },
+      "bank_account": {
+        "tp": 6,
+        "fp": 15,
+        "fn": 9
+      },
+      "address": {
+        "tp": 83,
+        "fp": 37,
+        "fn": 24
+      },
+      "id_number": {
+        "tp": 6,
+        "fp": 51,
+        "fn": 4
+      },
+      "email": {
+        "tp": 34,
+        "fp": 24,
+        "fn": 4
+      },
+      "passport": {
+        "tp": 3,
+        "fp": 5,
+        "fn": 1
+      },
+      "date_of_birth": {
+        "tp": 9,
+        "fp": 26,
+        "fn": 4
+      },
+      "credit_card": {
+        "tp": 1,
+        "fp": 8,
+        "fn": 8
+      },
+      "ssn": {
+        "tp": 2,
+        "fp": 5,
+        "fn": 1
+      },
+      "phone": {
+        "tp": 42,
+        "fp": 6,
+        "fn": 5
+      },
+      "driver_license": {
+        "tp": 1,
+        "fp": 5,
+        "fn": 0
+      }
+    }
+  }
+}

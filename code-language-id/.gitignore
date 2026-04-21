@@ -1,0 +1,13 @@
+# Raw LLM label-validation JSONL can grow into tens of MB — keep out of git.
+# The derived summary CSVs (per_label_summary.csv, mismatches.csv) are tracked.
+data/validation/label_validation.jsonl
+
+# Local training smoke / scratch output
+**/modernbert-language-v1-smoke/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/

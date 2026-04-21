@@ -1,0 +1,65 @@
+services:
+  vllm_validate:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: vllm_dflash_image
+    container_name: vllm_validate_qwen36
+
+    runtime: nvidia
+    ipc: host
+    shm_size: "32gb"
+
+    environment:
+      CUDA_VISIBLE_DEVICES: "0,1"
+      VLLM_ENABLE_CUDA_COMPATIBILITY: "1"
+      HF_TOKEN: "${HF_TOKEN:-}"
+      HF_HOME: "/root/.cache/huggingface"
+      HF_HUB_DISABLE_XET: "1"
+      HF_XET_HIGH_PERFORMANCE: "0"
+      HF_HUB_ENABLE_HF_TRANSFER: "0"
+      NCCL_P2P_DISABLE: "1"
+
+    volumes:
+      - ${LLM_MODELS_DIR:-~/llm_models}:/models:rw
+      - ${WORKSPACE_DIR:-~/workspace}:/workspace:rw
+
+    ports:
+      - "${VLLM_VALIDATE_PORT:-8766}:8000"
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 2
+              capabilities: [gpu]
+
+    entrypoint: ["vllm", "serve"]
+    command:
+      - /models/Qwen3.6-35B-A3B-FP8
+      - --served-model-name
+      - Qwen/Qwen3.6-35B-A3B
+      - --speculative-config
+      - '{"method":"dflash","model":"/models/Qwen3.6-35B-A3B-DFlash","num_speculative_tokens":4,"draft_tensor_parallel_size":2}'
+      - --attention-backend
+      - flash_attn
+      - --max-num-seqs
+      - "${VLLM_MAX_NUM_SEQS:-8}"
+      - --max-num-batched-tokens
+      - "${VLLM_MAX_NUM_BATCHED_TOKENS:-2048}"
+      - --tensor-parallel-size
+      - "2"
+      - --disable-custom-all-reduce
+      - --gpu-memory-utilization
+      - "${VLLM_GPU_MEM_UTIL:-0.94}"
+      - --max-model-len
+      - "${VLLM_MAX_MODEL_LEN:-4096}"
+      - --reasoning-parser
+      - qwen3
+      - --enable-prefix-caching
+      - --enforce-eager
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"

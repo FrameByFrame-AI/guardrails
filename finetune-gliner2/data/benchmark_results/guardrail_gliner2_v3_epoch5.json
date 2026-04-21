@@ -1,0 +1,189 @@
+{
+  "model": "/models/hivetrace-gliner-guard-omni",
+  "adapter": "/models/guardrail-gliner2/checkpoint-epoch-5",
+  "samples": 2000,
+  "elapsed_sec": 328.5,
+  "ms_per_record": 164,
+  "safety": {
+    "accuracy": 0.845,
+    "per_label": {
+      "safe": {
+        "tp": 656,
+        "fp": 176,
+        "fn": 134
+      },
+      "unsafe": {
+        "tp": 1034,
+        "fp": 134,
+        "fn": 176
+      }
+    }
+  },
+  "adversarial": {
+    "binary_f1": 0.5667,
+    "binary_precision": 0.8793,
+    "binary_recall": 0.418,
+    "binary_tp": 102,
+    "binary_fp": 14,
+    "binary_tn": 1742,
+    "binary_fn": 142,
+    "per_label": {
+      "prompt_injection": {
+        "tp": 72,
+        "fp": 14,
+        "fn": 102
+      },
+      "indirect_injection": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 15
+      },
+      "jailbreak": {
+        "tp": 26,
+        "fp": 4,
+        "fn": 29
+      }
+    }
+  },
+  "harmful": {
+    "binary_f1": 0.8078,
+    "binary_precision": 0.9372,
+    "binary_recall": 0.7099,
+    "binary_tp": 597,
+    "binary_fp": 40,
+    "binary_tn": 1119,
+    "binary_fn": 244,
+    "per_label": {
+      "profanity": {
+        "tp": 32,
+        "fp": 46,
+        "fn": 69
+      },
+      "harassment": {
+        "tp": 273,
+        "fp": 109,
+        "fn": 146
+      },
+      "sexual_content": {
+        "tp": 2,
+        "fp": 1,
+        "fn": 20
+      },
+      "hate_speech": {
+        "tp": 150,
+        "fp": 28,
+        "fn": 270
+      },
+      "weapons": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 3
+      },
+      "drugs": {
+        "tp": 2,
+        "fp": 2,
+        "fn": 1
+      },
+      "criminal_planning": {
+        "tp": 11,
+        "fp": 4,
+        "fn": 8
+      },
+      "violence": {
+        "tp": 5,
+        "fp": 6,
+        "fn": 14
+      },
+      "child_exploitation": {
+        "tp": 0,
+        "fp": 3,
+        "fn": 1
+      },
+      "unauthorized_advice": {
+        "tp": 0,
+        "fp": 2,
+        "fn": 0
+      },
+      "fraud": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0
+      },
+      "misinformation": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      "self_harm": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      }
+    }
+  },
+  "entities": {
+    "f1": 0.5559,
+    "precision": 0.4668,
+    "recall": 0.6869,
+    "tp": 408,
+    "fp": 466,
+    "fn": 186,
+    "per_label": {
+      "email": {
+        "tp": 50,
+        "fp": 26,
+        "fn": 10
+      },
+      "address": {
+        "tp": 95,
+        "fp": 27,
+        "fn": 29
+      },
+      "person": {
+        "tp": 186,
+        "fp": 178,
+        "fn": 117
+      },
+      "id_number": {
+        "tp": 13,
+        "fp": 24,
+        "fn": 7
+      },
+      "ssn": {
+        "tp": 2,
+        "fp": 27,
+        "fn": 2
+      },
+      "credit_card": {
+        "tp": 4,
+        "fp": 37,
+        "fn": 8
+      },
+      "passport": {
+        "tp": 2,
+        "fp": 18,
+        "fn": 0
+      },
+      "bank_account": {
+        "tp": 8,
+        "fp": 56,
+        "fn": 4
+      },
+      "driver_license": {
+        "tp": 2,
+        "fp": 36,
+        "fn": 2
+      },
+      "phone": {
+        "tp": 36,
+        "fp": 11,
+        "fn": 4
+      },
+      "date_of_birth": {
+        "tp": 10,
+        "fp": 26,
+        "fn": 3
+      }
+    }
+  }
+}

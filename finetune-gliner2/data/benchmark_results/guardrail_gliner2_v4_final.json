@@ -1,0 +1,129 @@
+{
+  "model": "/models/guardrail-gliner2-v4",
+  "adapter": "",
+  "samples": 2000,
+  "elapsed_sec": 293.8,
+  "ms_per_record": 147,
+  "safety": {
+    "accuracy": 0.902,
+    "per_label": {
+      "unsafe": {
+        "tp": 1152,
+        "fp": 107,
+        "fn": 89
+      },
+      "safe": {
+        "tp": 652,
+        "fp": 89,
+        "fn": 107
+      }
+    }
+  },
+  "adversarial": {
+    "binary_f1": 0.9234,
+    "binary_precision": 0.9415,
+    "binary_recall": 0.9061,
+    "binary_tp": 193,
+    "binary_fp": 12,
+    "binary_tn": 1775,
+    "binary_fn": 20,
+    "per_label": {
+      "jailbreak": {
+        "tp": 52,
+        "fp": 5,
+        "fn": 12
+      },
+      "prompt_injection": {
+        "tp": 122,
+        "fp": 13,
+        "fn": 14
+      },
+      "indirect_injection": {
+        "tp": 13,
+        "fp": 0,
+        "fn": 0
+      }
+    }
+  },
+  "harmful": {
+    "binary_f1": 0.8878,
+    "binary_precision": 0.89,
+    "binary_recall": 0.8855,
+    "binary_tp": 704,
+    "binary_fp": 87,
+    "binary_tn": 1118,
+    "binary_fn": 91,
+    "per_label": {
+      "harassment": {
+        "tp": 304,
+        "fp": 106,
+        "fn": 81
+      },
+      "hate_speech": {
+        "tp": 220,
+        "fp": 90,
+        "fn": 169
+      },
+      "sexual_content": {
+        "tp": 3,
+        "fp": 10,
+        "fn": 15
+      },
+      "criminal_planning": {
+        "tp": 22,
+        "fp": 12,
+        "fn": 3
+      },
+      "profanity": {
+        "tp": 59,
+        "fp": 39,
+        "fn": 50
+      },
+      "misinformation": {
+        "tp": 0,
+        "fp": 6,
+        "fn": 0
+      },
+      "violence": {
+        "tp": 3,
+        "fp": 11,
+        "fn": 7
+      },
+      "fraud": {
+        "tp": 0,
+        "fp": 9,
+        "fn": 1
+      },
+      "self_harm": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      "unauthorized_advice": {
+        "tp": 1,
+        "fp": 4,
+        "fn": 0
+      },
+      "malware": {
+        "tp": 1,
+        "fp": 5,
+        "fn": 0
+      },
+      "drugs": {
+        "tp": 5,
+        "fp": 1,
+        "fn": 0
+      },
+      "weapons": {
+        "tp": 2,
+        "fp": 4,
+        "fn": 0
+      },
+      "copyright": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 1
+      }
+    }
+  }
+}

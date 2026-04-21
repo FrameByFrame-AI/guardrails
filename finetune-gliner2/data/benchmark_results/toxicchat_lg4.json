@@ -1,0 +1,38 @@
+{
+  "model": "/models/RedHatAI-Llama-Guard-4-12B-FP8-dynamic",
+  "backend": "transformers (FP8 dequantized to bf16)",
+  "dataset": "lmsys/toxic-chat/test",
+  "samples": 2000,
+  "elapsed_sec": 2206.2,
+  "ms_per_record": 1103,
+  "batch_size": 4,
+  "safety": {
+    "accuracy": 0.903,
+    "unsafe_precision": 0.395,
+    "unsafe_recall": 0.5197,
+    "unsafe_f1": 0.4489,
+    "tp": 79,
+    "fp": 121,
+    "fn": 73,
+    "tn": 1727
+  },
+  "adversarial": {
+    "binary_f1": 0.1288,
+    "binary_precision": 0.075,
+    "binary_recall": 0.4545,
+    "tp": 15,
+    "fp": 185,
+    "fn": 18,
+    "tn": 1782,
+    "note": "LG4 has no adv category; uses safety verdict as proxy"
+  },
+  "harmful": {
+    "binary_f1": 0.4489,
+    "binary_precision": 0.395,
+    "binary_recall": 0.5197,
+    "tp": 79,
+    "fp": 121,
+    "fn": 73,
+    "tn": 1727
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "model": "/models/guardrail-gliner2-v4",
+  "adapter": "",
+  "dataset": "lmsys/toxic-chat/test",
+  "samples": 2000,
+  "elapsed_sec": 217.2,
+  "ms_per_record": 109,
+  "safety": {
+    "accuracy": 0.8505,
+    "unsafe_precision": 0.2766,
+    "unsafe_recall": 0.5987,
+    "unsafe_f1": 0.3784,
+    "tp": 91,
+    "fp": 238,
+    "fn": 61,
+    "tn": 1610
+  },
+  "adversarial": {
+    "binary_f1": 0.1739,
+    "binary_precision": 0.1034,
+    "binary_recall": 0.5455,
+    "tp": 18,
+    "fp": 156,
+    "fn": 15,
+    "tn": 1811
+  },
+  "harmful": {
+    "binary_f1": 0.3694,
+    "binary_precision": 0.358,
+    "binary_recall": 0.3816,
+    "tp": 58,
+    "fp": 104,
+    "fn": 94,
+    "tn": 1744
+  }
+}

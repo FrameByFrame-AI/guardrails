@@ -1,0 +1,36 @@
+{
+  "model": "/models/hivetrace-gliner-guard-omni",
+  "adapter": "",
+  "dataset": "lmsys/toxic-chat/test",
+  "samples": 2000,
+  "elapsed_sec": 233.7,
+  "ms_per_record": 117,
+  "safety": {
+    "accuracy": 0.9315,
+    "unsafe_precision": 0.5292,
+    "unsafe_recall": 0.8947,
+    "unsafe_f1": 0.665,
+    "tp": 136,
+    "fp": 121,
+    "fn": 16,
+    "tn": 1727
+  },
+  "adversarial": {
+    "binary_f1": 0.5743,
+    "binary_precision": 0.4265,
+    "binary_recall": 0.8788,
+    "tp": 29,
+    "fp": 39,
+    "fn": 4,
+    "tn": 1928
+  },
+  "harmful": {
+    "binary_f1": 0.7143,
+    "binary_precision": 0.6313,
+    "binary_recall": 0.8224,
+    "tp": 125,
+    "fp": 73,
+    "fn": 27,
+    "tn": 1775
+  }
+}

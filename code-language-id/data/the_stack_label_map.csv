@@ -1,0 +1,108 @@
+canonical_language,stack_dir,notes
+Julia,julia,
+Wren,,not in the-stack
+Go,go,
+Raku,perl6,Raku was renamed from Perl 6
+Pascal,pascal,
+Perl,perl,
+Python,python,
+Nim,nimrod,Nim was renamed from Nimrod
+J,j,
+C,c,
+Haskell,haskell,
+Kotlin,kotlin,
+Java,java,
+Ruby,ruby,
+Racket,racket,
+C++,c++,
+REXX,,not in the-stack
+D,d,
+Tcl,tcl,
+C#,c-sharp,
+Scala,scala,
+Ada,ada,
+Factor,factor,
+Rust,rust,
+FreeBASIC,,not in the-stack
+Lua,lua,
+PicoLisp,,not in the-stack
+Common Lisp,common-lisp,
+AutoHotkey,autohotkey,
+JavaScript,javascript,
+F#,f-sharp,
+jq,,not in the-stack
+Ring,,not in the-stack
+Clojure,clojure,
+Fortran,fortran,
+PureBasic,purebasic,
+OCaml,ocaml,
+Awk,awk,
+R,r,
+Swift,swift,
+Forth,forth,
+Elixir,elixir,
+Erlang,erlang,
+PowerShell,powershell,
+Groovy,groovy,
+Visual Basic .NET,visual-basic,
+PHP,php,
+Prolog,prolog,
+Scheme,scheme,
+VBA,,VBA has no the-stack dir
+AppleScript,applescript,
+BASIC,,not in the-stack
+V,,not in the-stack
+COBOL,cobol,
+VBScript,,not in the-stack
+Smalltalk,smalltalk,
+MATLAB,matlab,
+Oz,oz,
+Standard ML,standard-ml,
+E,,not in the-stack
+Lasso,lasso,
+Crystal,crystal,
+Euphoria,,not in the-stack
+APL,apl,
+Stata,stata,
+CoffeeScript,coffeescript,
+Batchfile,batchfile,
+Modula-2,,not in the-stack
+BQN,,not in the-stack
+Befunge,befunge,
+GAP,gap,
+Red,red,
+Emacs Lisp,emacs-lisp,
+Eiffel,eiffel,
+Objective-C,,not in the-stack (only objective-c++ available)
+NewLisp,,not in the-stack
+Fantom,fantom,
+Pike,pike,
+Nemerle,,not in the-stack
+Rebol,rebol,
+Modula-3,,not in the-stack
+ActionScript,actionscript,
+Mercury,,not in the-stack
+MAXScript,maxscript,
+QuickBASIC,,not in the-stack
+M,m,
+Vala,vala,
+Dart,dart,
+Processing,processing,
+Ceylon,ceylon,
+AutoIt,autoit,
+Io,io,
+M4,m4,
+Zig,zig,
+LFE,lfe,
+ATS,ats,
+Logtalk,logtalk,
+Component Pascal,component-pascal,
+ABAP,abap,
+Scilab,scilab,
+IDL,idl,
+LabVIEW,labview,
+ColdFusion,coldfusion,
+SAS,sas,
+Haxe,haxe,
+Mathematica/Wolfram Language,mathematica,
+ARM Assembly,,gas dir mixes multiple assembly architectures; skip for now

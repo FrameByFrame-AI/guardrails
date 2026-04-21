@@ -1,0 +1,129 @@
+{
+  "model": "fastino/gliner2-multi-v1",
+  "adapter": "/models/guardrail-gliner2-v4/best",
+  "samples": 2000,
+  "elapsed_sec": 278.0,
+  "ms_per_record": 139,
+  "safety": {
+    "accuracy": 0.8995,
+    "per_label": {
+      "unsafe": {
+        "tp": 1166,
+        "fp": 126,
+        "fn": 75
+      },
+      "safe": {
+        "tp": 633,
+        "fp": 75,
+        "fn": 126
+      }
+    }
+  },
+  "adversarial": {
+    "binary_f1": 0.926,
+    "binary_precision": 0.9417,
+    "binary_recall": 0.9108,
+    "binary_tp": 194,
+    "binary_fp": 12,
+    "binary_tn": 1775,
+    "binary_fn": 19,
+    "per_label": {
+      "jailbreak": {
+        "tp": 52,
+        "fp": 4,
+        "fn": 12
+      },
+      "prompt_injection": {
+        "tp": 124,
+        "fp": 14,
+        "fn": 12
+      },
+      "indirect_injection": {
+        "tp": 13,
+        "fp": 0,
+        "fn": 0
+      }
+    }
+  },
+  "harmful": {
+    "binary_f1": 0.8877,
+    "binary_precision": 0.8715,
+    "binary_recall": 0.9044,
+    "binary_tp": 719,
+    "binary_fp": 106,
+    "binary_tn": 1099,
+    "binary_fn": 76,
+    "per_label": {
+      "harassment": {
+        "tp": 304,
+        "fp": 107,
+        "fn": 81
+      },
+      "hate_speech": {
+        "tp": 231,
+        "fp": 102,
+        "fn": 158
+      },
+      "sexual_content": {
+        "tp": 3,
+        "fp": 11,
+        "fn": 15
+      },
+      "criminal_planning": {
+        "tp": 22,
+        "fp": 12,
+        "fn": 3
+      },
+      "profanity": {
+        "tp": 59,
+        "fp": 42,
+        "fn": 50
+      },
+      "violence": {
+        "tp": 3,
+        "fp": 12,
+        "fn": 7
+      },
+      "misinformation": {
+        "tp": 0,
+        "fp": 6,
+        "fn": 0
+      },
+      "fraud": {
+        "tp": 0,
+        "fp": 9,
+        "fn": 1
+      },
+      "self_harm": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      "weapons": {
+        "tp": 2,
+        "fp": 5,
+        "fn": 0
+      },
+      "malware": {
+        "tp": 1,
+        "fp": 6,
+        "fn": 0
+      },
+      "unauthorized_advice": {
+        "tp": 1,
+        "fp": 3,
+        "fn": 0
+      },
+      "drugs": {
+        "tp": 5,
+        "fp": 2,
+        "fn": 0
+      },
+      "copyright": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 1
+      }
+    }
+  }
+}

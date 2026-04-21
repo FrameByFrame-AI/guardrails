@@ -1,0 +1,159 @@
+services:
+  train-modernbert-language:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: code-language-modernbert-train
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${CODE_LANG_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ~/llm_models:/models
+    command:
+      - scripts/train_modernbert_language.py
+      - --data-root
+      - /models/guardrail_code_data
+      - --splits-subdir
+      - ${CODE_LANG_SPLITS_SUBDIR:-processed/v1_splits}
+      - --output-dir
+      - ${CODE_LANG_OUTPUT_DIR:-/models/guardrail_code_models/modernbert-language-v2}
+      - --model-name
+      - ${CODE_LANG_MODEL:-answerdotai/ModernBERT-base}
+      - --attn-implementation
+      - ${CODE_LANG_ATTN_IMPL:-eager}
+      - --num-train-epochs
+      - ${CODE_LANG_EPOCHS:-10}
+      - --early-stopping-patience
+      - ${CODE_LANG_EARLY_STOPPING_PATIENCE:-2}
+      - --early-stopping-threshold
+      - ${CODE_LANG_EARLY_STOPPING_THRESHOLD:-0.0}
+      - --train-batch-size
+      - ${CODE_LANG_BATCH_SIZE:-16}
+      - --eval-batch-size
+      - ${CODE_LANG_EVAL_BATCH_SIZE:-32}
+      - --learning-rate
+      - ${CODE_LANG_LR:-2e-5}
+      - --lr-scheduler-type
+      - ${CODE_LANG_LR_SCHEDULER:-linear}
+      - --warmup-ratio
+      - ${CODE_LANG_WARMUP_RATIO:-0.06}
+      - --max-chars
+      - ${CODE_LANG_MAX_CHARS:-512}
+      - --tokenizer-max-length
+      - ${CODE_LANG_TOKENIZER_MAX_LENGTH:-512}
+      - --gradient-checkpointing
+      - --bf16
+
+  fetch-the-stack-samples:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: code-language-fetch-the-stack
+    working_dir: /workspace
+    entrypoint:
+      - bash
+      - -lc
+    environment:
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - HF_TOKEN=${HF_TOKEN:-}
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./data:/workspace/data:ro
+      - ~/llm_models:/models
+    command:
+      - |
+        pip install -q datasets 2>&1 | tail -1
+        python scripts/fetch_the_stack_samples.py \
+          --target-rows ${STACK_TARGET_ROWS:-500} \
+          --min-bytes ${STACK_MIN_BYTES:-100} \
+          --max-bytes ${STACK_MAX_BYTES:-20000}
+
+  benchmark-language-models:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: code-language-benchmark
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${CODE_LANG_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+      - ~/llm_models:/models
+    command:
+      - scripts/benchmark_language_models.py
+      - --split
+      - ${CODE_LANG_BENCH_SPLIT:-test}
+      - --batch-size
+      - ${CODE_LANG_BENCH_BATCH_SIZE:-64}
+      - --guardrail-dir
+      - ${CODE_LANG_BENCH_GUARDRAIL_DIR:-/models/guardrail_code_models/modernbert-language-v1}
+      - --output-name
+      - ${CODE_LANG_BENCH_OUTPUT_NAME:-language_id_guardrail_vs_philomath.json}
+
+  smoke-modernbert-language:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: code-language-modernbert-smoke
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${CODE_LANG_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ~/llm_models:/models
+    command:
+      - scripts/train_modernbert_language.py
+      - --data-root
+      - /models/guardrail_code_data
+      - --output-dir
+      - /models/guardrail_code_models/modernbert-language-v1-smoke
+      - --model-name
+      - ${CODE_LANG_MODEL:-answerdotai/ModernBERT-base}
+      - --attn-implementation
+      - ${CODE_LANG_ATTN_IMPL:-eager}
+      - --num-train-epochs
+      - "1"
+      - --train-batch-size
+      - ${CODE_LANG_SMOKE_BATCH_SIZE:-4}
+      - --eval-batch-size
+      - ${CODE_LANG_SMOKE_EVAL_BATCH_SIZE:-8}
+      - --max-train-samples
+      - ${CODE_LANG_SMOKE_TRAIN_SAMPLES:-100}
+      - --max-eval-samples
+      - ${CODE_LANG_SMOKE_EVAL_SAMPLES:-50}
+      - --max-chars
+      - ${CODE_LANG_MAX_CHARS:-512}
+      - --tokenizer-max-length
+      - ${CODE_LANG_TOKENIZER_MAX_LENGTH:-512}

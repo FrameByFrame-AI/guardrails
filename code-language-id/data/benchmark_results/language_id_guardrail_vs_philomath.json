@@ -1,0 +1,368 @@
+{
+  "batch_size": 64,
+  "guardrail": {
+    "meta": {
+      "attn_implementation": "eager",
+      "batch_size": 64,
+      "device": "cuda",
+      "dtype": "float32",
+      "elapsed_seconds": 12.753642082214355,
+      "max_length": 512,
+      "model_id": "/models/guardrail_code_models/modernbert-language-v1",
+      "num_labels": 105,
+      "tokenizer_id": "/models/guardrail_code_models/modernbert-language-v1"
+    },
+    "summary": {
+      "accuracy": 0.9500280741156654,
+      "macro_f1": 0.9630947822238977,
+      "macro_precision": 0.9802799720173058,
+      "macro_recall": 0.9476347665312247,
+      "num_samples": 1781,
+      "per_label": {
+        "AppleScript": {
+          "f1": 0.9859154929577464,
+          "precision": 1.0,
+          "recall": 0.9722222222222222,
+          "support": 36
+        },
+        "C": {
+          "f1": 0.96875,
+          "precision": 0.96875,
+          "recall": 0.96875,
+          "support": 96
+        },
+        "C#": {
+          "f1": 0.975,
+          "precision": 0.9629629629629629,
+          "recall": 0.9873417721518988,
+          "support": 79
+        },
+        "C++": {
+          "f1": 0.9888888888888889,
+          "precision": 0.9888888888888889,
+          "recall": 0.9888888888888889,
+          "support": 90
+        },
+        "COBOL": {
+          "f1": 0.9722222222222222,
+          "precision": 0.9722222222222222,
+          "recall": 0.9722222222222222,
+          "support": 36
+        },
+        "Erlang": {
+          "f1": 0.9318181818181818,
+          "precision": 0.9318181818181818,
+          "recall": 0.9318181818181818,
+          "support": 44
+        },
+        "Fortran": {
+          "f1": 0.9714285714285714,
+          "precision": 1.0,
+          "recall": 0.9444444444444444,
+          "support": 54
+        },
+        "Go": {
+          "f1": 0.9871244635193134,
+          "precision": 0.9913793103448276,
+          "recall": 0.9829059829059829,
+          "support": 117
+        },
+        "Java": {
+          "f1": 0.9743589743589745,
+          "precision": 0.9895833333333334,
+          "recall": 0.9595959595959596,
+          "support": 99
+        },
+        "JavaScript": {
+          "f1": 0.9624060150375939,
+          "precision": 0.9696969696969697,
+          "recall": 0.9552238805970149,
+          "support": 67
+        },
+        "Kotlin": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 99
+        },
+        "Lua": {
+          "f1": 0.9798657718120806,
+          "precision": 0.9864864864864865,
+          "recall": 0.9733333333333334,
+          "support": 75
+        },
+        "PHP": {
+          "f1": 0.9500000000000001,
+          "precision": 0.9743589743589743,
+          "recall": 0.926829268292683,
+          "support": 41
+        },
+        "Pascal": {
+          "f1": 0.9000000000000001,
+          "precision": 0.967741935483871,
+          "recall": 0.8411214953271028,
+          "support": 107
+        },
+        "Perl": {
+          "f1": 0.9446808510638298,
+          "precision": 0.925,
+          "recall": 0.9652173913043478,
+          "support": 115
+        },
+        "PowerShell": {
+          "f1": 0.9583333333333334,
+          "precision": 1.0,
+          "recall": 0.92,
+          "support": 50
+        },
+        "Python": {
+          "f1": 0.9824561403508771,
+          "precision": 0.9824561403508771,
+          "recall": 0.9824561403508771,
+          "support": 114
+        },
+        "R": {
+          "f1": 0.9473684210526316,
+          "precision": 0.9782608695652174,
+          "recall": 0.9183673469387755,
+          "support": 49
+        },
+        "Ruby": {
+          "f1": 0.9318181818181819,
+          "precision": 1.0,
+          "recall": 0.8723404255319149,
+          "support": 94
+        },
+        "Rust": {
+          "f1": 0.9857142857142858,
+          "precision": 0.9857142857142858,
+          "recall": 0.9857142857142858,
+          "support": 70
+        },
+        "Scala": {
+          "f1": 0.9605263157894737,
+          "precision": 0.9864864864864865,
+          "recall": 0.9358974358974359,
+          "support": 78
+        },
+        "Swift": {
+          "f1": 0.9565217391304347,
+          "precision": 0.9649122807017544,
+          "recall": 0.9482758620689655,
+          "support": 58
+        },
+        "Visual Basic .NET": {
+          "f1": 0.923076923076923,
+          "precision": 1.0,
+          "recall": 0.8571428571428571,
+          "support": 49
+        },
+        "jq": {
+          "f1": 0.976,
+          "precision": 1.0,
+          "recall": 0.953125,
+          "support": 64
+        }
+      },
+      "weighted_f1": 0.9639597676494965
+    }
+  },
+  "max_chars": 512,
+  "max_length": 512,
+  "num_original_rows": 4709,
+  "num_restricted_rows": 1781,
+  "philomath": {
+    "meta": {
+      "attn_implementation": null,
+      "batch_size": 64,
+      "device": "cuda",
+      "dtype": "float32",
+      "elapsed_seconds": 3.9789767265319824,
+      "max_length": 512,
+      "model_id": "philomath-1209/programming-language-identification",
+      "num_labels": 26,
+      "tokenizer_id": "philomath-1209/programming-language-identification"
+    },
+    "summary": {
+      "accuracy": 0.961257720381808,
+      "macro_f1": 0.9651669613404303,
+      "macro_precision": 0.9667420628590545,
+      "macro_recall": 0.9653913829859709,
+      "num_samples": 1781,
+      "per_label": {
+        "AppleScript": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 36
+        },
+        "C": {
+          "f1": 0.9591836734693877,
+          "precision": 0.94,
+          "recall": 0.9791666666666666,
+          "support": 96
+        },
+        "C#": {
+          "f1": 0.9575757575757576,
+          "precision": 0.9186046511627907,
+          "recall": 1.0,
+          "support": 79
+        },
+        "C++": {
+          "f1": 0.9508196721311476,
+          "precision": 0.9354838709677419,
+          "recall": 0.9666666666666667,
+          "support": 90
+        },
+        "COBOL": {
+          "f1": 0.9863013698630138,
+          "precision": 0.972972972972973,
+          "recall": 1.0,
+          "support": 36
+        },
+        "Erlang": {
+          "f1": 0.967032967032967,
+          "precision": 0.9361702127659575,
+          "recall": 1.0,
+          "support": 44
+        },
+        "Fortran": {
+          "f1": 0.9719626168224299,
+          "precision": 0.9811320754716981,
+          "recall": 0.9629629629629629,
+          "support": 54
+        },
+        "Go": {
+          "f1": 0.9827586206896551,
+          "precision": 0.991304347826087,
+          "recall": 0.9743589743589743,
+          "support": 117
+        },
+        "Java": {
+          "f1": 0.9795918367346939,
+          "precision": 0.9896907216494846,
+          "recall": 0.9696969696969697,
+          "support": 99
+        },
+        "JavaScript": {
+          "f1": 0.9558823529411764,
+          "precision": 0.9420289855072463,
+          "recall": 0.9701492537313433,
+          "support": 67
+        },
+        "Kotlin": {
+          "f1": 0.9690721649484537,
+          "precision": 0.9894736842105263,
+          "recall": 0.9494949494949495,
+          "support": 99
+        },
+        "Lua": {
+          "f1": 0.96,
+          "precision": 0.96,
+          "recall": 0.96,
+          "support": 75
+        },
+        "PHP": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 41
+        },
+        "Pascal": {
+          "f1": 0.8645833333333333,
+          "precision": 0.9764705882352941,
+          "recall": 0.7757009345794392,
+          "support": 107
+        },
+        "Perl": {
+          "f1": 0.9620253164556962,
+          "precision": 0.9344262295081968,
+          "recall": 0.991304347826087,
+          "support": 115
+        },
+        "PowerShell": {
+          "f1": 0.96,
+          "precision": 0.96,
+          "recall": 0.96,
+          "support": 50
+        },
+        "Python": {
+          "f1": 0.9868995633187774,
+          "precision": 0.9826086956521739,
+          "recall": 0.9912280701754386,
+          "support": 114
+        },
+        "R": {
+          "f1": 0.9791666666666666,
+          "precision": 1.0,
+          "recall": 0.9591836734693877,
+          "support": 49
+        },
+        "Ruby": {
+          "f1": 0.968421052631579,
+          "precision": 0.9583333333333334,
+          "recall": 0.9787234042553191,
+          "support": 94
+        },
+        "Rust": {
+          "f1": 0.962962962962963,
+          "precision": 1.0,
+          "recall": 0.9285714285714286,
+          "support": 70
+        },
+        "Scala": {
+          "f1": 0.9268292682926831,
+          "precision": 0.8837209302325582,
+          "recall": 0.9743589743589743,
+          "support": 78
+        },
+        "Swift": {
+          "f1": 0.9655172413793104,
+          "precision": 0.9655172413793104,
+          "recall": 0.9655172413793104,
+          "support": 58
+        },
+        "Visual Basic .NET": {
+          "f1": 0.9791666666666666,
+          "precision": 1.0,
+          "recall": 0.9591836734693877,
+          "support": 49
+        },
+        "jq": {
+          "f1": 0.9682539682539683,
+          "precision": 0.9838709677419355,
+          "recall": 0.953125,
+          "support": 64
+        }
+      },
+      "weighted_f1": 0.9618747425386102
+    }
+  },
+  "shared_labels": [
+    "AppleScript",
+    "C",
+    "C#",
+    "C++",
+    "COBOL",
+    "Erlang",
+    "Fortran",
+    "Go",
+    "Java",
+    "JavaScript",
+    "Kotlin",
+    "Lua",
+    "PHP",
+    "Pascal",
+    "Perl",
+    "PowerShell",
+    "Python",
+    "R",
+    "Ruby",
+    "Rust",
+    "Scala",
+    "Swift",
+    "Visual Basic .NET",
+    "jq"
+  ],
+  "split": "test"
+}

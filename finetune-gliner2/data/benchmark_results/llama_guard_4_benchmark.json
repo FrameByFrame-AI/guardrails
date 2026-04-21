@@ -1,0 +1,115 @@
+{
+  "model": "/models/RedHatAI-Llama-Guard-4-12B-FP8-dynamic",
+  "backend": "transformers (FP8 dequantized to bf16)",
+  "samples": 2000,
+  "elapsed_sec": 3020.2,
+  "ms_per_record": 1510,
+  "batch_size": 4,
+  "safety": {
+    "accuracy": 0.5905,
+    "f1": 0.5427,
+    "precision": 0.8114,
+    "recall": 0.4077,
+    "tp": 486,
+    "fp": 113,
+    "tn": 695,
+    "fn": 706
+  },
+  "harmful": {
+    "binary_f1": 0.5274,
+    "binary_precision": 0.6427,
+    "binary_recall": 0.4472,
+    "binary_tp": 385,
+    "binary_fp": 214,
+    "binary_tn": 925,
+    "binary_fn": 476,
+    "per_label": {
+      "harassment": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 463
+      },
+      "hate_speech": {
+        "tp": 107,
+        "fp": 158,
+        "fn": 299
+      },
+      "fraud": {
+        "tp": 0,
+        "fp": 57,
+        "fn": 0
+      },
+      "profanity": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 120
+      },
+      "criminal_planning": {
+        "tp": 7,
+        "fp": 53,
+        "fn": 11
+      },
+      "misinformation": {
+        "tp": 0,
+        "fp": 91,
+        "fn": 0
+      },
+      "sexual_content": {
+        "tp": 0,
+        "fp": 34,
+        "fn": 15
+      },
+      "violence": {
+        "tp": 3,
+        "fp": 23,
+        "fn": 16
+      },
+      "unauthorized_advice": {
+        "tp": 0,
+        "fp": 15,
+        "fn": 1
+      },
+      "child_exploitation": {
+        "tp": 0,
+        "fp": 14,
+        "fn": 0
+      },
+      "self_harm": {
+        "tp": 0,
+        "fp": 18,
+        "fn": 0
+      },
+      "copyright": {
+        "tp": 0,
+        "fp": 18,
+        "fn": 0
+      },
+      "weapons": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2
+      },
+      "drugs": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2
+      },
+      "malware": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0
+      }
+    }
+  },
+  "adversarial": {
+    "note": "LG4 has no adversarial categories; binary F1 computed by treating any LG4 'unsafe' verdict as a positive adversarial prediction.",
+    "binary_f1": 0.1697,
+    "binary_precision": 0.1152,
+    "binary_recall": 0.3224,
+    "binary_tp": 69,
+    "binary_fp": 530,
+    "binary_tn": 1256,
+    "binary_fn": 145
+  },
+  "entities": "not supported by Llama Guard 4"
+}

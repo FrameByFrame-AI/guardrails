@@ -1,4 +1,46 @@
 services:
+  fetch-injection-datasets:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: guardrail-fetch-injection
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - HF_HOME=/cache/huggingface
+    volumes:
+      - ~/llm_models/huggingface_cache:/cache/huggingface
+      - ./src:/workspace:ro
+      - ${DATASET_DIR:-../datasets/korean}/processed_split:/data/processed_split
+    command:
+      - fetch_injection_datasets.py
+      - --output-dir
+      - /data/processed_split
+
+  fetch-safeguard:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: guardrail-fetch-safeguard
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - HF_HOME=/cache/huggingface
+    volumes:
+      - ~/llm_models/huggingface_cache:/cache/huggingface
+      - ./src:/workspace:ro
+      - ${DATASET_DIR:-../datasets/korean}/processed_split:/data/processed_split
+    command:
+      - fetch_safeguard.py
+      - --output-dir
+      - /data/processed_split
+
   format-data:
     build:
       context: .
