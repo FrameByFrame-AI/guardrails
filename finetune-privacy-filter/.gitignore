@@ -1,0 +1,19 @@
+# Generated data and artifacts (regeneratable from sources via convert-pii)
+data/generated/
+data/processed/
+data/benchmark_results/
+
+# Trained checkpoints (large; ship via model registry, not git)
+data/checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

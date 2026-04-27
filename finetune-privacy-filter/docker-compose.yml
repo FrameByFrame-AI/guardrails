@@ -1,0 +1,62 @@
+services:
+  convert-pii:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: privacy-filter-pii-convert
+    working_dir: /workspace
+    volumes:
+      - ./src:/workspace:ro
+      - ./data:/workspace/data
+      - ../finetune-qwen/processed:/sources/kdpii:ro
+      - ../finetune-gliner2/data:/sources/rrn:ro
+    command: python3 convert_korean_pii_to_opf.py
+      --kdpii /sources/kdpii/KDPII.jsonl
+      --rrn /sources/rrn/korean_rrn_synthetic.jsonl
+      --output-dir ${PF_CONVERT_OUTPUT_DIR:-/workspace/data/generated/ko_pii_opf_v4}
+  benchmark-pii:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: privacy-filter-pii-benchmark
+    runtime: nvidia
+    working_dir: /workspace
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${PF_BENCH_GPU:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./src:/workspace:ro
+      - ./data:/data
+      - ${DATASET_DIR:-../datasets/korean}/processed_split:/data/processed:ro
+      - ~/llm_models:/models:ro
+    command: python benchmark_pii_heldout.py
+      --model ${PF_MODEL:-/models/privacy-filter}
+      --dataset ${PF_BENCH_DATASET:-/data/generated/ko_pii_opf_v2/test.jsonl}
+      --label-space-json ${PF_LABEL_SPACE_JSON:-/data/generated/ko_pii_opf_v2/label_space.json}
+      --samples ${BENCH_SAMPLES:-0}
+      --output ${BENCH_OUTPUT:-/data/benchmark_results/privacy_filter_span_benchmark.json}
+  train-pii:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: privacy-filter-pii-train
+    runtime: nvidia
+    working_dir: /workspace
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${PF_TRAIN_GPUS:-0,1}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTHONPATH=/privacy-filter
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./src:/workspace:rw
+      - ./data:/workspace/data
+      - ../../privacy-filter:/privacy-filter:ro
+      - ~/llm_models:/models:ro
+    command: bash
