@@ -1,0 +1,165 @@
+{
+  "overall": {
+    "total": 360,
+    "elapsed_sec": 369.2,
+    "errors": 39,
+    "binary": {
+      "accuracy": 0.8694,
+      "precision": 1.0,
+      "recall": 0.7965,
+      "f1": 0.8867
+    },
+    "entity_level": {
+      "precision": 0.8384,
+      "recall": 0.5446,
+      "f1": 0.6603
+    }
+  },
+  "per_dataset": {
+    "KDPII": {
+      "dataset": "KDPII",
+      "total": 168,
+      "elapsed_sec": 72.7,
+      "ms_per_record": 432.9,
+      "errors": 0,
+      "binary": {
+        "tp": 33,
+        "fp": 0,
+        "tn": 129,
+        "fn": 6,
+        "accuracy": 0.9643,
+        "precision": 1.0,
+        "recall": 0.8462,
+        "f1": 0.9167
+      },
+      "entity_level": {
+        "tp": 32,
+        "fp": 2,
+        "fn": 8,
+        "precision": 0.9412,
+        "recall": 0.8,
+        "f1": 0.8649
+      },
+      "per_label": {
+        "account_number": {
+          "tp": 8,
+          "fp": 2,
+          "fn": 4,
+          "precision": 0.8,
+          "recall": 0.6667
+        },
+        "private_address": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "private_email": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "private_person": {
+          "tp": 13,
+          "fp": 0,
+          "fn": 4,
+          "precision": 1.0,
+          "recall": 0.7647
+        },
+        "private_phone": {
+          "tp": 6,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "private_url": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      }
+    },
+    "synthetic_pii_finance": {
+      "dataset": "synthetic_pii_finance",
+      "total": 192,
+      "elapsed_sec": 296.5,
+      "ms_per_record": 1544.1,
+      "errors": 39,
+      "binary": {
+        "tp": 151,
+        "fp": 0,
+        "tn": 0,
+        "fn": 41,
+        "accuracy": 0.7865,
+        "precision": 1.0,
+        "recall": 0.7865,
+        "f1": 0.8805
+      },
+      "entity_level": {
+        "tp": 487,
+        "fp": 98,
+        "fn": 426,
+        "precision": 0.8325,
+        "recall": 0.5334,
+        "f1": 0.6502
+      },
+      "per_label": {
+        "account_number": {
+          "tp": 39,
+          "fp": 17,
+          "fn": 16,
+          "precision": 0.6964,
+          "recall": 0.7091
+        },
+        "ip_address": {
+          "tp": 7,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.875
+        },
+        "private_address": {
+          "tp": 99,
+          "fp": 20,
+          "fn": 54,
+          "precision": 0.8319,
+          "recall": 0.6471
+        },
+        "private_date": {
+          "tp": 198,
+          "fp": 40,
+          "fn": 164,
+          "precision": 0.8319,
+          "recall": 0.547
+        },
+        "private_email": {
+          "tp": 11,
+          "fp": 4,
+          "fn": 15,
+          "precision": 0.7333,
+          "recall": 0.4231
+        },
+        "private_person": {
+          "tp": 122,
+          "fp": 16,
+          "fn": 158,
+          "precision": 0.8841,
+          "recall": 0.4357
+        },
+        "private_phone": {
+          "tp": 11,
+          "fp": 1,
+          "fn": 18,
+          "precision": 0.9167,
+          "recall": 0.3793
+        }
+      }
+    }
+  }
+}
