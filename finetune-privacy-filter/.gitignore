@@ -6,6 +6,9 @@ data/benchmark_results/
 # Trained checkpoints (large; ship via model registry, not git)
 data/checkpoints/
 
+# ONNX export outputs (regeneratable from checkpoints)
+data/exports/
+
 # Python
 __pycache__/
 *.pyc

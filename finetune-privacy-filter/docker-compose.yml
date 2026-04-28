@@ -16,6 +16,35 @@ services:
       --kdpii /sources/kdpii/KDPII.jsonl
       --rrn /sources/rrn/korean_rrn_synthetic.jsonl
       --output-dir ${PF_CONVERT_OUTPUT_DIR:-/workspace/data/generated/ko_pii_opf_v4}
+  # BLOCKED: ONNX export of openai_privacy_filter is not currently working with
+  # the public toolchain. See header of src/export_and_benchmark.py for details.
+  # This service is kept as scaffolding to resume from once exportable.
+  export-pii:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: privacy-filter-pii-export
+    runtime: nvidia
+    working_dir: /workspace
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${PF_EXPORT_GPU:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTHONPATH=/privacy-filter
+      - PF_EXPORT_INPUT=${PF_EXPORT_INPUT:-/workspace/data/checkpoints/ko_pii_hf_ddp_v6_lora}
+      - PF_EXPORT_OUTPUT=${PF_EXPORT_OUTPUT:-/workspace/data/exports}
+      - PF_EXPORT_DATASET=${PF_EXPORT_DATASET:-/workspace/data/generated/ko_pii_opf_v4/test.jsonl}
+      - PF_EXPORT_LABEL_SPACE=${PF_EXPORT_LABEL_SPACE:-/workspace/data/generated/ko_pii_opf_v4/label_space.json}
+      - PF_EXPORT_MAX_F1_DROP=${PF_EXPORT_MAX_F1_DROP:-0.02}
+      - PF_EXPORT_MAX_LENGTH=${PF_EXPORT_MAX_LENGTH:-512}
+      - PF_EXPORT_VARIANTS=${PF_EXPORT_VARIANTS:-fp16,int8}
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./src:/workspace:ro
+      - ./data:/workspace/data
+      - ../../privacy-filter:/privacy-filter:ro
+    command: python3 /workspace/export_and_benchmark.py
   benchmark-pii:
     build:
       context: .

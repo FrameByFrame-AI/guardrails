@@ -79,6 +79,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--samples", type=int, default=0, help="0 means all test records.")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--max-length", type=int, default=128)
+    parser.add_argument("--onnx", action="store_true",
+                        help="Load models via optimum.onnxruntime (ONNX format).")
+    parser.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto",
+                        help="Inference device. 'auto' uses CUDA if available.")
+    parser.add_argument("--measure-speed", action="store_true", default=True,
+                        help="Record per-record inference latency.")
     args = parser.parse_args()
 
     if args.model and args.models:
@@ -272,19 +278,67 @@ def _decode_bioes_spans(
     return spans
 
 
-def load_model(model_path: str):
+class _OnnxRuntimeWrapper:
+    """Duck-types just enough of HF's model interface for benchmark code:
+    .config.id2label and __call__(input_ids=..., attention_mask=...) -> obj with .logits."""
+
+    def __init__(self, model_path: str, *, use_cuda: bool):
+        import os
+        import onnxruntime as ort
+
+        # Discover .onnx file (model.onnx by convention)
+        candidates = [
+            os.path.join(model_path, "model.onnx"),
+            os.path.join(model_path, "model_quantized.onnx"),
+        ]
+        onnx_file = next((c for c in candidates if os.path.isfile(c)), None)
+        if onnx_file is None:
+            raise FileNotFoundError(f"No model.onnx found under {model_path}")
+
+        providers = (
+            ["CUDAExecutionProvider", "CPUExecutionProvider"]
+            if use_cuda else ["CPUExecutionProvider"]
+        )
+        sess_opts = ort.SessionOptions()
+        self.session = ort.InferenceSession(onnx_file, sess_options=sess_opts, providers=providers)
+        # Load HF config from the same dir for id2label.
+        self.config = AutoConfig.from_pretrained(model_path, trust_remote_code=True)
+        self._input_names = {i.name for i in self.session.get_inputs()}
+
+    def __call__(self, **kwargs):
+        # Accept torch tensors; convert to numpy on CPU.
+        feed = {}
+        for name, val in kwargs.items():
+            if name not in self._input_names:
+                continue
+            if hasattr(val, "detach"):
+                val = val.detach().cpu().numpy()
+            feed[name] = val
+        outputs = self.session.run(None, feed)
+        # Wrap in object exposing .logits as a torch tensor (for downstream .float()/.argmax compat).
+        logits = torch.as_tensor(outputs[0])
+        return type("OnnxOut", (), {"logits": logits})()
+
+
+def load_model(model_path: str, *, onnx: bool = False, device: str = "auto"):
     tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
-    model = AutoModelForTokenClassification.from_pretrained(
-        model_path,
-        torch_dtype="auto",
-        trust_remote_code=True,
-    )
-    model.eval()
-    if torch.cuda.is_available():
-        model = model.to("cuda")
+    use_cuda = (device == "cuda") or (device == "auto" and torch.cuda.is_available())
+
+    if onnx:
+        model = _OnnxRuntimeWrapper(model_path, use_cuda=use_cuda)
+    else:
+        model = AutoModelForTokenClassification.from_pretrained(
+            model_path,
+            torch_dtype="auto",
+            trust_remote_code=True,
+        )
+        model.eval()
+        if use_cuda:
+            model = model.to("cuda")
+
     id_to_label = _normalize_id2label(model.config.id2label)
     categories = _extract_categories_from_id2label(id_to_label)
-    return tokenizer, model, id_to_label, categories
+    return tokenizer, model, id_to_label, categories, {"onnx": onnx, "cuda": use_cuda}
 
 
 def predict_spans(
@@ -295,6 +349,7 @@ def predict_spans(
     *,
     max_length: int,
     allowed_labels: set[str],
+    model_info: dict | None = None,
 ) -> set[tuple[str, int, int]]:
     encoded = tokenizer(
         text,
@@ -304,7 +359,11 @@ def predict_spans(
         return_tensors="pt",
     )
     offset_mapping = encoded.pop("offset_mapping")[0].tolist()
-    if torch.cuda.is_available():
+    info = model_info or {}
+    is_onnx = bool(info.get("onnx"))
+    on_cuda = bool(info.get("cuda"))
+    # ONNX inputs stay on CPU (the CUDAExecutionProvider handles transfer internally).
+    if not is_onnx and on_cuda:
         encoded = {key: value.to(model.device) for key, value in encoded.items()}
 
     with torch.no_grad():
@@ -346,11 +405,17 @@ def benchmark_model(
     records: list[dict[str, Any]],
     benchmark_labels: list[str],
     max_length: int,
+    onnx: bool = False,
+    device: str = "auto",
 ) -> dict[str, Any]:
     print(f"Loading {model_name}: {model_path}", flush=True)
-    tokenizer, model, id_to_label, supported_labels = load_model(model_path)
+    tokenizer, model, id_to_label, supported_labels, model_info = load_model(
+        model_path, onnx=onnx, device=device
+    )
     print(
-        f"  supported labels ({len(supported_labels)}): {sorted(supported_labels)}",
+        f"  supported labels ({len(supported_labels)}): {sorted(supported_labels)}  "
+        f"backend={'onnx' if model_info['onnx'] else 'pytorch'}  "
+        f"device={'cuda' if model_info['cuda'] else 'cpu'}",
         flush=True,
     )
 
@@ -359,6 +424,7 @@ def benchmark_model(
     per_label_tp = Counter()
     per_label_fp = Counter()
     per_label_fn = Counter()
+    latencies_ms: list[float] = []
 
     t0 = time.time()
     for i, record in enumerate(records):
@@ -367,6 +433,7 @@ def benchmark_model(
             text,
             _extract_gt_spans(record, allowed_labels=allowed_labels),
         )
+        t_pred_start = time.perf_counter()
         pred_set = predict_spans(
             tokenizer,
             model,
@@ -374,7 +441,9 @@ def benchmark_model(
             text,
             max_length=max_length,
             allowed_labels=allowed_labels,
+            model_info=model_info,
         )
+        latencies_ms.append((time.perf_counter() - t_pred_start) * 1000.0)
         pred_set = _normalize_span_set(text, pred_set)
 
         matched = gt_set & pred_set
@@ -422,6 +491,26 @@ def benchmark_model(
             **_calc_prf(tp, fp, fn),
         }
 
+    speed = {}
+    if latencies_ms:
+        sorted_lat = sorted(latencies_ms)
+        n = len(sorted_lat)
+        # skip first 5 as warmup if we have enough samples
+        warmup = min(5, max(0, n - 20))
+        steady = sorted_lat[warmup:] if warmup else sorted_lat
+        steady_unsorted = latencies_ms[warmup:] if warmup else latencies_ms
+        speed = {
+            "device": "cuda" if model_info["cuda"] else "cpu",
+            "backend": "onnx" if model_info["onnx"] else "pytorch",
+            "n_warmup": warmup,
+            "n_measured": len(steady),
+            "latency_ms_mean": round(sum(steady_unsorted) / len(steady_unsorted), 2),
+            "latency_ms_p50": round(steady[len(steady) // 2], 2),
+            "latency_ms_p95": round(steady[max(0, int(0.95 * len(steady)) - 1)], 2),
+            "latency_ms_p99": round(steady[max(0, int(0.99 * len(steady)) - 1)], 2),
+            "throughput_rps": round(1000.0 / (sum(steady_unsorted) / len(steady_unsorted)), 2),
+        }
+
     return {
         "model_name": model_name,
         "model_path": model_path,
@@ -431,6 +520,7 @@ def benchmark_model(
         "ms_per_record": round(1000 * elapsed / len(records), 1) if records else 0.0,
         "overall": overall,
         "per_label": per_label,
+        "speed": speed,
     }
 
 
@@ -558,6 +648,8 @@ def main() -> None:
                 records=records,
                 benchmark_labels=benchmark_labels,
                 max_length=args.max_length,
+                onnx=args.onnx,
+                device=args.device,
             )
         )
 
