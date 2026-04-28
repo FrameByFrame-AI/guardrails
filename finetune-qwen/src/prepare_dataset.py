@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 
 from transformers import AutoProcessor
+from unsloth.chat_templates import get_chat_template
 
 from training_data import (
     get_text_tokenizer,
@@ -49,6 +50,13 @@ def resolve_processor_loading_kwargs(model_name, local_files_only_flag):
     }, is_local_dir
 
 
+def resolve_chat_processor(processor, chat_template):
+    base_tokenizer = get_text_tokenizer(processor)
+    if chat_template in ("model_default", "default", "auto"):
+        return base_tokenizer, "model_default"
+    return get_chat_template(base_tokenizer, chat_template=chat_template), chat_template
+
+
 def main():
     args = parse_args()
     train_path = Path(args.train_data)
@@ -68,16 +76,13 @@ def main():
     print(f"  think mode: {args.think_mode}")
     if args.type_cap:
         print(f"  type caps: {', '.join(args.type_cap)}")
-    print("  chat template: model default")
-    if args.chat_template != "qwen3-thinking":
-        print(
-            "  requested chat template is ignored during prepare step; "
-            "the model's built-in template is used."
-        )
 
     processor = AutoProcessor.from_pretrained(**load_kwargs)
-    chat_processor = processor
+    chat_processor, applied_chat_template = resolve_chat_processor(
+        processor, args.chat_template
+    )
     text_tokenizer = get_text_tokenizer(chat_processor)
+    print(f"  chat template: {applied_chat_template}")
 
     dataset = prepare_text_dataset(
         str(train_path),
@@ -93,7 +98,8 @@ def main():
 
     metadata = {
         "model": args.model,
-        "chat_template": args.chat_template,
+        "chat_template": applied_chat_template,
+        "requested_chat_template": args.chat_template,
         "think_mode": args.think_mode,
         "type_cap": args.type_cap,
         "max_seq_length": args.max_seq_length,

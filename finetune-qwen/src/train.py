@@ -37,6 +37,12 @@ def parse_args():
     )
     parser.add_argument("--chat-template", default="qwen3-thinking")
     parser.add_argument("--think-mode", choices=("required", "off", "mixed"), default="mixed")
+    parser.add_argument(
+        "--think-ratio",
+        type=float,
+        default=0.2,
+        help="Fraction of records that keep thinking traces when --think-mode mixed is used.",
+    )
     parser.add_argument("--max-seq-length", type=int, default=2048)
     parser.add_argument("--epochs", type=int, default=2)
     parser.add_argument("--batch-size", type=int, default=32)
@@ -155,6 +161,8 @@ def main():
             text_tokenizer,
             args.max_seq_length,
             args.max_train_samples,
+            think_mode=args.think_mode,
+            think_ratio=args.think_ratio,
         )
     else:
         raise FileNotFoundError(
