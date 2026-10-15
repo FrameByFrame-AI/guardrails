@@ -91,7 +91,8 @@ services:
     runtime: nvidia
     working_dir: /workspace
     entrypoint:
-      - python
+      - bash
+      - -lc
     environment:
       - NVIDIA_VISIBLE_DEVICES=${CODE_LANG_GPUS:-0}
       - HF_HOME=/home/appuser/.cache/huggingface
@@ -103,15 +104,260 @@ services:
       - ./data:/workspace/data
       - ~/llm_models:/models
     command:
-      - scripts/benchmark_language_models.py
-      - --split
-      - ${CODE_LANG_BENCH_SPLIT:-test}
-      - --batch-size
-      - ${CODE_LANG_BENCH_BATCH_SIZE:-64}
-      - --guardrail-dir
-      - ${CODE_LANG_BENCH_GUARDRAIL_DIR:-/models/guardrail_code_models/modernbert-language-v1}
-      - --output-name
-      - ${CODE_LANG_BENCH_OUTPUT_NAME:-language_id_guardrail_vs_philomath.json}
+      - |
+        pip install -q onnx onnxruntime onnxscript 2>&1 | tail -1
+        python scripts/benchmark_language_models.py \
+          --split ${CODE_LANG_BENCH_SPLIT:-test} \
+          --batch-size ${CODE_LANG_BENCH_BATCH_SIZE:-64} \
+          --guardrail-dir ${CODE_LANG_BENCH_GUARDRAIL_DIR:-/models/guardrail_code_models/modernbert-language-v1} \
+          --philomath-path ${CODE_LANG_BENCH_PHILOMATH_PATH:-/models/philomath-programming-language-identification} \
+          --warmup-batches ${CODE_LANG_BENCH_WARMUP:-2} \
+          --output-name ${CODE_LANG_BENCH_OUTPUT_NAME:-language_id_guardrail_vs_philomath.json} \
+          ${CODE_LANG_BENCH_EXTRA:-}
+    # To benchmark the lite ByteHybrid model alongside, set:
+    #   CODE_LANG_BENCH_EXTRA="--lite-checkpoint /models/guardrail_code_models/programming-language-identification-100plus-lite/model.pt"
+    # and append "${CODE_LANG_BENCH_EXTRA}" via a wrapper, or run:
+    #   docker compose run --rm benchmark-language-models scripts/benchmark_language_models.py \
+    #     --guardrail-dir /models/guardrail_code_models/modernbert-language-v1 \
+    #     --lite-checkpoint /models/guardrail_code_models/programming-language-identification-100plus-lite/model.pt \
+    #     --skip-philomath
+
+  train-byte-hybrid-language:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: code-language-byte-hybrid-train
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${CODE_LANG_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ~/llm_models:/models
+    command:
+      - scripts/train_byte_hybrid_language.py
+      - --data-root
+      - /models/guardrail_code_data
+      - --splits-subdir
+      - ${CODE_LANG_SPLITS_SUBDIR:-processed/v1_splits_clean}
+      - --output-dir
+      - ${CODE_LANG_LITE_OUTPUT_DIR:-/models/guardrail_code_models/programming-language-identification-100plus-lite}
+      - --max-len
+      - ${CODE_LANG_LITE_MAX_LEN:-1023}
+      - --max-chars
+      - ${CODE_LANG_LITE_MAX_CHARS:-1023}
+      - --num-train-epochs
+      - ${CODE_LANG_LITE_EPOCHS:-30}
+      - --early-stopping-patience
+      - ${CODE_LANG_LITE_EARLY_STOPPING_PATIENCE:-4}
+      - --train-batch-size
+      - ${CODE_LANG_LITE_BATCH_SIZE:-128}
+      - --eval-batch-size
+      - ${CODE_LANG_LITE_EVAL_BATCH_SIZE:-256}
+      - --learning-rate
+      - ${CODE_LANG_LITE_LR:-3e-3}
+      - --warmup-ratio
+      - ${CODE_LANG_LITE_WARMUP_RATIO:-0.05}
+      - --num-workers
+      - ${CODE_LANG_LITE_WORKERS:-4}
+      - --bf16
+      - --save-bf16
+
+  export-byte-hybrid-onnx:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: code-language-byte-hybrid-onnx-export
+    working_dir: /workspace
+    entrypoint:
+      - bash
+      - -lc
+    environment:
+      - HF_HOME=/home/appuser/.cache/huggingface
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ~/llm_models:/models
+    command:
+      - |
+        pip install -q onnx onnxruntime onnxscript 2>&1 | tail -1
+        python scripts/export_byte_hybrid_onnx.py \
+          --checkpoint ${CODE_LANG_LITE_CHECKPOINT:-/models/guardrail_code_models/programming-language-identification-100plus-lite/model.pt} \
+          --opset ${CODE_LANG_ONNX_OPSET:-20}
+
+  train-byte-hybrid-multilabel:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: code-language-byte-hybrid-multilabel-train
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${CODE_LANG_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ~/llm_models:/models
+    command:
+      - scripts/train_byte_hybrid_multilabel.py
+      - --data-dir
+      - ${CODE_LANG_MULTILABEL_DATA_DIR:-/models/Accuknoxtechnologies-CodeLanguage/data}
+      - --train-parquet
+      - ${CODE_LANG_MULTILABEL_TRAIN_PARQUET:-/models/Accuknoxtechnologies-CodeLanguage/data/train-clean-00000-of-00001.parquet}
+      - --eval-parquet
+      - ${CODE_LANG_MULTILABEL_EVAL_PARQUET:-/models/Accuknoxtechnologies-CodeLanguage/data/test-clean-00000-of-00001.parquet}
+      - --output-dir
+      - ${CODE_LANG_MULTILABEL_OUTPUT_DIR:-/models/guardrail_code_models/programming-language-identification-25-multilabel}
+      - --warm-start-from
+      - ${CODE_LANG_MULTILABEL_WARM_START:-/models/guardrail_code_models/programming-language-identification-100plus-lite/model.pt}
+      - --config-name
+      - ${CODE_LANG_MULTILABEL_CONFIG_NAME:-base_ngram}
+      - --max-len
+      - ${CODE_LANG_MULTILABEL_MAX_LEN:-2048}
+      - --threshold
+      - ${CODE_LANG_MULTILABEL_THRESHOLD:-0.5}
+      - --pool-type
+      - ${CODE_LANG_MULTILABEL_POOL_TYPE:-mean}
+      - --loss-type
+      - ${CODE_LANG_MULTILABEL_LOSS_TYPE:-bce}
+      - --focal-alpha
+      - ${CODE_LANG_MULTILABEL_FOCAL_ALPHA:-0.25}
+      - --focal-gamma
+      - ${CODE_LANG_MULTILABEL_FOCAL_GAMMA:-2.0}
+      - --num-train-epochs
+      - ${CODE_LANG_MULTILABEL_EPOCHS:-20}
+      - --early-stopping-patience
+      - ${CODE_LANG_MULTILABEL_EARLY_STOPPING_PATIENCE:-4}
+      - --train-batch-size
+      - ${CODE_LANG_MULTILABEL_BATCH_SIZE:-64}
+      - --eval-batch-size
+      - ${CODE_LANG_MULTILABEL_EVAL_BATCH_SIZE:-128}
+      - --learning-rate
+      - ${CODE_LANG_MULTILABEL_LR:-5e-4}
+      - --warmup-ratio
+      - ${CODE_LANG_MULTILABEL_WARMUP_RATIO:-0.05}
+      - --num-workers
+      - ${CODE_LANG_MULTILABEL_WORKERS:-4}
+      - --variable-window
+      - ${CODE_LANG_MULTILABEL_VARIABLE_WINDOW:-false}
+      - --variable-window-min-chars
+      - ${CODE_LANG_MULTILABEL_VWIN_MIN_CHARS:-256}
+      - --variable-window-max-chars
+      - ${CODE_LANG_MULTILABEL_VWIN_MAX_CHARS:-4096}
+      - --bf16
+      - --save-bf16
+
+  smoke-byte-hybrid-multilabel:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: code-language-byte-hybrid-multilabel-smoke
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${CODE_LANG_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ~/llm_models:/models
+    command:
+      - scripts/train_byte_hybrid_multilabel.py
+      - --data-dir
+      - /models/Accuknoxtechnologies-CodeLanguage/data
+      - --output-dir
+      - /models/guardrail_code_models/programming-language-identification-25-multilabel-smoke
+      - --warm-start-from
+      - /models/guardrail_code_models/programming-language-identification-100plus-lite/model.pt
+      - --max-len
+      - "1024"
+      - --num-train-epochs
+      - "1"
+      - --early-stopping-patience
+      - "0"
+      - --train-batch-size
+      - ${CODE_LANG_MULTILABEL_SMOKE_BATCH_SIZE:-32}
+      - --eval-batch-size
+      - ${CODE_LANG_MULTILABEL_SMOKE_EVAL_BATCH_SIZE:-64}
+      - --max-train-samples
+      - ${CODE_LANG_MULTILABEL_SMOKE_TRAIN_SAMPLES:-200}
+      - --max-eval-samples
+      - ${CODE_LANG_MULTILABEL_SMOKE_EVAL_SAMPLES:-100}
+      - --num-workers
+      - "0"
+      - --bf16
+
+  smoke-byte-hybrid-language:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: code-language-byte-hybrid-smoke
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${CODE_LANG_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ~/llm_models:/models
+    command:
+      - scripts/train_byte_hybrid_language.py
+      - --data-root
+      - /models/guardrail_code_data
+      - --splits-subdir
+      - ${CODE_LANG_SPLITS_SUBDIR:-processed/v1_splits_clean}
+      - --output-dir
+      - /models/guardrail_code_models/programming-language-identification-100plus-lite-smoke
+      - --max-len
+      - "1023"
+      - --max-chars
+      - "1023"
+      - --num-train-epochs
+      - "1"
+      - --early-stopping-patience
+      - "0"
+      - --train-batch-size
+      - ${CODE_LANG_LITE_SMOKE_BATCH_SIZE:-64}
+      - --eval-batch-size
+      - ${CODE_LANG_LITE_SMOKE_EVAL_BATCH_SIZE:-128}
+      - --max-train-samples
+      - ${CODE_LANG_LITE_SMOKE_TRAIN_SAMPLES:-200}
+      - --max-eval-samples
+      - ${CODE_LANG_LITE_SMOKE_EVAL_SAMPLES:-100}
+      - --num-workers
+      - "0"
+      - --bf16
 
   smoke-modernbert-language:
     build:

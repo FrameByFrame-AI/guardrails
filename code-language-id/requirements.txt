@@ -3,7 +3,7 @@ pyarrow>=14
 fastparquet>=2024.0
 PyYAML>=6.0
 numpy>=1.24
-torch==2.4.0
+torch==2.11.0
 transformers>=4.51,<5
 accelerate>=0.30
 safetensors>=0.4

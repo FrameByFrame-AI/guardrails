@@ -1,7 +1,11 @@
 # Code Language ID
 
-Fine-tune ModernBERT for programming-language identification across 107
-languages. Released model: `programming-language-identification-100plus`.
+Two programming-language identification models across 107 languages:
+
+- **`programming-language-identification-100plus`** — full ModernBERT fine-tune.
+- **`programming-language-identification-100plus-lite`** — byte-level ~2.35M-param
+  classifier (CommonLingua's `ByteHybrid` architecture, Apache-2.0). No tokenizer,
+  CPU-friendly, ~60× smaller; intended for edge / latency-sensitive deployment.
 
 ## Results
 
@@ -31,7 +35,7 @@ Combined and split by task to prevent leakage: 72,549 / 9,495 / 8,880 rows
 ## Reproduce
 
 ```bash
-# Build the shared ML base image once (see ../docker_containers/ml_base_cuda12.4_torch2.4_transformers)
+# Build the shared ML base image once (see ../docker_containers/ml_base_cuda12.6_torch2.11_transformers)
 docker compose build
 
 # Pull the-stack samples (gated)
@@ -55,6 +59,38 @@ CODE_LANG_OUTPUT_DIR=/models/guardrail_code_models/programming-language-identifi
 CODE_LANG_BENCH_GUARDRAIL_DIR=/models/guardrail_code_models/programming-language-identification-100plus \
   docker compose run --rm benchmark-language-models
 ```
+
+## Lite (ByteHybrid) model
+
+`programming-language-identification-100plus-lite` reuses the
+[`ByteHybrid`](src/code_language_id/byte_hybrid.py) architecture from
+PleIAs/CommonLingua (Apache-2.0). It operates directly on raw UTF-8 bytes
+(`max_len=1023`, padded with byte 256), so deployment needs no tokenizer
+and only a handful of MB of weights.
+
+```bash
+# Train from scratch (107 classes, ~2.35M params)
+CODE_LANG_LITE_OUTPUT_DIR=/models/guardrail_code_models/programming-language-identification-100plus-lite \
+  docker compose run --rm train-byte-hybrid-language
+
+# Smoke test (1 epoch on 200 train rows)
+docker compose run --rm smoke-byte-hybrid-language
+
+# Predict
+python3 scripts/byte_hybrid_predict.py "def hello(): pass"
+python3 scripts/byte_hybrid_predict.py --file snippet.go --dtype bf16
+
+# Benchmark lite vs full
+docker compose run --rm benchmark-language-models \
+  scripts/benchmark_language_models.py \
+  --guardrail-dir /models/guardrail_code_models/programming-language-identification-100plus \
+  --lite-checkpoint /models/guardrail_code_models/programming-language-identification-100plus-lite/model.pt \
+  --skip-philomath \
+  --output-name language_id_lite_vs_full.json
+```
+
+The checkpoint format (`{model_state_dict, num_classes, max_len, lang2idx, config}`)
+matches CommonLingua, so PleIAs' upstream `predict.py` can also load it.
 
 ## Paths
 

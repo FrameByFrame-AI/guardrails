@@ -106,3 +106,9 @@ SAS,sas,
 Haxe,haxe,
 Mathematica/Wolfram Language,mathematica,
 ARM Assembly,,gas dir mixes multiple assembly architectures; skip for now
+Bash,shell,bash/sh/zsh — the-stack groups under shell
+Dockerfile,dockerfile,
+Makefile,makefile,
+SQL,sql,
+Terraform,hcl,Terraform/HCL source dir
+YAML,yaml,
