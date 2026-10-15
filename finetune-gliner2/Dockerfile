@@ -1,4 +1,4 @@
-FROM ml-base:cuda12.4-torch2.4-transformers4.51
+FROM ml-base:cuda12.6-torch2.11-transformers4.51
 
 USER root
 
