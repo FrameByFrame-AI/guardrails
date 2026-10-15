@@ -1,0 +1,162 @@
+{
+  "dataset": "/gen/ko_pii_opf_v4/test.jsonl",
+  "label_space_json": "/gen/ko_pii_opf_v4/label_space.json",
+  "labels_mode": "shared",
+  "benchmark_labels": [
+    "account_number",
+    "ip_address",
+    "personal_handle",
+    "private_address",
+    "private_date",
+    "private_email",
+    "private_person",
+    "private_phone",
+    "private_url"
+  ],
+  "excluded_dataset_labels": [],
+  "records": 2252,
+  "results": [
+    {
+      "model_name": "ko-ettin-pii",
+      "model_path": "/models/outputs/ko-ettin-encoder-150m-ko-pii-aug3",
+      "supported_labels": [
+        "account_number",
+        "ip_address",
+        "personal_handle",
+        "private_address",
+        "private_date",
+        "private_email",
+        "private_person",
+        "private_phone",
+        "private_url"
+      ],
+      "benchmark_labels": [
+        "account_number",
+        "ip_address",
+        "personal_handle",
+        "private_address",
+        "private_date",
+        "private_email",
+        "private_person",
+        "private_phone",
+        "private_url"
+      ],
+      "elapsed_sec": 25.3,
+      "ms_per_record": 11.2,
+      "overall": {
+        "tp": 479,
+        "fp": 76,
+        "fn": 63,
+        "gold_spans": 542,
+        "pred_spans": 555,
+        "precision": 0.8631,
+        "recall": 0.8838,
+        "f1": 0.8733
+      },
+      "per_label": {
+        "account_number": {
+          "tp": 118,
+          "fp": 2,
+          "fn": 2,
+          "gold_spans": 120,
+          "pred_spans": 120,
+          "precision": 0.9833,
+          "recall": 0.9833,
+          "f1": 0.9833
+        },
+        "ip_address": {
+          "tp": 9,
+          "fp": 0,
+          "fn": 0,
+          "gold_spans": 9,
+          "pred_spans": 9,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "personal_handle": {
+          "tp": 74,
+          "fp": 52,
+          "fn": 25,
+          "gold_spans": 99,
+          "pred_spans": 126,
+          "precision": 0.5873,
+          "recall": 0.7475,
+          "f1": 0.6578
+        },
+        "private_address": {
+          "tp": 59,
+          "fp": 5,
+          "fn": 6,
+          "gold_spans": 65,
+          "pred_spans": 64,
+          "precision": 0.9219,
+          "recall": 0.9077,
+          "f1": 0.9147
+        },
+        "private_date": {
+          "tp": 24,
+          "fp": 0,
+          "fn": 1,
+          "gold_spans": 25,
+          "pred_spans": 24,
+          "precision": 1.0,
+          "recall": 0.96,
+          "f1": 0.9796
+        },
+        "private_email": {
+          "tp": 38,
+          "fp": 0,
+          "fn": 0,
+          "gold_spans": 38,
+          "pred_spans": 38,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "private_person": {
+          "tp": 63,
+          "fp": 17,
+          "fn": 29,
+          "gold_spans": 92,
+          "pred_spans": 80,
+          "precision": 0.7875,
+          "recall": 0.6848,
+          "f1": 0.7326
+        },
+        "private_phone": {
+          "tp": 76,
+          "fp": 0,
+          "fn": 0,
+          "gold_spans": 76,
+          "pred_spans": 76,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "private_url": {
+          "tp": 18,
+          "fp": 0,
+          "fn": 0,
+          "gold_spans": 18,
+          "pred_spans": 18,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "speed": {
+        "device": "cuda",
+        "backend": "pytorch",
+        "n_warmup": 5,
+        "n_measured": 2247,
+        "latency_ms_mean": 11.17,
+        "latency_ms_p50": 10.99,
+        "latency_ms_p95": 11.98,
+        "latency_ms_p99": 12.03,
+        "throughput_rps": 89.54
+      }
+    }
+  ],
+  "comparison": {}
+}

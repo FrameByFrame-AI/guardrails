@@ -1,0 +1,323 @@
+{
+  "dataset": "/gen/ko_pii_opf_v4/test.jsonl",
+  "label_space_json": "/gen/ko_pii_opf_v4/label_space.json",
+  "labels_mode": "shared",
+  "benchmark_labels": [
+    "account_number",
+    "ip_address",
+    "personal_handle",
+    "private_address",
+    "private_date",
+    "private_email",
+    "private_person",
+    "private_phone",
+    "private_url"
+  ],
+  "excluded_dataset_labels": [],
+  "records": 2252,
+  "results": [
+    {
+      "model_name": "ko-ettin-pii",
+      "model_path": "/models/outputs/e5base-korean-pii",
+      "supported_labels": [
+        "account_number",
+        "ip_address",
+        "personal_handle",
+        "private_address",
+        "private_date",
+        "private_email",
+        "private_person",
+        "private_phone",
+        "private_url"
+      ],
+      "benchmark_labels": [
+        "account_number",
+        "ip_address",
+        "personal_handle",
+        "private_address",
+        "private_date",
+        "private_email",
+        "private_person",
+        "private_phone",
+        "private_url"
+      ],
+      "elapsed_sec": 9.5,
+      "ms_per_record": 4.2,
+      "overall": {
+        "tp": 517,
+        "fp": 23,
+        "fn": 25,
+        "gold_spans": 542,
+        "pred_spans": 540,
+        "precision": 0.9574,
+        "recall": 0.9539,
+        "f1": 0.9556
+      },
+      "per_label": {
+        "account_number": {
+          "tp": 118,
+          "fp": 1,
+          "fn": 2,
+          "gold_spans": 120,
+          "pred_spans": 119,
+          "precision": 0.9916,
+          "recall": 0.9833,
+          "f1": 0.9874
+        },
+        "ip_address": {
+          "tp": 9,
+          "fp": 0,
+          "fn": 0,
+          "gold_spans": 9,
+          "pred_spans": 9,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "personal_handle": {
+          "tp": 89,
+          "fp": 11,
+          "fn": 10,
+          "gold_spans": 99,
+          "pred_spans": 100,
+          "precision": 0.89,
+          "recall": 0.899,
+          "f1": 0.8945
+        },
+        "private_address": {
+          "tp": 59,
+          "fp": 4,
+          "fn": 6,
+          "gold_spans": 65,
+          "pred_spans": 63,
+          "precision": 0.9365,
+          "recall": 0.9077,
+          "f1": 0.9219
+        },
+        "private_date": {
+          "tp": 25,
+          "fp": 0,
+          "fn": 0,
+          "gold_spans": 25,
+          "pred_spans": 25,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "private_email": {
+          "tp": 38,
+          "fp": 0,
+          "fn": 0,
+          "gold_spans": 38,
+          "pred_spans": 38,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "private_person": {
+          "tp": 85,
+          "fp": 6,
+          "fn": 7,
+          "gold_spans": 92,
+          "pred_spans": 91,
+          "precision": 0.9341,
+          "recall": 0.9239,
+          "f1": 0.929
+        },
+        "private_phone": {
+          "tp": 76,
+          "fp": 1,
+          "fn": 0,
+          "gold_spans": 76,
+          "pred_spans": 77,
+          "precision": 0.987,
+          "recall": 1.0,
+          "f1": 0.9935
+        },
+        "private_url": {
+          "tp": 18,
+          "fp": 0,
+          "fn": 0,
+          "gold_spans": 18,
+          "pred_spans": 18,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "speed": {
+        "device": "cuda",
+        "backend": "pytorch",
+        "n_warmup": 5,
+        "n_measured": 2247,
+        "latency_ms_mean": 4.15,
+        "latency_ms_p50": 4.1,
+        "latency_ms_p95": 4.39,
+        "latency_ms_p99": 4.49,
+        "throughput_rps": 240.77
+      }
+    },
+    {
+      "model_name": "opf-pii",
+      "model_path": "/opf_ckpts/ko_pii_hf_ddp_v6_lora",
+      "supported_labels": [
+        "account_number",
+        "ip_address",
+        "personal_handle",
+        "private_address",
+        "private_date",
+        "private_email",
+        "private_person",
+        "private_phone",
+        "private_url"
+      ],
+      "benchmark_labels": [
+        "account_number",
+        "ip_address",
+        "personal_handle",
+        "private_address",
+        "private_date",
+        "private_email",
+        "private_person",
+        "private_phone",
+        "private_url"
+      ],
+      "elapsed_sec": 202.0,
+      "ms_per_record": 89.7,
+      "overall": {
+        "tp": 435,
+        "fp": 79,
+        "fn": 107,
+        "gold_spans": 542,
+        "pred_spans": 514,
+        "precision": 0.8463,
+        "recall": 0.8026,
+        "f1": 0.8239
+      },
+      "per_label": {
+        "account_number": {
+          "tp": 118,
+          "fp": 3,
+          "fn": 2,
+          "gold_spans": 120,
+          "pred_spans": 121,
+          "precision": 0.9752,
+          "recall": 0.9833,
+          "f1": 0.9793
+        },
+        "ip_address": {
+          "tp": 9,
+          "fp": 0,
+          "fn": 0,
+          "gold_spans": 9,
+          "pred_spans": 9,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "personal_handle": {
+          "tp": 38,
+          "fp": 1,
+          "fn": 61,
+          "gold_spans": 99,
+          "pred_spans": 39,
+          "precision": 0.9744,
+          "recall": 0.3838,
+          "f1": 0.5507
+        },
+        "private_address": {
+          "tp": 49,
+          "fp": 9,
+          "fn": 16,
+          "gold_spans": 65,
+          "pred_spans": 58,
+          "precision": 0.8448,
+          "recall": 0.7538,
+          "f1": 0.7967
+        },
+        "private_date": {
+          "tp": 22,
+          "fp": 2,
+          "fn": 3,
+          "gold_spans": 25,
+          "pred_spans": 24,
+          "precision": 0.9167,
+          "recall": 0.88,
+          "f1": 0.898
+        },
+        "private_email": {
+          "tp": 38,
+          "fp": 0,
+          "fn": 0,
+          "gold_spans": 38,
+          "pred_spans": 38,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "private_person": {
+          "tp": 67,
+          "fp": 64,
+          "fn": 25,
+          "gold_spans": 92,
+          "pred_spans": 131,
+          "precision": 0.5115,
+          "recall": 0.7283,
+          "f1": 0.6009
+        },
+        "private_phone": {
+          "tp": 76,
+          "fp": 0,
+          "fn": 0,
+          "gold_spans": 76,
+          "pred_spans": 76,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "private_url": {
+          "tp": 18,
+          "fp": 0,
+          "fn": 0,
+          "gold_spans": 18,
+          "pred_spans": 18,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "speed": {
+        "device": "cuda",
+        "backend": "pytorch",
+        "n_warmup": 5,
+        "n_measured": 2247,
+        "latency_ms_mean": 89.65,
+        "latency_ms_p50": 88.3,
+        "latency_ms_p95": 130.13,
+        "latency_ms_p99": 146.38,
+        "throughput_rps": 11.15
+      }
+    }
+  ],
+  "comparison": {
+    "baseline_model": "ko-ettin-pii",
+    "vs_baseline": {
+      "opf-pii": {
+        "overall_f1_delta": -0.1317,
+        "overall_precision_delta": -0.1111,
+        "overall_recall_delta": -0.1513,
+        "per_label_f1_delta": {
+          "account_number": -0.0081,
+          "ip_address": 0.0,
+          "personal_handle": -0.3438,
+          "private_address": -0.1252,
+          "private_date": -0.102,
+          "private_email": 0.0,
+          "private_person": -0.3281,
+          "private_phone": 0.0065,
+          "private_url": 0.0
+        }
+      }
+    }
+  }
+}

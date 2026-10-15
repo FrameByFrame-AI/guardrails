@@ -1,0 +1,79 @@
+# Uses PREBUILT images (no build step):
+#   - ml-base: proven for ko-ettin/ModernBERT (trained stage 1 & 3). Used for
+#     training + ko-ettin-only benchmark.
+#   - finetune-privacy-filter-benchmark-pii: the known-good opf image (registers the
+#     OpenAIPrivacyFilterForTokenClassification custom arch) — used only for the
+#     head-to-head, since it must load BOTH opf and ettin. Do NOT rebuild it; a fresh
+#     transformers-main build is currently broken (GenerationMixin import error).
+services:
+  # Fine-tune the ko-ettin foundation as a Korean PII token-classifier.
+  # Same data / label space / BIOES metric as finetune-privacy-filter (mounted ro).
+  train-pii:
+    image: ml-base:cuda12.6-torch2.11-transformers4.51
+    runtime: nvidia
+    working_dir: /workspace
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${KOE_GPU:-0}
+      - HF_HOME=/models/hf_cache
+    volumes:
+      - ./src:/workspace:ro
+      - ../finetune-privacy-filter/data/generated:/gen:ro   # shared ko_pii_opf_v4 splits
+      - ~/llm_models:/models                                # ko-ettin ckpt in + ft out
+    command: python3 train_pii.py
+      --checkpoint ${KOE_CHECKPOINT:-/models/outputs/ko-ettin-encoder-150m-stage_3_full_korean_continued_mlm}
+      --train-dataset ${KOE_DATA:-/gen/ko_pii_opf_v4}/train.jsonl
+      --validation-dataset ${KOE_DATA:-/gen/ko_pii_opf_v4}/validation.jsonl
+      --test-dataset ${KOE_DATA:-/gen/ko_pii_opf_v4}/test.jsonl
+      --label-space-json ${KOE_DATA:-/gen/ko_pii_opf_v4}/label_space.json
+      --output-dir ${KOE_OUTPUT:-/models/outputs/ko-ettin-encoder-150m-ko-pii}
+      --skip-classifier-remap
+      --max-length ${KOE_MAX_LENGTH:-256}
+      --epochs ${KOE_EPOCHS:-5}
+      --per-device-train-batch-size ${KOE_BS:-64}
+      --learning-rate ${KOE_LR:-3e-5}
+      --overwrite-output
+
+  # Head-to-head: ko-ettin-ft vs opf-ft on the SAME test split, same char-offset
+  # exact-span metric, one process. Uses the opf-capable prebuilt image.
+  benchmark-pii:
+    image: finetune-privacy-filter-benchmark-pii:latest
+    runtime: nvidia
+    working_dir: /workspace
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${KOE_GPU:-0}
+      - HF_HOME=/models/hf_cache
+      - PYTHONPATH=/privacy-filter           # registers OpenAIPrivacyFilterForTokenClassification
+    volumes:
+      - ./src:/workspace:ro
+      - ./data:/out
+      - ../finetune-privacy-filter/data/generated:/gen:ro
+      - ../finetune-privacy-filter/data/checkpoints:/opf_ckpts:ro
+      - ../../privacy-filter:/privacy-filter:ro
+      - ~/llm_models:/models
+    command: python3 benchmark_pii.py
+      --models ${KOE_OUTPUT:-/models/outputs/ko-ettin-encoder-150m-ko-pii}
+               ${OPF_CHECKPOINT:-/opf_ckpts/ko_pii_hf_ddp_v6_lora}
+      --model-names ko-ettin-pii opf-pii
+      --dataset ${KOE_DATA:-/gen/ko_pii_opf_v4}/test.jsonl
+      --label-space-json ${KOE_DATA:-/gen/ko_pii_opf_v4}/label_space.json
+      --output /out/benchmark_results/ko_ettin_vs_opf_pii.json
+
+  # ko-ettin-only benchmark (no opf env needed; standard ml-base).
+  benchmark-ko-only:
+    image: ml-base:cuda12.6-torch2.11-transformers4.51
+    runtime: nvidia
+    working_dir: /workspace
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${KOE_GPU:-0}
+      - HF_HOME=/models/hf_cache
+    volumes:
+      - ./src:/workspace:ro
+      - ./data:/out
+      - ../finetune-privacy-filter/data/generated:/gen:ro
+      - ~/llm_models:/models
+    command: python3 benchmark_pii.py
+      --model ${KOE_OUTPUT:-/models/outputs/ko-ettin-encoder-150m-ko-pii}
+      --model-name ko-ettin-pii
+      --dataset ${KOE_DATA:-/gen/ko_pii_opf_v4}/test.jsonl
+      --label-space-json ${KOE_DATA:-/gen/ko_pii_opf_v4}/label_space.json
+      --output /out/benchmark_results/ko_ettin_pii.json
