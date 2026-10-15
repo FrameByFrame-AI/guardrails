@@ -1,0 +1,517 @@
+services:
+  extract-bantopics-eval:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-extract-eval
+    working_dir: /workspace
+    entrypoint:
+      - python
+    volumes:
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+      - ../scanner_benchmark_results.csv:/sources/scanner_benchmark_results.csv:ro
+    command:
+      - scripts/extract_bantopics_eval.py
+      - --source
+      - /sources/scanner_benchmark_results.csv
+      - --output
+      - ${BT_EVAL_OUTPUT:-/workspace/data/eval/bantopics_50.jsonl}
+
+  benchmark-baseline:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-benchmark-baseline
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${BT_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+    command:
+      - scripts/benchmark_bantopics.py
+      - --baseline
+      - --eval
+      - ${BT_EVAL_PATH:-/workspace/data/eval/bantopics_50.jsonl}
+      - --output
+      - ${BT_BASELINE_OUTPUT:-/workspace/data/benchmark_results/phase0_deberta_baseline.json}
+
+  benchmark-bantopics:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-benchmark-granite
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${BT_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+    command:
+      - scripts/benchmark_bantopics.py
+      - --eval
+      - ${BT_EVAL_PATH:-/workspace/data/eval/bantopics_50.jsonl}
+      - --output
+      - ${BT_SWEEP_OUTPUT:-/workspace/data/benchmark_results/phase0_granite_sweep.json}
+      - --model
+      - ${BT_MODEL:-ibm-granite/granite-embedding-97m-multilingual-r2}
+      - --splitter-backend
+      - ${BT_SPLITTER:-pysbd}
+      - --splitter-language
+      - ${BT_LANG:-en}
+
+  predict-bantopics:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-predict
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${BT_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+      - ../request_payloads.json:/workspace/data/request_payloads.json:ro
+    command:
+      - scripts/predict.py
+      - --payloads
+      - /workspace/data/request_payloads.json
+      - --model
+      - ${BT_MODEL:-ibm-granite/granite-embedding-97m-multilingual-r2}
+
+  calibrate-bantopics:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-calibrate
+    working_dir: /workspace
+    entrypoint:
+      - python
+    volumes:
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+    command:
+      - scripts/calibrate.py
+      - --pairs
+      - ${BT_CAL_PAIRS:-/workspace/data/calibration/pairs.jsonl}
+      - --output
+      - ${BT_CAL_OUTPUT:-/workspace/data/calibrators/isotonic.pkl}
+
+  prepare-pairs:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-prepare-pairs
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - HF_TOKEN=${HF_TOKEN:-}
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+    command:
+      - scripts/prepare_pairs.py
+      - --source
+      - ${BT_PAIR_SOURCE:-aegis}
+      - --output
+      - ${BT_PAIRS_OUTPUT:-/workspace/data/training/safety_pairs_aegis.jsonl}
+      - --eval-jsonl
+      - ${BT_EVAL_PATH:-/workspace/data/eval/bantopics_50.jsonl}
+      - --aegis-dir
+      - ${BT_AEGIS_DIR:-/home/appuser/.cache/huggingface/hub/datasets--nvidia--Aegis-AI-Content-Safety-Dataset-2.0}
+      - --exclude-holdout-pct
+      - ${BT_HOLDOUT_PCT:-10}
+      - --max-rows
+      - ${BT_PAIR_MAX_ROWS:-0}
+
+  collapse-pairs:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-collapse-pairs
+    working_dir: /workspace
+    entrypoint:
+      - python
+    volumes:
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+    command:
+      - scripts/collapse_pairs_to_multilabel.py
+      - --inputs
+      - ${BT_COMBINED_OUTPUT:-/workspace/data/training/safety_pairs_combined.jsonl}
+      - --output
+      - ${BT_MULTILABEL_OUTPUT:-/workspace/data/training/multilabel.jsonl}
+
+  train-classifier-bantopics:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-train-classifier
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${BT_TRAIN_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+      - TORCHDYNAMO_DISABLE=1
+      - PYTHONFAULTHANDLER=1
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+      - ~/llm_models:/models
+    command:
+      - scripts/train_classifier.py
+      - --data
+      - ${BT_MULTILABEL_OUTPUT:-/workspace/data/training/multilabel.jsonl}
+      - --output-dir
+      - ${BT_CLF_OUTPUT:-/models/guardrail_bantopics/granite-97m-r2-classifier}
+      - --base-model
+      - ${BT_MODEL:-ibm-granite/granite-embedding-97m-multilingual-r2}
+      - --epochs
+      - ${BT_TRAIN_EPOCHS:-100}
+      - --batch-size
+      - ${BT_TRAIN_BATCH_SIZE:-256}
+      - --learning-rate
+      - ${BT_TRAIN_LR:-2e-4}
+      - --early-stopping-patience
+      - ${BT_EARLY_STOPPING_PATIENCE:-3}
+      - --eval-suite
+      - ${BT_EVAL_SUITE_OUTPUT:-/workspace/data/eval/eval_suite.jsonl}
+      - --eval-threshold
+      - ${BT_EVAL_THRESHOLD:-0.5}
+      - --bf16
+
+  smoke-train-classifier:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-smoke-train-classifier
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${BT_TRAIN_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - TORCHDYNAMO_DISABLE=1
+      - PYTHONFAULTHANDLER=1
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+      - ~/llm_models:/models
+    command:
+      - scripts/train_classifier.py
+      - --data
+      - ${BT_MULTILABEL_OUTPUT:-/workspace/data/training/multilabel.jsonl}
+      - --output-dir
+      - /models/guardrail_bantopics/granite-97m-r2-classifier-smoke
+      - --epochs
+      - "1"
+      - --batch-size
+      - "64"
+      - --eval-suite
+      - ${BT_EVAL_SUITE_OUTPUT:-/workspace/data/eval/eval_suite.jsonl}
+
+  combine-pairs:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-combine-pairs
+    working_dir: /workspace
+    entrypoint:
+      - python
+    volumes:
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+    command:
+      - scripts/combine_pairs.py
+      - --inputs
+      - /workspace/data/training/safety_pairs_aegis.jsonl
+      - /workspace/data/training/safety_pairs_beavertails.jsonl
+      - /workspace/data/training/safety_pairs_harmbench.jsonl
+      - /workspace/data/training/safety_pairs_jbb.jsonl
+      - /workspace/data/training/safety_pairs_dna.jsonl
+      - /workspace/data/training/safety_pairs_wildguard.jsonl
+      - /workspace/data/training/safety_pairs_openai_mod.jsonl
+      - /workspace/data/training/safety_pairs_security_synthetic.jsonl
+      - --output
+      - ${BT_COMBINED_OUTPUT:-/workspace/data/training/safety_pairs_combined.jsonl}
+      - --cap-per-topic
+      - ${BT_CAP_PER_TOPIC:-8000}
+
+  sweep-thresholds-classifier:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-sweep-thresholds-classifier
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${BT_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - TORCHDYNAMO_DISABLE=1
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+      - ~/llm_models:/models
+    command:
+      - scripts/sweep_thresholds_classifier.py
+      - --model
+      - ${BT_CLF_OUTPUT:-/models/guardrail_bantopics/granite-97m-r2-classifier}/merged_for_inference
+      - --eval-suite
+      - ${BT_EVAL_SUITE_OUTPUT:-/workspace/data/eval/eval_suite.jsonl}
+      - --output
+      - ${BT_SWEEP_CLF_OUTPUT:-/workspace/data/benchmark_results/classifier_threshold_sweep.json}
+
+  sweep-thresholds-on-suite:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-sweep-thresholds
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${BT_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - TORCHDYNAMO_DISABLE=1
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+      - ~/llm_models:/models
+    command:
+      - scripts/sweep_thresholds_on_suite.py
+      - --model
+      - ${BT_MODEL:-/models/guardrail_bantopics/granite-97m-r2-lora/merged_for_inference}
+      - --eval-suite
+      - ${BT_EVAL_SUITE_OUTPUT:-/workspace/data/eval/eval_suite.jsonl}
+      - --output
+      - ${BT_SWEEP_SUITE_OUTPUT:-/workspace/data/benchmark_results/post_train_threshold_sweep.json}
+
+  prepare-eval-suite:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-prepare-eval-suite
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - HF_TOKEN=${HF_TOKEN:-}
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+    command:
+      - scripts/prepare_eval_suite.py
+      - --output
+      - ${BT_EVAL_SUITE_OUTPUT:-/workspace/data/eval/eval_suite.jsonl}
+      - --production-eval-jsonl
+      - ${BT_EVAL_PATH:-/workspace/data/eval/bantopics_50.jsonl}
+      - --holdout-pct
+      - ${BT_HOLDOUT_PCT:-10}
+
+  synthesize-security-topics:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-synthesize-security
+    working_dir: /workspace
+    entrypoint:
+      - python
+    volumes:
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+    command:
+      - scripts/synthesize_security_topics.py
+      - --output
+      - ${BT_SYNTH_OUTPUT:-/workspace/data/training/safety_pairs_security_synthetic.jsonl}
+      - --max-per-topic
+      - ${BT_SYNTH_MAX:-200}
+
+  finetune-lora-bantopics:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-finetune-lora
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${BT_TRAIN_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+      # PyTorch 2.11's dynamo/inductor JIT segfaults on Blackwell sm_120
+      # inside ModernBERT's compiled forward — disable JIT entirely.
+      - TORCHDYNAMO_DISABLE=1
+      - PYTHONFAULTHANDLER=1
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+      - ~/llm_models:/models
+    command:
+      - scripts/finetune_lora.py
+      - --pairs
+      - ${BT_TRAIN_PAIRS:-/workspace/data/training/safety_pairs_combined.jsonl}
+      - --output-dir
+      - ${BT_TRAIN_OUTPUT:-/models/guardrail_bantopics/granite-97m-r2-lora}
+      - --base-model
+      - ${BT_MODEL:-ibm-granite/granite-embedding-97m-multilingual-r2}
+      - --epochs
+      - ${BT_TRAIN_EPOCHS:-3}
+      - --batch-size
+      - ${BT_TRAIN_BATCH_SIZE:-256}
+      - --learning-rate
+      - ${BT_TRAIN_LR:-5e-5}
+      - --bantopics-eval-jsonl
+      - ${BT_EVAL_SUITE_OUTPUT:-/workspace/data/eval/eval_suite.jsonl}
+      - --bantopics-eval-threshold
+      - ${BT_EVAL_THRESHOLD:-0.5}
+      - --bf16
+
+  smoke-finetune-lora:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-smoke-finetune
+    runtime: nvidia
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${BT_TRAIN_GPUS:-0}
+      - HF_HOME=/home/appuser/.cache/huggingface
+      - TORCHDYNAMO_DISABLE=1
+      - PYTHONFAULTHANDLER=1
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+      - ~/llm_models:/models
+    command:
+      - scripts/finetune_lora.py
+      - --pairs
+      - ${BT_TRAIN_PAIRS:-/workspace/data/training/safety_pairs_combined.jsonl}
+      - --output-dir
+      - /models/guardrail_bantopics/granite-97m-r2-lora-smoke
+      - --base-model
+      - ${BT_MODEL:-ibm-granite/granite-embedding-97m-multilingual-r2}
+      - --epochs
+      - "1"
+      - --batch-size
+      - "16"
+      - --held-in-per-topic
+      - "4"
+      - --bantopics-eval-jsonl
+      - ${BT_EVAL_SUITE_OUTPUT:-/workspace/data/eval/eval_suite.jsonl}
+      - --bantopics-eval-threshold
+      - ${BT_EVAL_THRESHOLD:-0.5}
+
+  export-bantopics-onnx:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: bantopics-export-onnx
+    working_dir: /workspace
+    entrypoint:
+      - python
+    environment:
+      - HF_HOME=/home/appuser/.cache/huggingface
+    volumes:
+      - ~/llm_models/huggingface_cache:/home/appuser/.cache/huggingface
+      - ./scripts:/workspace/scripts:ro
+      - ./src:/workspace/src:ro
+      - ./data:/workspace/data
+      - ~/llm_models:/models
+    command:
+      - scripts/export_onnx.py
+      - --model
+      - ${BT_EXPORT_MODEL:-ibm-granite/granite-embedding-97m-multilingual-r2}
+      - --output
+      - ${BT_EXPORT_OUTPUT:-/models/guardrail_bantopics/granite-97m-r2-onnx}
+      - --quantize
+      - ${BT_EXPORT_QUANTIZE:-int8}
+      - --opset
+      - ${BT_EXPORT_OPSET:-17}

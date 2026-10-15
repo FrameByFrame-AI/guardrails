@@ -1,0 +1,57 @@
+[
+    {
+        "is_valid": false,
+        "scanner_name": "Regex",
+        "score": 1.0
+    },
+    {
+        "is_valid": false,
+        "scanner_name": "Sentiment",
+        "score": -0.4
+    },
+    {
+        "is_valid": false,
+        "scanner_name": "Secrets",
+        "score": 1.0
+    },
+    {
+        "is_valid": false,
+        "scanner_name": "TokenLimit",
+        "score": 1.0
+    },
+    {
+        "is_valid": false,
+        "scanner_name": "BanCode",
+        "score": 1.0
+    },
+    {
+        "is_valid": false,
+        "scanner_name": "Gibberish",
+        "score": 0.7
+    },
+    {
+        "is_valid": true,
+        "scanner_name": "BanCompetitors",
+        "score": -1.0
+    },
+    {
+        "is_valid": false,
+        "scanner_name": "Code",
+        "score": 1.0
+    },
+    {
+        "is_valid": false,
+        "scanner_name": "PromptInjection",
+        "score": 1.0
+    },
+    {
+        "is_valid": false,
+        "scanner_name": "Anonymize",
+        "score": 1.0
+    },
+    {
+        "is_valid": true,
+        "scanner_name": "BanTopics",
+        "score": -0.6
+    }
+]

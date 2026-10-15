@@ -79,3 +79,8 @@ huggingface_cache/
 
 # Notebook outputs (optional — uncomment if you want to commit clean notebooks only)
 # *.ipynb
+
+# finetune-bantopics scanner benchmark sources: they hold fake test credentials for the Secrets scanner
+# (AWS example keys, sk-/ghp_/xoxb- strings), which GitHub push protection rejects. Kept locally only.
+request_payloads.json
+scanner_benchmark_results.csv
