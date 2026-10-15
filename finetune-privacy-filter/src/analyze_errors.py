@@ -25,6 +25,8 @@ from typing import Any
 import torch
 from transformers import AutoModelForTokenClassification, AutoTokenizer
 
+from span_matching import trim_span_boundaries
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
@@ -122,17 +124,19 @@ def _predict(text, tokenizer, model, id_to_label, max_length):
         char_end = int(offsets[te - 1][1])
         if char_end <= char_start:
             continue
+        char_start, char_end = trim_span_boundaries(text, char_start, char_end)
         char_spans.append((label, char_start, char_end))
     return char_spans
 
 
-def _gold_spans(record):
+def _gold_spans(record, text):
     out = []
     label_items = record.get("label")
     if isinstance(label_items, list):
         for item in label_items:
             if isinstance(item, dict):
-                out.append((str(item["category"]), int(item["start"]), int(item["end"])))
+                start, end = trim_span_boundaries(text, int(item["start"]), int(item["end"]))
+                out.append((str(item["category"]), start, end))
     return out
 
 
@@ -195,7 +199,7 @@ def main():
 
     for record in records:
         text = str(record.get("text", ""))
-        golds = _gold_spans(record)
+        golds = _gold_spans(record, text)
         preds = _predict(text, tokenizer, model, id_to_label, args.max_length)
 
         for g in golds:

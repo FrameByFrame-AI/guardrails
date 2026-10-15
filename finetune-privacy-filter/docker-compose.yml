@@ -16,9 +16,11 @@ services:
       --kdpii /sources/kdpii/KDPII.jsonl
       --rrn /sources/rrn/korean_rrn_synthetic.jsonl
       --output-dir ${PF_CONVERT_OUTPUT_DIR:-/workspace/data/generated/ko_pii_opf_v4}
-  # BLOCKED: ONNX export of openai_privacy_filter is not currently working with
-  # the public toolchain. See header of src/export_and_benchmark.py for details.
-  # This service is kept as scaffolding to resume from once exportable.
+  # fp32 ONNX export of openai_privacy_filter works and matches PyTorch bf16
+  # F1. fp16/int8 precision reduction still fail on separate bugs in their
+  # conversion tooling for this model's MoE graph shapes -- see header of
+  # src/export_and_benchmark.py for details on all three fixes plus the two
+  # still-open issues.
   export-pii:
     build:
       context: .

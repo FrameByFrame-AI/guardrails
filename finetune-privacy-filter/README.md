@@ -40,18 +40,40 @@ just **~614k trainable parameters** (~0.04% of the model).
 
 ## Benchmark Results
 
-Held-out KDPII Korean PII test set, span-level F1:
+Held-out KDPII Korean PII test set, span-level F1 — reconciled against a
+single frozen test split (see [`TRAINING.md`](./TRAINING.md) for why this
+supersedes the previously-published numbers, which were measured against a
+test split that had silently changed):
 
-| label | base | fine-tuned | Δ |
+| label | base | fine-tuned (`v10`) | Δ |
 |---|---|---|---|
 | `private_phone` | 0.65 | **1.00** | +0.35 |
 | `private_url` | 0.21 | **1.00** | +0.79 |
-| `private_email` | 0.86 | **1.00** | +0.14 |
 | `account_number` | 0.31 | **0.98** | +0.67 |
+| `private_email` | 0.83 | **0.95** | +0.12 |
 | `private_date` | 0.00 | **0.90** | +0.90 |
-| `private_address` | 0.00 | **0.78** | +0.78 |
-| `private_person` | 0.06 | **0.69** | +0.63 |
-| **Overall** | — | — | **+0.58** |
+| `private_address` | 0.00 | **0.69** | +0.69 |
+| `private_person` | 0.07 | **0.76** | +0.69 |
+| **Overall** | 0.31 | **0.89** | +0.58 |
+
+This model card and the published weights currently reflect an earlier
+checkpoint (`v6`); `v10_xlingual_sota` (trained on KDPII/RRN plus two
+supplemental sources — non-Korean PII from ai4privacy-400k, and native
+Korean synthetic chat-register data covering handle/nickname-rich domains)
+is the new best-performing checkpoint and supersedes it — see
+[`TRAINING.md`](./TRAINING.md) for the full per-candidate comparison,
+including two rejected experiments (`v7`, a higher-rank LoRA config;
+`ko_pii_klue`, a synthetic news-domain augmentation that regressed
+accuracy) and why they didn't make the cut.
+
+This fine-tune also outperforms
+[OpenMed/privacy-filter-multilingual-v2](https://huggingface.co/OpenMed/privacy-filter-multilingual-v2)
+(a 54-category, 16-language full fine-tune of the same base model) on Korean
+PII by a wide margin — 0.89 vs. 0.28 overall F1 on this benchmark; OpenMed's
+own model card names CJK languages as its weak point, and none of its seven
+declared training data sources contain any Korean-language records at all.
+See `TRAINING.md` for the label-remapping methodology used for a fair
+comparison.
 
 ## Quick Start
 
@@ -240,26 +262,42 @@ Each detected entity is one dict:
 | **Base model** | `openai/privacy-filter` (sparse MoE, 1.5B total / 50M active params, 128 experts top-4) |
 | **Method** | LoRA r=16, alpha=32, dropout=0.05 on attention projections (`q/k/v/o_proj`); classifier head fully trainable; everything else frozen |
 | **Trainable params** | ~614k (~0.04% of the model) |
-| **Datasets** | KDPII (Korean, ~53k records, deterministic 5/5/90 test/val/train), `korean_rrn_synthetic` (train only) |
+| **Datasets** | KDPII (Korean, ~53k records, deterministic 5/5/90 test/val/train), `korean_rrn_synthetic` (train only), plus two supplements with address-labeled records excluded (span-convention conflict with KDPII): ai4privacy-400k non-Korean PII (`ko_pii_xlingual`) and native Korean synthetic chat-register data covering handle/nickname-rich domains (`ko_pii_sota_v2`) |
 | **Optimizer** | AdamW, lr=5e-4, cosine schedule, warmup 0.1 |
-| **Batch** | 64 per device × 2 GPUs = 128 effective |
-| **Epochs** | 10, early stopping on `eval_span_f1` (patience 3) |
+| **Batch** | 128 effective (per-device batch and GPU count vary by hardware available at train time; LR/schedule are what matters for reproducing results, not the specific device split) |
+| **Epochs** | 10, early stopping on `eval_span_f1` (patience 3) — this run used the full 10 epochs |
 | **Sequence length** | 512 |
 | **Precision** | bf16 mixed (saved as bf16 safetensors after `merge_and_unload`) |
-| **Hardware** | 2× NVIDIA RTX A5000 (24 GB each) |
-| **Final eval span F1** | 0.848 (validation) |
+| **Final eval span F1** | 0.848 (validation), 0.89 (held-out test, reconciled benchmark above) |
 
 For full reproduction details, see [`TRAINING.md`](./TRAINING.md).
 
+## ONNX Export
+
+fp32 ONNX export works and is numerically verified (overall F1 within noise
+of the PyTorch checkpoint) — see `finetune-privacy-filter/src/export_and_benchmark.py`
+in the training repo for the exporter and the three modeling/tooling patches
+that unblock it. fp16 and int8 precision reduction currently fail on
+separate bugs in their respective conversion libraries when applied to this
+model's MoE graph shapes; not yet resolved.
+
 ## Known Limitations
 
-- **`private_person` residual error** is dominated by KDPII's `PS_NICKNAME`
-  policy. ~40% of remaining person errors are online-handle-style strings
-  (e.g., `탕비실맥심킹`, `퍼터요정`) that KDPII labels as `PS_NICKNAME →
-  private_person`. Downstream redaction is unaffected; classification systems
-  may want to post-classify handles separately.
-- **Foreign names** (Western, Japanese, Arabic transliterations) detected at
-  lower rates due to limited training exposure.
+- **`private_person`/`personal_handle` residual error is dominated by
+  recall**, not boundary or label-convention issues (an earlier read of the
+  error breakdown, before a tooling bug in the analysis script was fixed,
+  overstated boundary/merge problems — see `TRAINING.md`). Missed cases are
+  mostly short (2-character) Korean given names in casual, vocative-style
+  chat register without a surname or title, plus stylized online handles.
+  Separately, ~40% of remaining `private_person` errors are KDPII's own
+  `PS_NICKNAME` labeling policy tagging handle-like strings (e.g.
+  `탕비실맥심킹`, `퍼터요정`) as `private_person`; downstream redaction is
+  unaffected, classification systems may want to post-classify handles
+  separately.
+- **`private_address` recall gap** is mostly administrative-division names
+  that are also common Korean homonyms (`인도` = "India" or "sidewalk", `공주`
+  = "Gongju" or "princess") — a genuine disambiguation problem, not a
+  boundary issue.
 - **`private_address` boundaries** follow KDPII's split convention (each
   toponym component is a separate span). Production redactors typically
   concatenate adjacent address spans during post-processing.

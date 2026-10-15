@@ -1,0 +1,38 @@
+{
+  "FIRSTNAME": "private_person",
+  "MIDDLENAME": "private_person",
+  "LASTNAME": "private_person",
+
+  "USERNAME": "personal_handle",
+
+  "EMAIL": "private_email",
+
+  "PHONE": "private_phone",
+
+  "URL": "private_url",
+
+  "STREET": "private_address",
+  "BUILDINGNUMBER": "private_address",
+  "SECONDARYADDRESS": "private_address",
+  "CITY": "private_address",
+  "COUNTY": "private_address",
+  "STATE": "private_address",
+  "ZIPCODE": "private_address",
+  "GPSCOORDINATES": "private_address",
+  "ORDINALDIRECTION": "private_address",
+
+  "DATE": "private_date",
+  "DATEOFBIRTH": "private_date",
+
+  "SSN": "account_number",
+  "ACCOUNTNAME": "account_number",
+  "BANKACCOUNT": "account_number",
+  "IBAN": "account_number",
+  "BIC": "account_number",
+  "CREDITCARD": "account_number",
+  "MASKEDNUMBER": "account_number",
+  "VIN": "account_number",
+  "VRM": "account_number",
+
+  "IPADDRESS": "ip_address"
+}

@@ -130,6 +130,13 @@ def parse_args() -> argparse.Namespace:
         default=42,
         help="Deterministic text-hash split seed for KDPII records",
     )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Allow overwriting a non-empty --output-dir. Without this flag, a "
+        "non-empty output dir aborts the run so benchmark results referencing "
+        "it can't silently go stale.",
+    )
     return parser.parse_args()
 
 
@@ -158,6 +165,13 @@ def find_all_occurrences(text: str, needle: str) -> list[tuple[int, int]]:
 
 def spans_overlap(a: tuple[int, int], b: tuple[int, int]) -> bool:
     return not (a[1] <= b[0] or b[1] <= a[0])
+
+
+def hash_input_files(paths: list[Path]) -> str:
+    digest = hashlib.sha256()
+    for path in paths:
+        digest.update(path.read_bytes())
+    return digest.hexdigest()
 
 
 def stable_bucket(text: str, seed: int) -> float:
@@ -408,7 +422,16 @@ def main() -> None:
     if args.validation_ratio + args.test_ratio >= 1.0:
         raise SystemExit("validation_ratio + test_ratio must be < 1.0")
 
+    if args.output_dir.exists() and any(args.output_dir.iterdir()) and not args.force:
+        raise SystemExit(
+            f"--output-dir {args.output_dir} already exists and is non-empty. "
+            "Regenerating in place invalidates any benchmark results computed "
+            "against its current contents. Pass --force to overwrite anyway, "
+            "or pick a new --output-dir (e.g. bump the ko_pii_opf_vN suffix)."
+        )
     args.output_dir.mkdir(parents=True, exist_ok=True)
+
+    input_content_hash = hash_input_files([args.kdpii, args.rrn])
 
     train_path = args.output_dir / "train.jsonl"
     validation_path = args.output_dir / "validation.jsonl"
@@ -490,6 +513,7 @@ def main() -> None:
             "kdpii": str(args.kdpii),
             "rrn": str(args.rrn),
         },
+        "input_content_hash": input_content_hash,
         "output_dir": str(args.output_dir),
         "split_seed": args.split_seed,
         "validation_ratio": args.validation_ratio,

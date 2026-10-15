@@ -21,13 +21,14 @@ import argparse
 import json
 import random
 import time
-import unicodedata
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
 import torch
 from transformers import AutoConfig, AutoModelForTokenClassification, AutoTokenizer
+
+from span_matching import normalize_span_set
 
 
 def parse_args() -> argparse.Namespace:
@@ -67,6 +68,16 @@ def parse_args() -> argparse.Namespace:
         help="Label space JSON for the OPF dataset.",
     )
     parser.add_argument(
+        "--label-remap-json",
+        nargs="+",
+        default=[],
+        help="Optional per-model label remap, aligned with --models order. Each entry is "
+        "either a path to a JSON {raw_category: target_category} file, or '-' for no remap. "
+        "Categories with no entry in the map are dropped (treated as 'O') rather than scored. "
+        "Use this to compare a model with a different label taxonomy (e.g. a 54-category "
+        "multilingual model) against this dataset's 9-category schema.",
+    )
+    parser.add_argument(
         "--output",
         default="/data/benchmark_results/privacy_filter_span_benchmark.json",
     )
@@ -97,6 +108,12 @@ def parse_args() -> argparse.Namespace:
 
     if not args.model_paths:
         raise ValueError("At least one model must be provided via --model or --models.")
+
+    if args.label_remap_json and len(args.label_remap_json) != len(args.model_paths):
+        raise ValueError("--label-remap-json count must match --model/--models count")
+    args.resolved_label_remaps = list(
+        args.label_remap_json or (["-"] * len(args.model_paths))
+    )
 
     return args
 
@@ -153,9 +170,39 @@ def _extract_categories_from_id2label(id_to_label: dict[int, str]) -> set[str]:
     return categories
 
 
-def _load_model_categories(model_path: str) -> set[str]:
+def _load_label_remap(spec: str | None) -> dict[str, str] | None:
+    if not spec or spec == "-":
+        return None
+    with open(spec, "r", encoding="utf-8") as handle:
+        remap = json.load(handle)
+    if not isinstance(remap, dict):
+        raise ValueError(f"--label-remap-json {spec} must contain a JSON object")
+    return {str(k): str(v) for k, v in remap.items()}
+
+
+def _apply_label_remap(
+    id_to_label: dict[int, str], remap: dict[str, str] | None
+) -> dict[int, str]:
+    """Rewrite a raw id2label mapping through a category remap. Categories with
+    no entry in `remap` are dropped (mapped to 'O') rather than scored, since
+    they have no corresponding target category. `remap=None` is a passthrough."""
+    if remap is None:
+        return dict(id_to_label)
+    remapped: dict[int, str] = {}
+    for idx, label in id_to_label.items():
+        if label == "O":
+            remapped[idx] = "O"
+            continue
+        prefix, category = label.split("-", 1)
+        target_category = remap.get(category)
+        remapped[idx] = f"{prefix}-{target_category}" if target_category else "O"
+    return remapped
+
+
+def _load_model_categories(model_path: str, remap: dict[str, str] | None = None) -> set[str]:
     config = AutoConfig.from_pretrained(model_path, trust_remote_code=True)
     id_to_label = _normalize_id2label(config.id2label)
+    id_to_label = _apply_label_remap(id_to_label, remap)
     return _extract_categories_from_id2label(id_to_label)
 
 
@@ -198,34 +245,6 @@ def _extract_gt_spans(
             for start, end in offsets:
                 gt_set.add((label, int(start), int(end)))
     return gt_set
-
-
-def _is_ignorable_boundary_char(ch: str) -> bool:
-    return ch.isspace() or unicodedata.category(ch).startswith("P")
-
-
-def _trim_span_boundaries(text: str, start: int, end: int) -> tuple[int, int]:
-    trimmed_start = start
-    trimmed_end = end
-
-    while trimmed_start < trimmed_end and _is_ignorable_boundary_char(text[trimmed_start]):
-        trimmed_start += 1
-    while trimmed_end > trimmed_start and _is_ignorable_boundary_char(text[trimmed_end - 1]):
-        trimmed_end -= 1
-
-    if trimmed_start >= trimmed_end:
-        return start, end
-    return trimmed_start, trimmed_end
-
-
-def _normalize_span_set(
-    text: str, spans: set[tuple[str, int, int]]
-) -> set[tuple[str, int, int]]:
-    normalized: set[tuple[str, int, int]] = set()
-    for label, start, end in spans:
-        norm_start, norm_end = _trim_span_boundaries(text, start, end)
-        normalized.add((label, norm_start, norm_end))
-    return normalized
 
 
 def _decode_bioes_spans(
@@ -320,7 +339,13 @@ class _OnnxRuntimeWrapper:
         return type("OnnxOut", (), {"logits": logits})()
 
 
-def load_model(model_path: str, *, onnx: bool = False, device: str = "auto"):
+def load_model(
+    model_path: str,
+    *,
+    onnx: bool = False,
+    device: str = "auto",
+    label_remap: dict[str, str] | None = None,
+):
     tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
     use_cuda = (device == "cuda") or (device == "auto" and torch.cuda.is_available())
 
@@ -337,6 +362,7 @@ def load_model(model_path: str, *, onnx: bool = False, device: str = "auto"):
             model = model.to("cuda")
 
     id_to_label = _normalize_id2label(model.config.id2label)
+    id_to_label = _apply_label_remap(id_to_label, label_remap)
     categories = _extract_categories_from_id2label(id_to_label)
     return tokenizer, model, id_to_label, categories, {"onnx": onnx, "cuda": use_cuda}
 
@@ -407,10 +433,11 @@ def benchmark_model(
     max_length: int,
     onnx: bool = False,
     device: str = "auto",
+    label_remap: dict[str, str] | None = None,
 ) -> dict[str, Any]:
     print(f"Loading {model_name}: {model_path}", flush=True)
     tokenizer, model, id_to_label, supported_labels, model_info = load_model(
-        model_path, onnx=onnx, device=device
+        model_path, onnx=onnx, device=device, label_remap=label_remap
     )
     print(
         f"  supported labels ({len(supported_labels)}): {sorted(supported_labels)}  "
@@ -429,7 +456,7 @@ def benchmark_model(
     t0 = time.time()
     for i, record in enumerate(records):
         text = str(record.get("text", ""))
-        gt_set = _normalize_span_set(
+        gt_set = normalize_span_set(
             text,
             _extract_gt_spans(record, allowed_labels=allowed_labels),
         )
@@ -444,7 +471,7 @@ def benchmark_model(
             model_info=model_info,
         )
         latencies_ms.append((time.perf_counter() - t_pred_start) * 1000.0)
-        pred_set = _normalize_span_set(text, pred_set)
+        pred_set = normalize_span_set(text, pred_set)
 
         matched = gt_set & pred_set
         overall_tp += len(matched)
@@ -614,9 +641,12 @@ def main() -> None:
     records = _load_jsonl(dataset_path)
     records = _sample_records(records, max_samples=args.samples, seed=args.seed)
 
+    label_remaps = [_load_label_remap(spec) for spec in args.resolved_label_remaps]
     per_model_supported = {
-        model_name: _load_model_categories(model_path)
-        for model_name, model_path in zip(model_names, model_paths, strict=True)
+        model_name: _load_model_categories(model_path, remap=remap)
+        for model_name, model_path, remap in zip(
+            model_names, model_paths, label_remaps, strict=True
+        )
     }
     if args.labels_mode == "shared":
         benchmark_labels = sorted(
@@ -640,7 +670,9 @@ def main() -> None:
     print()
 
     results = []
-    for model_name, model_path in zip(model_names, model_paths, strict=True):
+    for model_name, model_path, remap in zip(
+        model_names, model_paths, label_remaps, strict=True
+    ):
         results.append(
             benchmark_model(
                 model_name=model_name,
@@ -650,6 +682,7 @@ def main() -> None:
                 max_length=args.max_length,
                 onnx=args.onnx,
                 device=args.device,
+                label_remap=remap,
             )
         )
 
