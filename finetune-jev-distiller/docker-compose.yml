@@ -1,0 +1,29 @@
+# Every step runs on the shared base image with the project mounted at /workspace (no project image to rebuild).
+# `cpu` runs data and API steps, `gpu` runs training and model scoring; the Makefile holds the commands.
+x-base: &base
+  image: ml-base:unsloth-trl0.22-transformers-main
+  working_dir: /workspace
+  entrypoint: python
+  environment:
+    OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+    AWS_PROFILE: ${AWS_PROFILE:-guardrail-bench}
+    BEDROCK_GUARDRAIL_ID: ${BEDROCK_GUARDRAIL_ID:-}
+    BEDROCK_GUARDRAIL_VERSION: ${BEDROCK_GUARDRAIL_VERSION:-1}
+    BEDROCK_REGION: ${BEDROCK_REGION:-ap-south-1}
+  volumes:
+    - .:/workspace
+    - ~/.aws:/home/unsloth/.aws  # SSO login (no keys); writable so botocore can refresh the token cache
+    - ~/llm_models/huggingface_cache:/cache/huggingface  # base image sets HF_HOME / HF_DATASETS_CACHE here
+    - ~/llm_models:/models:ro
+
+services:
+  cpu:
+    <<: *base
+
+  gpu:
+    <<: *base
+    runtime: nvidia
+    environment:
+      NVIDIA_VISIBLE_DEVICES: ${GPU:?set GPU in .env}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      PYTORCH_CUDA_ALLOC_CONF: expandable_segments:True

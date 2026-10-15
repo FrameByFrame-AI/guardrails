@@ -1,0 +1,1 @@
+{"train": ["data/train_candidates.jsonl", "data/train_verified.jsonl", "data/train_v6.jsonl", "data/train_v7.jsonl", "data/v8_train.jsonl", "data/v8_val.jsonl", "data/split_val.jsonl", "data/hard_benign_emails_train.jsonl", "data/hard_benign_emails_bench.jsonl", "data/benchmark_candidates.jsonl"], "overlap": 0.5, "flagged": {}}

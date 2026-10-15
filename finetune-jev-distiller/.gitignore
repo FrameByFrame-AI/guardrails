@@ -1,0 +1,12 @@
+runs/
+tests/out/
+tests/out_gpu/
+hf/*/*.safetensors
+# data files of earlier runs one level down (the repo's */data/*.jsonl rule covers only data/ itself);
+# the raw public benchmark sources stay tracked: build_injection_bench.py and build_v9.py read them
+data/**/*.jsonl
+!data/injection_src/**/*.jsonl
+# HF release folders: weights, tokenizer and runtime come from the run package and go to HF; git keeps the card
+hf/*/*
+!hf/*/README.md
+!hf/*/NOTICE
