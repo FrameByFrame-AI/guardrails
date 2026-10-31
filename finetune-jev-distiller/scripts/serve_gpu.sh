@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Serve AccuKnox Guard 1.2 or Lite 1.2 on one GPU with vLLM SR's runtime (vllm-srun), for local or remote latency
-# tests (serve/latency_cpu.py works against any System One server).
+# tests (serve/latency_bench.py).
 #
 #   scripts/serve_gpu.sh start --model lite --gpu a5000                 # 127.0.0.1:<port>, API key required
 #   scripts/serve_gpu.sh start --model 1.2 --gpu blackwell --replicas 2 --bind 0.0.0.0

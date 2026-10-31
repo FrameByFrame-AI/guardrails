@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Serve AccuKnox Guard Lite 1.2 (Q8_0 GGUF) on this machine's CPU for remote latency tests (serve/latency_cpu.py).
+# Serve AccuKnox Guard Lite 1.2 (Q8_0 GGUF) on this machine's CPU for remote latency tests (serve/latency_bench.py).
 #
 #   scripts/serve_cpu.sh start                       # 1 worker x 8 threads, 127.0.0.1:47613, API key required
 #   scripts/serve_cpu.sh start --bind 0.0.0.0        # accept remote clients (or a LAN / VPN address)

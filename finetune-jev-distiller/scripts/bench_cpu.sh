@@ -17,7 +17,7 @@ for l in $LAYOUTS; do
   port=$(grep -oE 'port=[0-9]+' "$OUT/$l.serve.log" | cut -d= -f2)
   sweep=1,2,4; [ "$w" -ge 2 ] && sweep=1,$w,$((2 * w))
   echo "== $l (workers $w x threads $t), sweep $sweep"
-  python3 serve/latency_cpu.py --url "http://$BIND:$port" --api-key "$KEY" --warmup 10 --duration 30 \
+  python3 serve/latency_bench.py --url "http://$BIND:$port" --api-key "$KEY" --warmup 10 --duration 30 \
     --sweep "$sweep" --json "$OUT/$l.tmp.json" | tee "$OUT/$l.txt"
   [ -f "$OUT/$l.tmp.json" ] && mv "$OUT/$l.tmp.json" "$OUT/$l.json"
 done

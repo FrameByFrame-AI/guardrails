@@ -20,7 +20,7 @@ for s in $SETUPS; do
   id=$([ "$gpu" = a5000 ] && echo 9ee06423 || echo 8aad1aba)
   mem=$(nvidia-smi --query-gpu=uuid,memory.used --format=csv,noheader | grep "$id" | cut -d, -f2)
   echo "== $tag on port $port, GPU memory$mem"
-  python3 serve/latency_cpu.py --url "http://$BIND:$port" --api-key "$KEY" --warmup 30 --duration 15 \
+  python3 serve/latency_bench.py --url "http://$BIND:$port" --api-key "$KEY" --warmup 30 --duration 15 \
     --sweep 1,2,4,8,16,32,64 --json "$OUT/$tag.tmp.json" | tee "$OUT/$tag.txt"
   [ -f "$OUT/$tag.tmp.json" ] && mv "$OUT/$tag.tmp.json" "$OUT/$tag.json" && echo "gpu_memory:$mem" >> "$OUT/$tag.txt"
 done

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Latency test for an AccuKnox Guard server (System One API), run from any machine; Python 3.8+, standard library only.
 
-    python3 latency_cpu.py --api-key KEY                                    # server on this machine (127.0.0.1:47613)
-    python3 latency_cpu.py --url http://<server-ip>:47613 --api-key KEY     # server elsewhere
-    python3 latency_cpu.py --url ... --api-key KEY --sweep 1,2,4,8         # latency under rising concurrency
-    python3 latency_cpu.py --url ... --api-key KEY --input prompts.xlsx    # your own prompts (xlsx/csv/jsonl/txt)
+    python3 latency_bench.py --api-key KEY                                    # server on this machine (127.0.0.1:47613)
+    python3 latency_bench.py --url http://<server-ip>:47613 --api-key KEY     # server elsewhere
+    python3 latency_bench.py --url ... --api-key KEY --sweep 1,2,4,8         # latency under rising concurrency
+    python3 latency_bench.py --url ... --api-key KEY --input prompts.xlsx    # your own prompts (xlsx/csv/jsonl/txt)
 
 Sends toxicity prompts (built in: 29 from the team's Toxicity sheet, with expected decisions) to /v1/systemone and
 reports client-side latency (p50/p90/p95/p99/max), throughput, errors, network round trip (median GET /health, so
@@ -19,6 +19,7 @@ capacity. Server-side settings (workers, threads, slots, memory) are chosen wher
 
 import argparse
 import csv
+import http.client
 import io
 import json
 import os
@@ -29,6 +30,7 @@ import sys
 import threading
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 import zipfile
 import xml.etree.ElementTree as ET
@@ -156,29 +158,61 @@ def load_prompts(path, sheet):
 # ---------- requests ----------
 
 class Client:
+    """Keep-alive HTTP connections, one per thread (as a production caller would hold them): a new TCP connection
+    per request adds a full network round trip, and urllib's per-request proxy lookup is slow on macOS."""
+
     def __init__(self, url, api_key, timeout):
         self.url, self.timeout = url.rstrip("/"), timeout
+        u = urllib.parse.urlsplit(self.url)
+        self.https, self.host, self.base = u.scheme == "https", u.hostname, u.path.rstrip("/")
+        self.port = u.port or (443 if self.https else 80)
         self.headers = {"Content-Type": "application/json"}
         if api_key:
             self.headers["Authorization"] = "Bearer " + api_key
         self.server = {}
+        self._local = threading.local()
+
+    def _conn(self, fresh=False):
+        c = getattr(self._local, "conn", None)
+        if c is None or fresh:
+            if c is not None:
+                c.close()
+            cls = http.client.HTTPSConnection if self.https else http.client.HTTPConnection
+            c = self._local.conn = cls(self.host, self.port, timeout=self.timeout)
+        return c
+
+    def _request(self, method, path, body=None):
+        for attempt in (0, 1):  # a kept-alive connection the server closed: reconnect once
+            c = self._conn(fresh=attempt == 1)
+            try:
+                c.request(method, self.base + path, body=body, headers=self.headers)
+                resp = c.getresponse()
+                data = resp.read()
+                break
+            except (http.client.HTTPException, OSError):
+                if attempt:
+                    raise
+        if resp.status != 200:
+            raise urllib.error.HTTPError(self.url + path, resp.status, resp.reason, resp.headers, io.BytesIO(data))
+        return resp, data
 
     def ask(self, text):
         body = json.dumps({"state": text, "questions": BLOCK}).encode()
-        req = urllib.request.Request(self.url + "/v1/systemone", data=body, headers=self.headers)
         t = time.perf_counter()
-        with urllib.request.urlopen(req, timeout=self.timeout) as resp:
-            data = json.load(resp)
-            if not self.server:
-                self.server = {k[len("x-guard-"):]: v for k, v in resp.headers.items() if k.lower().startswith("x-guard-")}
+        resp, raw = self._request("POST", "/v1/systemone", body)
         ms = (time.perf_counter() - t) * 1000
+        if not self.server:
+            self.server = {k[len("x-guard-"):]: v for k, v in resp.headers.items() if k.lower().startswith("x-guard-")}
+        data = json.loads(raw)
         return data["answers"]["block"]["noul"], ms, data.get("usage", {}).get("input_tokens")
 
     def rtt(self, n=10):
+        """Median GET /health on the kept-alive connection: one network round trip plus nginx."""
+        self._request("GET", "/health")
         out = []
         for _ in range(n):
             t = time.perf_counter()
-            urllib.request.urlopen(self.url + "/health", timeout=self.timeout).read()
+            self._request("GET", "/health")
             out.append((time.perf_counter() - t) * 1000)
         return statistics.median(out)
 
@@ -186,11 +220,12 @@ class Client:
         end = time.time() + seconds
         while True:
             try:
-                urllib.request.urlopen(self.url + "/health", timeout=5).read()
+                self._request("GET", "/health")
                 return
             except Exception as e:  # noqa: BLE001 - any failure means not ready yet
                 if time.time() > end:
                     sys.exit(f"server not reachable at {self.url}/health after {seconds} s: {e}")
+                self._conn(fresh=True)
                 time.sleep(2)
 
 
@@ -369,7 +404,11 @@ def main():
     print(f"\nlatency in ms, measured on this client (includes ~{rtt:.0f} ms network); tokens = median input tokens "
           f"per request including the ~140-token question")
     if len(levels) > 1 or levels[0] > 1:
-        print("with more requests in flight than server workers, requests queue: latency grows, throughput stays flat")
+        if "GPU" in client.server:
+            print("GPU server: concurrent requests are batched, so throughput rises with requests in flight until the "
+                  "GPU saturates; over a network, keep (target req/s x latency) requests in flight")
+        else:
+            print("CPU server: one request per worker at a time; more requests in flight than workers only queue")
 
     if args.csv:
         with io.open(args.csv, "w", newline="", encoding="utf-8") as f:

@@ -56,7 +56,7 @@ eval/scorecard.py`. A command that sets its own `-e PYTHONPATH` must repeat the 
 | `callers/` | Systems scored as they are deployed: Jev (`jev_caller.py` also defines the trained questions), Bedrock, open decision models, GLiNER, other open guards, GLM label checks and adjudication |
 | `train/` | `train_d3.py` (LoRA fine-tune of a d3 model, exported as a package with its manifest), `merge_runs.py` (soups), `d3_manifest.py`, `train_gliner.py` |
 | `eval/` | `guardrate.py` (GuardRate rebuild: build, audit, run, score), `scorecard.py` (the internal suite), injection and model-card tables, AUC / false-block tables, system comparison |
-| `serve/` | Latency and serving clients: vllm-srun (`srun_bench.py`), llama-server (`llamacpp_run.py`), CPU latency, remote latency test (`latency_cpu.py`) |
+| `serve/` | Latency and serving clients: vllm-srun (`srun_bench.py`), llama-server (`llamacpp_run.py`), CPU latency, remote latency test (`latency_bench.py`) |
 | `lib/` | `resume.py`: crash-safe, resumable jsonl output used by every long job |
 | `archive/` | Data builders and experiments of runs 6-9 and dropped ideas (int8); kept for reproducibility, not used by current runs |
 | `scripts/` | Shell entry points for each run and evaluation, `gpu_watch.sh` (GPU telemetry before every GPU job) |
@@ -67,9 +67,9 @@ eval/scorecard.py`. A command that sets its own `-e PYTHONPATH` must repeat the 
 `data/` holds the append-only label caches (`jev_labels`, `glm_labels`, `bedrock_labels`), the benchmark, the
 training set and run 1's data (`data/run1_jev/`). Nothing deletes `data/`; `make clean` deletes `runs/`.
 
-## CPU latency test (Lite 1.2 GGUF)
+## Latency test (GPU and CPU servers)
 
-Serve the GGUF on a CPU machine, then measure latency from any machine (the client is one file, Python 3.8+,
+Serve a model (`scripts/serve_gpu.sh` for 1.2 or Lite on a GPU, `scripts/serve_cpu.sh` for the GGUF on a CPU), then measure latency from any machine (the client is one file, Python 3.8+,
 standard library only).
 
 ```bash
@@ -79,11 +79,11 @@ scripts/serve_cpu.sh start --bind 0.0.0.0     # accept remote clients (or --bind
 scripts/serve_cpu.sh status | stop
 cat runs/serve_cpu/api_key                    # generated on first start
 
-# on the client: copy serve/latency_cpu.py
-python3 latency_cpu.py --api-key KEY                                     # server on the same machine
-python3 latency_cpu.py --url http://<server-ip>:47613 --api-key KEY      # remote server
-python3 latency_cpu.py --url ... --api-key KEY --sweep 1,2,4,8           # queueing under concurrency
-python3 latency_cpu.py --url ... --api-key KEY --input prompts.xlsx --csv out.csv
+# on the client: copy serve/latency_bench.py
+python3 latency_bench.py --api-key KEY                                     # server on the same machine
+python3 latency_bench.py --url http://<server-ip>:47613 --api-key KEY      # remote server
+python3 latency_bench.py --url ... --api-key KEY --sweep 1,2,4,8           # queueing under concurrency
+python3 latency_bench.py --url ... --api-key KEY --input prompts.xlsx --csv out.csv
 ```
 
 | Server option | Default | Meaning |
