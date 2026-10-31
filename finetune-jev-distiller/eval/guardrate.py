@@ -124,6 +124,47 @@ def build_items(seed=1234):
     return items
 
 
+def build_items_ru():
+    """The leaderboard's other-language datasets that are public, rebuilt as the English ones (same label rules):
+    PolyGuard and RTP-LX Russian, Aya red-teaming Russian, StrongReject++ Russian / Ukrainian / Belarusian / Uzbek.
+    Not rebuilt: Prompt injection (RU) and the Robustness Test groups (HiveTrace's gated datasets)."""
+    items = []
+
+    def add(ds_id, group, rows, mode="request"):
+        n = 0
+        for prompt, response, unsafe in rows:
+            if prompt and str(prompt).strip() and unsafe is not None and (mode == "request" or response):
+                items.append({"dataset": ds_id, "group": group, "mode": mode, "prompt": str(prompt).strip(),
+                              "response": str(response).strip() if response else None, "unsafe": bool(unsafe)})
+                n += 1
+        log.info(f"{ds_id:32s} {n}")
+
+    unsafe = {"unsafe": True, "safe": False}
+    poly = [r for r in _hf("ToxicityPrompts/PolyGuardPrompts") if r["language"] == "Russian"]
+    add("polyguard_ru_request", "PolyGuard", ((r["prompt"], None, unsafe.get(r["prompt_label"])) for r in poly))
+    add("polyguard_ru_response", "PolyGuard",
+        ((r["prompt"], r["response"], unsafe.get(r["response_label"])) for r in poly), "response")
+
+    def toxic(ann):
+        if not ann:
+            return None
+        a = ann if isinstance(ann, dict) else ast.literal_eval(ann)
+        return a.get("Toxicity", 0) >= 2
+
+    rtp = [r for r in _hf("ToxicityPrompts/RTP-LX") if r["Locale"] == "RU"]
+    add("rtp_lx_ru_request", "RTP-LX", ((r["Prompt"], None, toxic(r["PromptAnnotations"])) for r in rtp))
+    add("rtp_lx_ru_response", "RTP-LX",
+        ((r["Prompt"], r["Completion"], toxic(r["CompletionAnnotations"])) for r in rtp), "response")
+    add("aya_red_teaming_russian", "Aya Red Teaming",
+        ((r["prompt"], None, True) for r in _hf("CohereLabs/aya_redteaming", data_files="aya_rus.jsonl", split="train")))
+    for split, ds_id in (("russian", "ru"), ("ukrainian", "ukr"), ("belarusian", "be"), ("uzbek", "uz")):
+        add(f"strongreject_plus_plus_{ds_id}", "StrongReject++",
+            ((r["forbidden_prompt"], None, True) for r in _hf("hivetrace/strongrejectPlusPlus", split=split)))
+    for i, it in enumerate(items):
+        it["id"] = i
+    return items
+
+
 def load_model(name, device, path=None, questions="block"):
     """run(prompt, response) -> P(unsafe). Request mode when response is None, response mode otherwise.
     d3 with questions="split" asks the content question for P(unsafe) and returns run.attack(prompt) -> P(attack)
@@ -139,6 +180,8 @@ def load_model(name, device, path=None, questions="block"):
         src = {"pretrained_model_name_or_path": path} if path else {"pretrained_model_name_or_path": MODELS["d3"],
                                                                    "revision": D3_REVISION}
         model = AutoModel.from_pretrained(**src, trust_remote_code=True).to(device)
+        if device == "cpu":  # bf16 matmul is ~0 GFLOPS on CPUs without bf16 units; a CPU deployment runs fp32
+            model.runtime.backbone.float()
 
         request = {"block": QUESTIONS["block"]} if questions == "block" else {"unsafe": CONTENT_QUESTIONS["unsafe"]}
 
@@ -183,6 +226,60 @@ def load_model(name, device, path=None, questions="block"):
             return math.exp(z_yes) / (math.exp(z_yes) + math.exp(z_no))
         return run
 
+    if name == "gliner":
+        # GLiNER2.5-Decide or a run of it (--path); the block task only. Never trained on responses: the pair is
+        # passed as one text, as Shieldstral's document is.
+        from gliner2 import AutoExtractor
+
+        from gliner_caller import block_prob, resolve
+        from to_gliner import TASKS
+
+        model = AutoExtractor.from_pretrained(resolve(path or "/models/GLiNER2.5-Decide")).to(device).eval()
+        tasks = {"block": TASKS["block"]}
+
+        def run(prompt, response):
+            text = prompt if response is None else f"[User] {prompt}\n\n[Assistant] {response}"
+            with torch.inference_mode():
+                return block_prob(model.classify_text(text, tasks, include_confidence=True, max_len=1024))
+        return run
+
+    if name == "llm-guard":
+        # Protect AI's LLM Guard (archived), its default safety scanners rebuilt on transformers at the library's
+        # pinned revisions (the package pins transformers 4.51): requests go through the PromptInjection (deberta-v3
+        # v2, flags injection score > 0.92, score rounded to 2 places) and Toxicity (unbiased-toxic-roberta, any
+        # toxic label > 0.5) input scanners, responses through the Toxicity output scanner (> 0.7). P(unsafe) maps
+        # each scanner's score onto 0.5 at its own threshold (monotone, so the block decision at 0.5 is LLM Guard's)
+        # and takes the highest; run.last keeps the raw scores.
+        from transformers import pipeline
+
+        pi = pipeline("text-classification", model="protectai/deberta-v3-base-prompt-injection-v2",
+                      revision="89b085cd330414d3e7d9dd787870f315957e1e9f", device=device,
+                      max_length=512, truncation=True)
+        tox = pipeline("text-classification", model="unitary/unbiased-toxic-roberta",
+                       revision="36295dd80b422dc49f40052021430dae76241adc", device=device, top_k=None,
+                       function_to_apply="sigmoid", max_length=512, truncation=True)
+        toxic_labels = {"toxicity", "severe_toxicity", "obscene", "threat", "insult", "identity_attack",
+                        "sexual_explicit"}
+
+        def scaled(score, thr):
+            return 0.5 + 0.5 * (score - thr) / (1 - thr) if score > thr else 0.5 * score / thr
+
+        def toxicity(text):
+            return max(r["score"] for r in tox(text)[0] if r["label"] in toxic_labels)
+
+        def run(prompt, response):
+            if response is not None:
+                t = toxicity(response)
+                run.last = {"toxicity": round(t, 4)}
+                return scaled(t, 0.7)
+            r = pi(prompt)[0]
+            inj = round(r["score"] if r["label"] == "INJECTION" else 1 - r["score"], 2)
+            t = toxicity(prompt)
+            run.last = {"injection": inj, "toxicity": round(t, 4)}
+            return max(scaled(inj, 0.92), scaled(t, 0.5))
+        run.last = {}
+        return run
+
     import guard_models
 
     if name in guard_models.MODELS:
@@ -220,6 +317,7 @@ def cmd_run(args):
     done, fh = open_resumable(args.output, "id")  # rerun after a crash continues where it stopped
     items = [it for it in items if it["id"] not in done]
     run = load_model(args.model, "cuda" if torch.cuda.is_available() else "cpu", args.path, args.questions)
+    sync = torch.cuda.synchronize if torch.cuda.is_available() else (lambda: None)  # CPU runs time without it
     attack = getattr(run, "attack", None)
     log.info(f"{args.model} {args.path or ''}: {len(items)} items to run, {len(done)} already done")
     with torch.inference_mode(), fh:
@@ -229,16 +327,16 @@ def cmd_run(args):
                 attack(it["prompt"])
         t0 = time.time()
         for n, it in enumerate(items, 1):
-            torch.cuda.synchronize()
+            sync()
             s = time.perf_counter()
             p = run(it["prompt"], it["response"])
-            torch.cuda.synchronize()
+            sync()
             row = {"id": it["id"], "p_unsafe": round(p, 4), "latency_ms": round((time.perf_counter() - s) * 1000, 1),
                    **getattr(run, "last", {})}
             if attack and it["response"] is None:  # the gate's other question; prompts only
                 s = time.perf_counter()
                 row["p_attack"] = round(attack(it["prompt"]), 4)
-                torch.cuda.synchronize()
+                sync()
                 row["attack_latency_ms"] = round((time.perf_counter() - s) * 1000, 1)
             write_row(fh, row)
             if n % 2000 == 0:
@@ -401,11 +499,12 @@ def main():
     sub = ap.add_subparsers(dest="cmd", required=True)
     b = sub.add_parser("build")
     b.add_argument("--out", required=True)
+    b.add_argument("--lang", choices=["en", "ru"], default="en", help="ru: the public non-English datasets")
     r = sub.add_parser("run")
-    r.add_argument("--model", required=True, choices=["d3", "shieldstral", "xguard", "xguard-0.6b",
+    r.add_argument("--model", required=True, choices=["d3", "gliner", "llm-guard", "shieldstral", "xguard", "xguard-0.6b",
                                                       *__import__("guard_models").MODELS])
     r.add_argument("--limit", type=int, default=0, help="run at most N items (a format check before the full run)")
-    r.add_argument("--path", default=None, help="d3: a fine-tuned package")
+    r.add_argument("--path", default=None, help="d3: a package (fine-tuned or a Hub id); gliner: a model or run directory")
     r.add_argument("--questions", choices=["block", "split"], default="block",
                    help="d3: the block question (runs 1-7), or the content and attack questions (run 8)")
     r.add_argument("--input", required=True)
@@ -428,7 +527,7 @@ def main():
     args = ap.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
     if args.cmd == "build":
-        items = build_items()
+        items = build_items() if args.lang == "en" else build_items_ru()
         with open(args.out, "w") as fh:
             for it in items:
                 fh.write(json.dumps(it, ensure_ascii=False) + "\n")

@@ -28,7 +28,7 @@ on public datasets' own labels: the weights are the average of two LoRA fine-tun
 ```python
 from transformers import AutoModel
 
-model = AutoModel.from_pretrained("accuknox/accuknox-guard-1.1", trust_remote_code=True).to("cuda")
+model = AutoModel.from_pretrained("Accuknoxtechnologies/accuknox-guard-1.1", trust_remote_code=True).to("cuda")
 
 BLOCK = {"block": {
     "type": "noul",
@@ -165,7 +165,7 @@ non-commercial use only (toxic-chat, above).
   author       = {Mariappan, Vijay},
   organization = {AccuKnox},
   year         = {2026},
-  howpublished = {\url{https://huggingface.co/accuknox/accuknox-guard-1.1}}
+  howpublished = {\url{https://huggingface.co/Accuknoxtechnologies/accuknox-guard-1.1}}
 }
 
 @misc{d3_mini_2026,

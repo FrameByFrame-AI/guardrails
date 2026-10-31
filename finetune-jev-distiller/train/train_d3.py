@@ -1,4 +1,4 @@
-"""LoRA fine-tune of vllm-sr/d3-mini, exported as a d3 package.
+"""LoRA fine-tune of a d3 model (vllm-sr/d3-mini by default; --base for d3-lite or d3-nano), exported as a d3 package.
 
     python train_d3.py --train data/v6_train.jsonl --val data/v6_val.jsonl --out runs/d3-v6
 
@@ -43,7 +43,10 @@ from decision_caller import D3_REVISION
 from jev_caller import ATTACK_QUESTIONS, CONTENT_QUESTIONS, QUESTIONS, RESPONSE_QUESTIONS
 
 log = logging.getLogger("train-d3")
-REPO = "vllm-sr/d3-mini"
+# Bases with pinned revisions; the d3 package format and runtime are the same for every size.
+BASES = {"vllm-sr/d3-mini": D3_REVISION,
+         "vllm-sr/d3-nano": "aeb70d4dd53ed25b855c3b0a66394b8fe265db7f",
+         "vllm-sr/d3-lite": "9c10703193afc7c7d28c88201c0364bfbbf58320"}
 LORA_TARGETS = ["q_proj", "k_proj", "v_proj", "o_proj", "in_proj_qkv", "in_proj_z", "out_proj",
                 "gate_proj", "up_proj", "down_proj"]
 WEIGHT_FILES = ("model.safetensors.index.json", "MODEL_MANIFEST.json", "readout.safetensors")
@@ -125,6 +128,7 @@ def main():
     ap.add_argument("--train", required=True)
     ap.add_argument("--val", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--base", choices=list(BASES), default="vllm-sr/d3-mini")
     ap.add_argument("--epochs", type=float, default=1.0)
     ap.add_argument("--batch-size", type=int, default=8, help="records per optimizer step")
     ap.add_argument("--grad-accum", type=int, default=1,
@@ -150,7 +154,7 @@ def main():
     from peft import LoraConfig, get_peft_model
     from torch.utils.checkpoint import checkpoint
 
-    root = Path(snapshot_download(REPO, revision=D3_REVISION, ignore_patterns=["assets/*"]))
+    root = Path(snapshot_download(args.base, revision=BASES[args.base], ignore_patterns=["assets/*"]))
     sys.path.insert(0, str(root))
     from d3_runtime import D3, MAX_OPTIONS, sdpa_backends
 
@@ -376,7 +380,11 @@ def main():
     state = {k: v.contiguous() for k, v in d3.backbone.state_dict().items()}
     save_torch_state_dict(state, str(pkg), filename_pattern="model{suffix}.safetensors", max_shard_size="5GB")
     save_file({"weight": readout.detach().to(torch.float32).cpu().contiguous()}, str(pkg / "readout.safetensors"))
-    summary = {"base": REPO, "train_examples": len(train), "val_examples": len(val), "steps": step,
+    from d3_manifest import write_manifest  # vLLM Semantic Router serves only packages whose manifest matches
+
+    write_manifest(pkg, name=out.name, base_manifest=root / "MODEL_MANIFEST.json")
+    summary = {"base": args.base, "revision": BASES[args.base],
+               "train_examples": len(train), "val_examples": len(val), "steps": step,
                "batch_size": args.batch_size, "grad_accum": args.grad_accum, "select": args.select, "lr": args.lr,
                "readout_lr": args.readout_lr, "lora_r": args.lora_r,
                "risk_weight": args.risk_weight, "max_state_tokens": args.max_state_tokens,

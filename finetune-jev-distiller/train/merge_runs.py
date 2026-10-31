@@ -6,7 +6,8 @@ Runs 5 and 9 make different mistakes: averaging their probabilities per item pas
 (experiments.md, "Run 9 results"). Both are LoRA fine-tunes of d3-mini merged into the base, so averaging the
 weights averages the two LoRA updates and gives one model at one model's latency. Every tensor in the model shards
 and readout.safetensors is averaged in float32 (--weight per run, default equal) and cast back to its dtype;
-tensors the runs left at the base are identical in each, so they are unchanged. Other files come from the first run.
+tensors the runs left at the base are identical in each, so they are unchanged. Other files come from the first run;
+MODEL_MANIFEST.json is then written for the new weights (d3_manifest.py), so vLLM Semantic Router can serve the soup.
 """
 
 import argparse
@@ -18,6 +19,8 @@ from pathlib import Path
 import torch
 from safetensors import safe_open
 from safetensors.torch import save_file
+
+from d3_manifest import MANIFEST_NAME, write_manifest
 
 
 def main():
@@ -64,6 +67,8 @@ def main():
         print(f"{name}: {len(keys)} tensors")
     json.dump({"runs": [str(r) for r in runs], "weights": w, "tensors_averaged": changed},
               open(out / "merge.json", "w"), indent=1)
+    base = runs[0] / MANIFEST_NAME  # the first run's manifest (copied above) is stale: rewrite it for the new weights
+    write_manifest(out, name=out.parent.name, base_manifest=base if base.is_file() else None)
     print(f"{changed} tensors differ between runs and were averaged -> {out}")
 
 

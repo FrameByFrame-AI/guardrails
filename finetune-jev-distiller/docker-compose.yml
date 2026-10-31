@@ -5,6 +5,8 @@ x-base: &base
   working_dir: /workspace
   entrypoint: python
   environment:
+    # code folders on the import path, so modules import each other by name from any folder
+    PYTHONPATH: /workspace/lib:/workspace/callers:/workspace/build:/workspace/train:/workspace/eval:/workspace/serve
     OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
     AWS_PROFILE: ${AWS_PROFILE:-guardrail-bench}
     BEDROCK_GUARDRAIL_ID: ${BEDROCK_GUARDRAIL_ID:-}
@@ -25,5 +27,6 @@ services:
     runtime: nvidia
     environment:
       NVIDIA_VISIBLE_DEVICES: ${GPU:?set GPU in .env}
+      PYTHONPATH: /workspace/lib:/workspace/callers:/workspace/build:/workspace/train:/workspace/eval:/workspace/serve
       OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
       PYTORCH_CUDA_ALLOC_CONF: expandable_segments:True

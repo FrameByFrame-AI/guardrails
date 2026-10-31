@@ -1,0 +1,17 @@
+# Serve accuknox-guard-lite-1.2 (Q8_0 GGUF) on CPU from this folder with llama.cpp's official server image.
+#   docker compose up -d       # THREADS = free physical cores (default 8; never more than the cores you have)
+#   python3 check.py           # smoke test against http://127.0.0.1:8100
+#   docker compose down
+# System One API: POST http://127.0.0.1:8100/v1/systemone; see DEPLOYMENT.md. The image is pinned by digest
+# (llama.cpp build 11783; d3 needs build 11727 or newer).
+services:
+  cpu:
+    image: ghcr.io/ggml-org/llama.cpp@sha256:c7b03e45cff9c4e984acd39032a6f3a82c811075b72bf176e329f84b8598c135
+    container_name: accuknox-guard-lite-1.2-gguf
+    volumes:
+      - .:/models:ro
+    ports:
+      - "127.0.0.1:${PORT:-8100}:8080"
+    command: ["-m", "/models/accuknox-guard-lite-1.2-Q8_0.gguf", "--host", "0.0.0.0", "--port", "8080",
+              "-t", "${THREADS:-8}", "-tb", "${THREADS:-8}", "-c", "8192", "-b", "8192", "-ub", "8192", "-np", "1"]
+    restart: unless-stopped

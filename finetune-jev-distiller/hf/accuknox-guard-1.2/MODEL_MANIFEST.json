@@ -1,0 +1,119 @@
+{
+ "schema": "d3-package-manifest/1",
+ "model_name": "accuknox-guard-1.2",
+ "repo_id": "Accuknoxtechnologies/accuknox-guard-1.2",
+ "format_id": "d3-code-readout-v1",
+ "prompt": "d3",
+ "attention_mode": "noncausal_full_attention",
+ "max_input_tokens": null,
+ "base_model": {
+  "repo_id": "Qwen/Qwen3.5-4B",
+  "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+ },
+ "licence": {
+  "spdx": "apache-2.0",
+  "components": [
+   {
+    "component": "Qwen/Qwen3.5-4B",
+    "licence": "apache-2.0"
+   },
+   {
+    "component": "d3-mini (Decision 3.0) weights, readout and runtime",
+    "licence": "apache-2.0"
+   }
+  ]
+ },
+ "backbone": "qwen3_5",
+ "identity": {
+  "model_sha256": "bc1b9118fcc49c801fb81d0e1a53999e6882f69ac2dd3ea5ad0a305cee289a5f",
+  "files_sha256": {
+   "model-00001-of-00002.safetensors": "41733f4a15463f1ac8a1e8223fb9914ecac94505a3e207d987bfa9116d298855",
+   "model-00002-of-00002.safetensors": "12661d79ca1069e06e6ac320218e1be0277a5ffab7ab1d1d7b0bfb541b29eae6",
+   "readout.safetensors": "15d85b8819aad5f10fd51e535ea76e0692828991639f2419f891e84a7965b934",
+   "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+   "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+   "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+  }
+ },
+ "parameters": {
+  "text": 4205751296,
+  "vision": 333514240,
+  "readout": 652800,
+  "loaded": 4539918336
+ },
+ "runtime": {
+  "files_sha256": {
+   "d3_runtime.py": "0d6ab3da203ae4cf9b039718f305b7dcf46e10a060c01b735d68b0ef87fcbe7c",
+   "d3_fast.py": "68a1fb9a2c3bde9ac2763bf504decae592ca12722698fbde1b39a31262955535",
+   "d3_kernels.py": "8f7534ca1e1846ebf7c4c73058002f3be4dbf0d5d426f0815150ae0cbe7677bd",
+   "modeling_d3.py": "f8f8db23ff58f1a990ffa24977d744a50e1b4446d02a64c22070967705b6dbef",
+   "d3_format.py": "3badfbc70561bb3f5b8ec16a11d2c455b96ddb32caace0a8a54ca102eae1f3fa",
+   "d3_engine.py": "086238942762df45047a32cd9a8e2bedd9b63167eb40be260c776de567979f53",
+   "d3_server.py": "766a20a69101e36ab0535a1ec683379db422380a83091f0eccd7e82edb6a02de",
+   "pipeline_d3.py": "4f9297c7c74e596e9b67df91a1e6823cfada48bf781336f141974ff6a2f1038e"
+  }
+ },
+ "built_utc": "2026-10-21T17:49:06+00:00",
+ "files_sha256": {
+  ".gitattributes": "690c76d1fc25384e5e24b807be13bec4064574d8a6ff53c7f25827a2649e363a",
+  "DEPLOYMENT.md": "73de0190ffa6040e599d09b4d5040f54588a25e6c23aa7c02944fa77e68f857f",
+  "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+  "NOTICE": "1b1c0d9508ca9703a5f7eabfc70800676e167ad1de1e72ac69f4b9cab1b9272b",
+  "README.md": "bcaad3e7904ad9c126b83ee697060f64acd527900d9c6424f1fa7d4b396e4bb9",
+  "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+  "check.py": "18e0ae443a4942d7a9521de1fd83b4fcfc3aaf3e9c4da13965538ef09a27bb11",
+  "config.json": "8f5f404a71ecc53c4ff26fc42cb4c778ffacfb4c9623f5e2d51245166d6b5057",
+  "d3_engine.py": "086238942762df45047a32cd9a8e2bedd9b63167eb40be260c776de567979f53",
+  "d3_fast.py": "68a1fb9a2c3bde9ac2763bf504decae592ca12722698fbde1b39a31262955535",
+  "d3_format.py": "3badfbc70561bb3f5b8ec16a11d2c455b96ddb32caace0a8a54ca102eae1f3fa",
+  "d3_kernels.py": "8f7534ca1e1846ebf7c4c73058002f3be4dbf0d5d426f0815150ae0cbe7677bd",
+  "d3_runtime.py": "0d6ab3da203ae4cf9b039718f305b7dcf46e10a060c01b735d68b0ef87fcbe7c",
+  "d3_server.py": "766a20a69101e36ab0535a1ec683379db422380a83091f0eccd7e82edb6a02de",
+  "decision_config.json": "588bc0ac7644479b9adde0498d80b6fb7c576388992564ac67599c05d29add07",
+  "docker-compose.yml": "cb37682e0699474de03354f6429d12f8571c25572815897b57ac0384d19be10a",
+  "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+  "model-00001-of-00002.safetensors": "41733f4a15463f1ac8a1e8223fb9914ecac94505a3e207d987bfa9116d298855",
+  "model-00002-of-00002.safetensors": "12661d79ca1069e06e6ac320218e1be0277a5ffab7ab1d1d7b0bfb541b29eae6",
+  "model.safetensors.index.json": "fbc7911c5186b5440278095396836f69d1bb374191e8ce8ea67ad011e22555b2",
+  "modeling_d3.py": "f8f8db23ff58f1a990ffa24977d744a50e1b4446d02a64c22070967705b6dbef",
+  "pipeline_d3.py": "4f9297c7c74e596e9b67df91a1e6823cfada48bf781336f141974ff6a2f1038e",
+  "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+  "readout.safetensors": "15d85b8819aad5f10fd51e535ea76e0692828991639f2419f891e84a7965b934",
+  "requirements.txt": "de9defd71ae4e559a7f5bdcc935b23716f9788e8755f2ba6db1ab6862bcda12e",
+  "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+  "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+  "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+  "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+ },
+ "files_bytes": {
+  ".gitattributes": 1743,
+  "DEPLOYMENT.md": 5042,
+  "LICENSE": 11357,
+  "NOTICE": 104,
+  "README.md": 4956,
+  "chat_template.jinja": 7756,
+  "check.py": 4601,
+  "config.json": 3090,
+  "d3_engine.py": 4413,
+  "d3_fast.py": 22331,
+  "d3_format.py": 7008,
+  "d3_kernels.py": 16129,
+  "d3_runtime.py": 93871,
+  "d3_server.py": 17705,
+  "decision_config.json": 5502,
+  "docker-compose.yml": 1644,
+  "merges.txt": 3353259,
+  "model-00001-of-00002.safetensors": 4973332144,
+  "model-00002-of-00002.safetensors": 4105283936,
+  "model.safetensors.index.json": 61861,
+  "modeling_d3.py": 12079,
+  "pipeline_d3.py": 2936,
+  "preprocessor_config.json": 390,
+  "readout.safetensors": 2611280,
+  "requirements.txt": 723,
+  "tokenizer.json": 12807982,
+  "tokenizer_config.json": 16710,
+  "video_preprocessor_config.json": 385,
+  "vocab.json": 6722759
+ }
+}

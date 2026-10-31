@@ -910,3 +910,492 @@ pass); 6 benchmark items match the scored GPU predictions to 4 decimals or withi
 on the team: the `accuknox` HF organisation (does not exist yet; the token's user is in FrameByFrame only) and the
 licence decision (ToxicChat CC-BY-NC-4.0, BIPIA tables/code CC-BY-SA-4.0 vs the card's Apache-2.0). Plan: upload
 private first, check the page, then make public.
+
+## Leaderboard-card metrics, local rebuild (2026-10-16)
+
+The GuardRate leaderboard card shows integral, min score, pooled FPR / FNR / F1 and p50 / p95. Same metrics on the
+local English rebuild (27,416 unseen items, threshold 0.5; latency on the A5000 sample; runs/_attic/card_metrics.py):
+
+| | integral | min group | FPR | FNR | F1 | p50 / p95 ms |
+|---|---|---|---|---|---|---|
+| AccuKnox Guard 1.1 | 0.802 | 0.410 (XSafety) | 9.2% | 24.6% | 0.822 | 43 / 103 |
+| Sing-Guard-2b | 0.776 | 0.269 (OR-Bench) | 20.6% | 19.2% | 0.811 | 39 / 68 |
+| XGuard-Reason-0.6B | 0.804 | 0.455 (XSafety) | 13.1% | 17.9% | 0.848 | 22 / 32 |
+| XGuard-Reason-8B | 0.815 | 0.451 (XSafety) | 13.5% | 16.8% | 0.853 | 106 / 214 |
+
+Sing-Guard's published card (HiveTrace's private, multilingual items): integral 0.743, min 0.394, FPR 22.8%, FNR
+18.7%, F1 0.803, p50 / p95 53 / 63 ms on their hardware. Its local FPR / FNR / F1 are within 2 points of the card,
+so the rebuild tracks the leaderboard on pooled error rates; the integral differs because the card includes
+Russian and other languages. AccuKnox's error profile is the reverse of Sing-Guard's: half the false blocks, more
+misses. Its p95 latency is the weakest of the small models (long inputs cost more).
+
+### Official GuardRate result (snapshot_2026-10-16)
+
+HiveTrace evaluated 1.1 on request (Space discussion #1). Rank **#1 of 41**: integral 0.808, min group 0.536,
+FPR 13.7%, FNR 16.9%, F1 0.819, p95 72 ms (all 44 datasets, en/ru/uk/be/uz). Next: XGuard-Reason-8B 0.764,
+Sing-Guard-2b 0.755. Per-dataset mean: English 0.834 (XGuard-8B 0.836), non-English 0.865 (XGuard-8B 0.834).
+Weakest: RTP-LX RU response 0.39, XSafety EN 0.54, ToxicChat 0.60, S-Eval base risk 0.64, Prompt injection EN 0.69
+(XGuard-8B 0.90). Per-dataset matrix saved as `data/guardrate_official_2026-10-16.json`.
+
+## Run cleanup (2026-10-17)
+
+Weights of runs that failed or were superseded were deleted (38.6 GB, user's decision): runs 1-4 (`jev-gliner`,
+`gold-gliner`, `gold-gliner-v3`, `gold-gliner-1b` checkpoints) and runs 6-8 (`d3-v6/7/8` packages), together with the
+rest of `runs/_attic/` (run 9 audit files, merge test). Their predictions and summaries stay in `runs/<run>/`. Kept: `d3-ft` (run 5, 1.0), `d3-v9` (input to
+`make soup`), `d3-soup59` (1.1).
+
+## CPU latency of decision-model bases (2026-10-17)
+
+`cpu_latency.py` (results `runs/cpu_latency.json`): Ryzen 9 5900X (Zen 3, AVX2, no AVX-512/bf16), 8 threads,
+one request at a time, PyTorch eager. Short = ~60-token prompt, long = ~500 tokens; "block only" asks only the
+block question (the risk question adds ~580 tokens of category text to every call).
+
+| model | params | short p50, both questions | short p50, block only | long p50, block only |
+|---|---|---|---|---|
+| GLiNER2.5-Decide | 486M | 1.23 s | **0.24 s** | 1.26 s |
+| d3-lite (fp32) | 0.85B | 2.47 s | 0.43 s | 1.45 s |
+| GLiNER2.5-Decide-1B | 1.19B | 1.91 s | 0.50 s | 2.00 s |
+| d3-nano (fp32) | 2.2B | 4.64 s | 0.98 s | 2.93 s |
+| d1-3B | 3B | 2.96 s | 1.03 s | 3.71 s |
+| d3-mini / 1.1 (fp32) | 4.5B | 12.2 s | 2.69 s | 7.59 s |
+| 1.1 as published (bf16) | 4.5B | 62.8 s | | |
+
+- bf16 matmul on this CPU runs at ~0 GFLOPS (fp32: 897), so the d3 packages, which refuse dtype casts, must be
+  converted to fp32 (or int8) to run on CPU at all.
+- Latency is compute-bound (params x tokens): within the decision models, only GLiNER2.5-Decide and d3-lite are
+  CPU candidates. Not yet tried: int8 quantisation, ONNX Runtime.
+
+### int8 on CPU (2026-10-17, dropped for now)
+
+`cpu_int8.py`: PyTorch dynamic int8 on 300 unseen GuardRate English requests (block question only, untrained
+models, 8 threads; `runs/cpu/`). About 1.7x faster, but scores move too much:
+
+| model | precision | AUC | p50 ms short / long | decisions changed vs fp32 |
+|---|---|---|---|---|
+| GLiNER2.5-Decide | fp32 | 0.739 | 256 / 383 | |
+| GLiNER2.5-Decide | int8, per tensor | 0.604 | 147 / 261 | 161 / 300 |
+| GLiNER2.5-Decide | int8, per channel | 0.587 | 148 / 256 | 158 / 300 |
+| GLiNER2.5-Decide | int8, encoder only (115 items) | 0.554 | 143 / 254 | 62 / 115 |
+| d3-lite (fp32) | fp32 | 0.766 | 422 / 651 | |
+| d3-lite | int8, per tensor | 0.723 | 254 / 428 | 84 / 300 |
+
+Per-channel scales and keeping the GLiNER heads in fp32 did not help, so the drift is in the encoder itself.
+Stopped at the user's request before the d3-lite per-channel and MLP-only runs; quantisation is off the table for
+now. The CPU candidates run in fp32. Untrained, d3-lite separates better than GLiNER (AUC 0.766 vs 0.739).
+
+## HiveTrace's GuardRate run of 1.1 (2026-10-17)
+
+Analysis of material HiveTrace shared in confidence is kept out of git, in `docs/experiments_private.md`.
+
+## CPU-model candidates, untrained (2026-10-17)
+
+`scripts/cpu_candidates.sh` (A5000): GuardRate English (`runs/d3-lite/guardrate_compare.json`) and the injection
+benchmark, block question only.
+
+| system | GuardRate all | unseen | injection score | BIPIA recall / FBR | NotInject FBR | inj. AUC | A5000 p50 |
+|---|---|---|---|---|---|---|---|
+| d3-lite (0.85B) | 0.621 | 0.602 | **0.853** | 0.76 / 0.11 | 0.22 | **0.969** | 28 ms |
+| GLiNER2.5-Decide (486M) | 0.633 | 0.616 | 0.700 | 0.29 / 0.19 | 0.13 | 0.842 | 21 ms |
+| d3-mini untrained (1.1's base) | 0.761 | 0.683 | | | | | 42 ms |
+| AccuKnox Guard 1.1 | 0.823 | 0.802 | 0.964 | 0.98 / 0.03 | 0.05 | 0.994 | 43 ms |
+
+Even on safety, d3-lite already separates injections far better than GLiNER (AUC 0.969 vs 0.842); its
+weakness is over-blocking (XSTest 0.40, NotInject FBR 0.22). Chosen for the CPU model.
+
+## Run 10 setup: d3-lite-v9, CPU model (2026-10-17)
+
+d3-lite (pinned 9c107031) fine-tuned exactly like run 9: `data/v9_train.jsonl` / `data/v9_val.jsonl`,
+`--select loss`, other settings default, on the A5000 (`scripts/run10.sh`). Fine-tuning d3-mini gained +0.119 on
+GuardRate unseen (0.683 -> 0.802 with averaging; run 9 alone 0.794).
+
+Decision rule, fixed before training. Kept as the CPU model only if all hold:
+- GuardRate English unseen >= 0.76 (1.1: 0.802; Sing-Guard-2b 0.776)
+- injection score >= 0.93 (1.1: 0.964), NotInject FBR <= 0.07
+- CPU fp32 median <= 500 ms on a typical prompt (Ryzen 5900X, 8 threads, block question)
+- fp32-on-CPU decisions match bf16-on-GPU on a 300-item sample (flips <= 1%)
+
+## Injection benchmark v2 (2026-10-17, built, scoring queued)
+
+Why: v1 overrates our models. 1.1 is first on v1 (0.964) but scores 0.688 on GuardRate's "Prompt injection (EN)"
+where XGuard-8B scores 0.902; across the 10 systems on both, Spearman 0.42. Run 9 trained on BIPIA's train attacks
+(same generator and insertion as its test split), and v1 covers only instructions planted in documents.
+
+`build_injection_v2.py` -> `data/injection_v2.jsonl`, 4,354 items, only sources no AccuKnox run trained on;
+`guardrate.py audit` against split_train/val and v9_train/val flagged 22 (16 PromptShield, 6 others), dropped
+(`data/injection_v2_dropped.json`).
+
+| family | datasets (attacks / benign) |
+|---|---|
+| Direct | CyberSecEval direct (188 / 0), Tensor Trust hijacking (397 / 0) and extraction (398 / 0), SPML degree >= 3 vs degree 0 (500 / 500) |
+| Indirect | CyberSecEval indirect (55 / 0), PromptShield test (749 / 735, texts <= 6,000 chars) |
+| Multilingual | CyberSecEval machine-translated, 16 languages (493 / 0), NotInject multilingual (0 / 84) |
+| Over-defence | NotInject (0 / 255) |
+
+Scored like GuardRate (`injection_v2_results.py`): per dataset the harmonic mean of recall and 1 - FBR, per family
+the harmonic mean, overall the geometric mean of the 4 families; block-all and allow-all both score 0. Spot checks:
+SPML attacks carry explicit injections or a replacement system prompt; 22% of PromptShield attacks have no
+injection wording (an appended second task), which is still an injection. Known gaps: no disguised-harmful rewrites
+(needs the gated `hivetrace/prompt-2-prompt-injection-v2-dataset-ru` train split), no agent trajectories
+(AgentDojo), few benign multilingual items, and other vendors may have trained on these public sets. Tensor Trust
+states no licence (evaluation only). BIPIA and InjecAgent stay in v1 as an in-distribution check.
+`scripts/injection_v2.sh` scores 15 local systems on the A5000 after run 10.
+
+### Injection v2 results (2026-10-18)
+
+`scripts/injection_v2.sh` (A5000, 15 systems) -> `runs/injection_v2_results.md`. Block at 0.5.
+
+- Every AccuKnox / d3 system beats every other guard by a wide margin (0.76-0.84 vs 0.37-0.55). Other guards
+  catch almost no indirect injection (PromptShield recall 0.12-0.20) or Tensor Trust attacks.
+- **Untrained d3-mini (0.844) beats 1.1 (0.806).** Fine-tuning lowered direct/indirect/multilingual recall
+  (indirect 0.915 -> 0.813) and raised over-defence (NotInject 0.87 -> 0.95). At each model's best threshold:
+  d3-mini 0.844 (0.5), 1.1 0.835 (0.05); d3-lite 0.782 (0.5), run 10 0.779 (0.05). So training kept ranking
+  (AUC 0.949 vs 0.945) and shifted scores down: the recipe trades injection recall for fewer false blocks.
+- Spearman with GuardRate "Prompt injection (EN)" over 10 systems: 0.18. As expected: PI-EN is disguised harmful
+  requests, v2 is instruction injection; they measure different threats.
+- Run 10 on v2: 0.760 (d3-lite untrained 0.782). With v1 0.910 < 0.93 and NotInject FBR 0.13 > 0.07, run 10
+  fails the injection part of its rule.
+
+## GuardBench (AmenRa/guardbench, EMNLP 2024), local run (2026-10-18)
+
+`build_guardbench.py` (guardbench==1.0.1 in runs/gblibs, --no-deps) -> `data/guardbench.jsonl`: 35 of 40 datasets,
+89,784 items (DecodingTrust, HarmEval, HEx-PHI, TechHazardQA gated: need forms). Conversations flattened: one user
+turn = request; ending in an assistant turn = response mode, earlier turns as "User: / Assistant:" lines; otherwise
+a request over the transcript (our choice; GuardBench's labels are per conversation). Leakage audit vs split_* and
+v9_* (`data/guardbench_seen.json`): 1,357 items (BeaverTails 620, AART 282, ToxicChat 236, DAN 81, AdvBench 64).
+`scripts/guardbench.sh` (A5000, shared with an RSNA job; 1.1 2 h 57 min, run 10 1 h 06 min) ->
+`runs/guardbench_results.md` (per dataset: F1 / recall / FPR at 0.5).
+
+Published leaderboard (`AmenRa/guardbench-results`, runs/guardbench_published): `en_prompts` / `en_responses` F1,
+aggregation not documented, over all 40 datasets. Ours by both plausible aggregations (unseen items in brackets):
+
+| | prompts, mean per dataset | prompts, pooled F1 | conversations, mean | conversations, pooled F1 |
+|---|---|---|---|---|
+| AccuKnox Guard 1.1 | 0.875 (0.871) | 0.902 (0.901) | 0.656 (0.655) | 0.769 (0.767) |
+| run 10 (d3-lite) | 0.815 (0.811) | 0.839 (0.836) | 0.638 (0.638) | 0.738 (0.736) |
+
+Published: Granite Guardian 3.0-8B 0.903 / 0.837, 3.1-8B 0.901 / 0.859, 3.2-5B 0.880 / 0.855, WildGuard 0.871 /
+0.869, MD-Judge 0.858 / 0.864, Llama Guard 3-8B 0.825 / 0.775, Llama Guard 3-1B 0.809 / 0.773, ShieldGemma-2B 0.778 /
+0.678. Prompts: 1.1 is level with the top (Granite 8B). Conversations: well behind (multi-turn sets: DICES-350 F1
+0.27, HarmfulQA recall 0.53, ProsocialDialog 0.78); we never trained on multi-turn transcripts.
+
+## Internal evaluation suite (2026-10-18)
+
+`scorecard.py` + `scripts/evalsuite.sh <dir> <model> [path] [--fast]`: one row per system. Columns: GuardRate EN
+(rebuild, items seen in training removed), GuardRate RU (`guardrate.py build --lang ru`: PolyGuard RU, RTP-LX RU,
+Aya RU, StrongReject++ RU/UKR/BE/UZ, 8,143 items; PI-RU and the Robustness Test groups are gated), Over-defence
+(harmonic mean of 1 - false-block rate on XSTest safe, OR-Bench hard 1k, NotInject, NotInject multilingual),
+Injection v2, GuardBench prompts / conversations (GuardBench's labels; `data/guardbench_fast.jsonl` = at most 1,000
+items per dataset, 21,622 items, same ids), Conversations (our policy) (`build_guardbench.py policy`,
+`data/conv_policy_test.jsonl`, 11,497 items: ProsocialDialog needs-intervention vs casual, ConvAbuse strongly
+abusive vs not abusive, Bot-Adversarial Dialogue ok turns as safe, DICES 350/990 as labelled; GuardRate dataset
+score, mean over datasets), GPU p50. Policy (user, 2026-10-18): abuse, hate and harm unsafe; mild rudeness and grey
+small talk safe (GuardBench's "needs caution" / BAD "notok" examples shown to the user were judged safe).
+
+Stock LLM Guard (`guardrate.py --model llm-guard`): Protect AI's PromptInjection (deberta-v3 v2, > 0.92) and
+Toxicity (unbiased-toxic-roberta, > 0.5; responses > 0.7) scanners at the library's pinned revisions. AccuKnox's
+fork (github.com/accuknox/llm-guard) swaps in private Accuknoxtechnologies models we cannot load; the user chose
+stock LLM Guard as the benchmark. Its CPU latency on a loaded machine (load ~19): p50 237 ms on injection v2.
+
+## Run 11 setup: d3-lite + conversations, responses, adversarial prompts (2026-10-18)
+
+Neither of 1.1's parents (runs 5, 9) nor run 10 trained on a response or a multi-turn conversation; runs 6-8 had
+2,000 response pairs but are not in 1.1. `build_v11.py` -> `data/v11_{train,val}.jsonl`: run 9's data + 9,201
+train rows, label-balanced within each kind, no risk category: ProsocialDialog train (intervention 1,498 / casual
+1,495), ConvAbuse train (strongly abusive 157 / not 368), Aegis 2.0 train responses (586 / 616), WildGuardMix train
+responses (911 / 867), WildGuardMix adversarial prompts (harmful 1,354 / benign 1,349). Validation +1,365 rows
+(ProsocialDialog / ConvAbuse valid splits, 10% of the rest). Rows overlapping any evaluation file dropped (all
+Bot-Adversarial Dialogue rows, which share dialogues with its test split; Aegis responses 603; ConvAbuse 267).
+No new injection rows: wildjailbreak and hackaprompt are gated (access request needed from the user).
+Base d3-lite, same settings as run 10 (`--select loss`), A5000 shared with RSNA (`scripts/run11.sh`).
+
+Decision rule (fixed before training), against run 10 on the same scorecard (GuardRate EN on items unseen by
+runs 5, 6, 9, 10 and 11):
+- the target: Conversations (policy) >= run 10 + 0.05, and GuardBench conversations above run 10;
+- no regressions: GuardRate EN unseen >= 0.76 and >= run 10 - 0.01; GuardRate RU, Over-defence and Injection v2
+  each >= run 10 - 0.01.
+
+## Run 12 data: + HackAPrompt injections with clean twins (2026-10-18, built, not trained)
+
+`build_v12.py` -> `data/v12_{train,val}.jsonl`: run 11's data + HackAPrompt (MIT, access granted to the user)
+successful attacks, deduplicated (exact, then greedy 8-word-shingle filter), up to 200 per level over 11 levels,
+alternating the attacker's input alone (direct) and the level's full application prompt with the attack inside;
+each with a clean twin (Dolly-15k instruction in place of the attack; the app template kept). Train +3,518 rows
+(1,759 attacks / 1,759 twins), val +390. 43 pairs dropped for evaluation overlap. One change against run 11; run 12
+trains only after run 11's verdict (its base may change). allenai/wildjailbreak: access granted 2026-10-18, not
+used yet; its access form says "research purposes", the same clause as WildGuardMix (in 1.1 and run 11), pending a
+licensing answer from AccuKnox.
+
+## Run 11 results: fails its target, no regressions (2026-10-18)
+
+Training 2 h 17 min (A5000 alone after RSNA left), 3,948 steps, best validation loss at the last evaluations.
+Scorecard (GuardRate EN unseen by runs 5/6/9/10/11, `data/guardrate_en_seen_r11.json`; GuardBench on the same fast
+subset for all):
+
+| | GuardRate EN | RU | Over-defence | Injection v2 | GB prompts | GB conversations | Conversations (policy) |
+|---|---|---|---|---|---|---|---|
+| 1.1 | 0.801 | 0.891 | 0.899 | 0.806 | 0.873 | 0.664 | 0.727 |
+| run 10 | 0.772 | 0.757 | 0.842 | 0.760 | 0.814 | 0.637 | 0.717 |
+| run 11 | 0.776 | 0.813 | 0.863 | 0.758 | 0.828 | 0.665 | 0.717 |
+
+Rule: target Conversations (policy) >= run 10 + 0.05 **fails** (0.717 = 0.717); GuardBench conversations up (0.637 ->
+0.665) passes; no-regression checks all pass (EN +0.004, RU +0.056, over-defence +0.021, injection v2 -0.002).
+Per conversation set: ProsocialDialog 0.75 -> 0.89, ConvAbuse 0.94 -> 0.96, but DICES-350 0.33 -> 0.22, DICES-990
+0.73 -> 0.72, Bot-Adversarial Dialogue (safe turns only) 0.83 -> 0.79 (more false blocks in safe multi-turn chat).
+The mean hides a split: multi-turn user turns improved, biased assistant replies (DICES) did not; the response data
+(Aegis, WildGuardMix) has no subtle-bias replies, and BAD's training rows were all dropped for overlap, so nothing
+taught "safe multi-turn chat". GuardRate EN movers: CSRT 0.59 -> 0.70, S-Eval attack 0.61 -> 0.69, HarmBench
+contextual 0.89 -> 0.94; RTP-LX EN responses 0.66 -> 0.39 (scored as response, unlike HiveTrace).
+
+## Run 12 setup: d3-lite, run 11 + HackAPrompt pairs + benign instruction prompts (2026-10-18)
+
+Why run 11 trails run 10 on the AA rebuild (81.3 vs 82.2): ToxicChat only. Same harmful catches (303 -> 304), false
+blocks 178 -> 221, concentrated in long safe prompts (300-1,000 chars: 7.4% -> 11.8%): system prompts, agent tool
+instructions, persona set-ups. ToxicChat AUC unchanged (0.974 / 0.973) but best-threshold F1 74.4 -> 71.1, so not a
+threshold effect. Likely from WildGuardMix's adversarial prompts (median 700-900 chars, persona/rule scaffolding).
+The user asked for fewer runs: both fixes go into one run (`build_v12.py`, `data/v12_{train,val}.jsonl`): run 11's
+data + HackAPrompt 1,759 attacks / 1,759 clean twins + 1,801 benign instruction prompts >= 300 chars (persona
+prompts 630, function-calling system prompts 623, Dolly instructions with context 548). Train 36,903, val 4,271.
+If run 12 passes, the same data trains the d3-mini 1.2 candidate; that is the whole plan (two runs).
+
+Decision rule (fixed before training), full scorecard + AA rebuild, GuardRate EN unseen by all training files:
+- targets: Injection v2 >= run 11 + 0.03 (0.788); AA rebuild average F1 >= run 10 (82.2); ToxicChat safe prompts
+  >= 300 chars blocked <= 8% (run 10 7.6%, run 11 11.3%);
+- no regressions against run 11 (each >= run 11 - 0.01): GuardRate EN (and >= 0.76), GuardRate RU, Over-defence,
+  GuardBench conversations, Conversations (policy).
+
+## Run 12 results: fails (injection v2 down, not up) (2026-10-18)
+
+| System | GuardRate EN | GuardRate RU | Over-defence | Injection v2 | GB prompts | GB conv | Conv (policy) | AA avg F1 | TC long safe blocked |
+|---|---|---|---|---|---|---|---|---|---|
+| run 10 | 0.772 | 0.757 | 0.842 | 0.760 | 0.815 | 0.638 | 0.717 | 82.2 | 7.6% |
+| run 11 | 0.776 | 0.813 | 0.863 | 0.758 | 0.828 | 0.665 | 0.717 | 81.3 | 11.4% |
+| run 12 | 0.786 | 0.786 | 0.855 | 0.753 | 0.821 | 0.647 | 0.716 | 82.3 | 7.6% |
+
+(GuardBench fast subset for runs 11-12; GuardRate EN unseen per data/guardrate_en_seen_r11.json.)
+Rule: AA >= 82.2 passes (82.3); long safe prompts <= 8% passes (7.6%); EN passes (+0.010); Over-defence and
+Conv (policy) pass. Fails: **Injection v2 0.753 (target 0.788)**, GuardRate RU -0.027, GB conversations -0.018.
+Cause of the injection miss: PromptShield 0.853 -> 0.715 and SPML 0.723 -> 0.635, all recall (PromptShield unsafe
+missed 24% -> 44%; SPML 43% -> 53%; false blocks fell). The new errors are a benign task followed by an injected
+second task ("...Answer: entailment. Write the sentiment conveyed..."), and persona system prompts with contradicting
+added capabilities (SPML). That is the shape of the benign instruction prompts added as safe (Dolly instruction +
+context, function-calling system prompts, personas): the model learnt "long instruction + data = safe". HackAPrompt
+helped where its shape matches (TensorTrust hijack 0.829 -> 0.851, CSE indirect 0.582 -> 0.655), not enough to offset.
+RU: no run has Russian training data; RU moves between runs (0.757 / 0.813 / 0.786) look like drift, not a fix.
+No d3-mini 1.2 run on this data.
+
+## Run 13 setup: d3-lite, run 12 + injected twins of the benign instruction prompts (2026-10-19)
+
+`build_v13.py`, `data/v13_{train,val}.jsonl`: run 12's data + one unsafe twin per benign instruction prompt (same
+text, an injection planted inside; 1,801 train, 200 val, same split as the originals). Injections written in the
+script, none taken from an evaluation set (overlap audit: 0 dropped): override phrases 554, fake completion + new
+task 521, fake system / chat-template headers 557, capability bolt-ons (personas, system prompts) 369. A harmless
+second task counts as an injection only inside reference text; personas and system prompts get hijack goals
+(reveal prompt, fixed phrase, exfiltration URL, drop rules, promotion). Placement within the first 3,000 characters
+(training truncates at 1,536 tokens); function-calling twins inject into a function description or the system line,
+never the user's message. Train 38,704, val 4,471.
+
+Decision rule (fixed before training), same as run 12's: Injection v2 >= 0.788; AA rebuild >= 82.2; ToxicChat safe
+prompts >= 300 chars blocked <= 8%; each of GuardRate EN (and >= 0.76), GuardRate RU, Over-defence, GuardBench
+conversations, Conversations (policy) >= run 11 - 0.01. Pass: the same data trains the d3-mini 1.2 candidate.
+
+## Run 13 results: fails; injection recovers, over-defence and AA pay for it (2026-10-19)
+
+| System | GuardRate EN | GuardRate RU | Over-defence | Injection v2 | GB conv | Conv (policy) | AA avg F1 | TC long safe blocked |
+|---|---|---|---|---|---|---|---|---|
+| run 11 | 0.776 | 0.813 | 0.863 | 0.758 | 0.665 | 0.717 | 81.3 | 11.4% |
+| run 12 | 0.786 | 0.786 | 0.855 | 0.753 | 0.647 | 0.716 | 82.3 | 7.6% |
+| run 13 | 0.782 | 0.798 | 0.835 | 0.781 | 0.661 | 0.723 | 80.7 | 9.0% |
+
+Passes: GuardRate EN, GuardBench conversations, Conversations (policy). Fails: Injection v2 0.781 (target 0.788),
+AA 80.7 (XSTest F1 88.8 -> 85.2), long safe prompts 9.0%, Over-defence 0.835 (NotInject multilingual 0.952 ->
+0.940), RU 0.798. Injection: PromptShield 0.715 -> 0.812, SPML 0.635 -> 0.695, TensorTrust hijack 0.851 -> 0.914,
+CSE indirect 0.655 -> 0.727. The twins worked on injection, and the boundary moved back towards blocking.
+Three runs (11-13), each fixing one column by giving up another: at 0.85B, data patches trade injection recall
+against over-defence and AA. No d3-mini 1.2 run on this data.
+
+## d3-lite soup of runs 12 and 13: setup (2026-10-19)
+
+Runs 12 and 13 fail on opposite columns (12: injection; 13: over-defence, AA, long safe prompts), the situation in
+which 1.1 (runs 5 + 9) beat both parents. Equal-weight average (`merge_runs.py`, `scripts/soup1213.sh`), no
+training; same decision rule as runs 12-13. Pass: d3-mini 1.2 trains on the v13 data and is checked the same way.
+
+## d3-lite soup of runs 12 and 13: results (2026-10-19)
+
+| System | GuardRate EN | GuardRate RU | Over-defence | Injection v2 | GB prompts | GB conv | Conv (policy) | AA avg F1 | TC long safe blocked |
+|---|---|---|---|---|---|---|---|---|---|
+| run 12 | 0.786 | 0.786 | 0.855 | 0.753 | 0.821 | 0.647 | 0.716 | 82.3 | 7.6% |
+| run 13 | 0.782 | 0.798 | 0.835 | 0.781 | 0.820 | 0.661 | 0.723 | 80.7 | 9.0% |
+| soup 12+13 | 0.787 | 0.796 | 0.850 | 0.777 | 0.830 | 0.652 | 0.716 | 83.2 | 8.0% (41/511) |
+
+Rule: passes AA (83.2, best small model), GuardRate EN, Conversations (policy). Fails: Injection v2 0.777 (0.788),
+long safe prompts 41/511 = 8.02% (8%: one prompt), Over-defence 0.850 (0.853), GuardBench conversations 0.652
+(0.655), GuardRate RU 0.796 (0.803). As with 1.1, the soup lands between or above its parents on every column
+(above both on EN, GB prompts and AA); it keeps most of run 13's injection gain (PromptShield 0.811) at run 12's
+over-defence. Fails the rule as fixed; no d3-mini 1.2 run without the user's decision.
+
+## d3-lite 12+13 soup on CPU only (2026-10-19)
+
+`scripts/cpu_soup1213.sh`: PyTorch eager, fp32 (guardrate.py now converts d3 to fp32 when run on CPU), no GPU
+libraries (runs/pylibs' kernels are GPU-only; the DeltaNet and conv1d layers fall back to transformers' reference
+PyTorch code). AA rebuild and injection v2 against the GPU (bf16) predictions: 2 of 7,232 and 4 of 4,354
+decisions changed; AA 83.3 (GPU 83.2), injection v2 0.776 (GPU 0.777). Single-request latency, 8 threads, block
+question only, machine loaded (RSNA, load ~17): short p50 569 ms / p95 723 ms, long (~500 tokens) p50 2.18 s;
+the untrained d3-lite timed on a quieter machine at 426 ms / 1.45 s (same architecture), so the load costs ~1.4x.
+Next for CPU: llama.cpp (native CPU kernels for the hybrid layers, Q8_0) and an AWS instance benchmark.
+
+## llama.cpp port of the d3-lite 12+13 soup (2026-10-19)
+
+llama.cpp b11727 (runs/llamacpp, built for CPU with GGML_NATIVE) supports vllm-sr d3 natively:
+`convert_hf_to_gguf.py` reads the package (decision_config.json, readout stored as a zero-padded LM head, non-causal
+full attention) and `llama-server` serves `/v1/systemone`. GGUFs in runs/gguf (f32 4.0 GB, Q8_0 1.8 GB and Q4_0
+1.3 GB, output tensor kept f32). `llamacpp_run.py` scores an evaluation file through the server (host Python).
+Server: `-t 8 -c 8192 -b 8192 -ub 8192 -np 1` (a d3 prompt is evaluated in one batch).
+
+Accuracy against the GPU (bf16) predictions:
+
+| runtime | AA avg F1 | injection v2 | decisions changed |
+|---|---|---|---|
+| GPU PyTorch bf16 | 83.2 | 0.777 | |
+| CPU PyTorch fp32 | 83.3 | 0.776 | 6 / 11,586 |
+| CPU llama.cpp Q8_0 | 83.3 | 0.776 | 18 / 11,586 (p99 score change 0.04-0.07) |
+| CPU llama.cpp Q4_0 | | | 4 / 300 sample, max change 0.67: dropped |
+
+Latency, 8 threads, one request at a time, all timed within minutes of each other (machine loaded, RSNA, load
+~10): short (172 tokens) / long (591 tokens) p50: PyTorch fp32 484 ms / 1.85 s; llama.cpp f32 721 ms / 2.37 s;
+Q8_0 489 ms / 1.62 s; Q4_0 436 ms / 1.38 s. On this Zen 3 (AVX2) the cost is matmul, not the DeltaNet fallback
+(MKL fp32 is already efficient), so llama.cpp Q8_0 only matches PyTorch here; its gains are deployment (one 1.8 GB
+file, no Python) and possibly Arm (to measure on AWS). The bigger latency lever is the prompt: ~140 of a short
+request's 172 tokens are d3's fixed system prompt + block question and options (needs retraining to shorten).
+
+### Output-preserving serving settings (2026-10-19)
+
+Q8_0 GGUF, llama-bench prompt throughput at 172 tokens (Ryzen 9 5900X, 12 cores / 24 threads, other jobs using
+~4-5 cores): 1 thread 77 tok/s, 2: 149, 4: 241, 6: 329, 8: 411, 10: 337, 12: 344, 16: 417, **24: 42** (f32 the
+same shape, 24 threads 35 tok/s). Threads beyond the free physical cores collapse throughput ~10x (ggml threads
+wait on each other at every op; one preempted thread stalls all). llama.cpp's default (-t -1) is the physical core
+count, which is right only on a machine the model has to itself.
+Outputs are bit-identical across thread counts (3, 8, 12 threads: 60 / 60 scores equal) and with parallel slots
+(-np 4 with 4 concurrent clients: 240 / 240 equal). Parallel slots add no throughput on CPU (1.83 vs 1.82 req/s,
+compute-bound) and multiply latency (p50 473 -> 1,856 ms): serve one slot per process; for throughput run several
+processes on disjoint cores (4 threads 241 tok/s each vs 8 threads 411).
+
+## AccuKnox Guard 1.2 setup: d3-mini on the Lite 1.2 recipe (2026-10-21)
+
+Release names (user, 2026-10-20): the version is the training recipe, "lite" the size. The d3-lite soup of runs 12
+and 13 is AccuKnox Guard Lite 1.2 (`hf/accuknox-guard-lite-1.2`, `hf/accuknox-guard-lite-1.2-GGUF`, Q8_0 only, no
+fp32 upload); 1.2 is d3-mini on the same recipe: `d3-mini-v12` (data/v12_*) and `d3-mini-v13` (data/v13_*),
+`--select loss`, other settings default (batch 8), one after the other on the RTX PRO 6000 (side by side was tried
+first: 2.8 records/s together vs 3.8 for one alone, so run 13 was stopped at step 150 and restarted after run 12),
+then their equal-weight soup `d3-mini-soup1213`; internal suite (fast GuardBench) and the AA rebuild on the
+soup only (`scripts/run_guard12.sh`).
+
+Decision rule (fixed before training), the soup against 1.1 (d3-soup59), same files:
+- target: Injection v2 >= 1.1 + 0.02 (0.826);
+- no regressions (each >= 1.1 - 0.01): GuardRate EN 0.791, GuardRate RU 0.881, Over-defence 0.889, GuardBench
+  prompts 0.863, GuardBench conversations 0.654, Conversations (policy) 0.717; AA rebuild avg F1 >= 86.6;
+  ToxicChat safe prompts >= 300 chars blocked <= 8% (1.1: 36/511 = 7.0%).
+Pass: 1.2 replaces 1.1 and ships with Lite 1.2. Fail: the parents are scored to see why; the release is the user's call.
+
+### d3-mini run 12 (1.2 parent) scored (2026-10-21)
+
+`scripts/eval_d3mini_v12.sh` on the A5000 while run 13 trains (GuardBench fast subset; 1.1's fast-subset values from
+the run 11 table):
+
+| System | GuardRate EN | GuardRate RU | Over-defence | Injection v2 | GB prompts | GB conv | Conv (policy) | AA avg F1 | TC long safe blocked |
+|---|---|---|---|---|---|---|---|---|---|
+| 1.1 | 0.801 | 0.891 | 0.899 | 0.806 | 0.873 | 0.664 | 0.727 | 87.6 | 7.0% (36/511) |
+| d3-mini run 12 | 0.802 | 0.891 | 0.902 | 0.831 | 0.866 | 0.698 | 0.759 | 87.6 | 6.5% (33/511) |
+
+On its own, run 12 passes every part of the 1.2 rule (injection +0.025; GB prompts -0.007 is within 0.01). Unlike
+d3-lite, the v12 data raised injection on d3-mini (CSE direct 0.52 -> 0.57, indirect 0.75 -> 0.80, PromptShield 0.90
+-> 0.94; SPML 0.78 -> 0.75, TensorTrust extract 0.94 -> 0.91). The release candidate stays the soup (fixed rule).
+
+## Run cleanup (2026-10-21)
+
+Weights deleted (user's decision): d3-lite runs 9 and 11, `d3-ft` (run 5) and `d3-v9` (run 9) packages, and the f32
+and Q4_0 GGUFs of the Lite 1.2 soup (f32 rebuilds from the package in minutes). Predictions and summaries stay.
+Run 5's weights still exist as `hf/accuknox-guard-1.0` (hard links), so 1.0 is intact. Kept: 1.1 (`d3-soup59`),
+Lite 1.2 (`d3-lite-soup1213` and its parents d3-lite-v12/v13, Q8_0 GGUF), the 1.2 runs.
+
+## AccuKnox Guard 1.2 results: passes (2026-10-21)
+
+Soup of d3-mini runs 12 and 13 (`runs/d3-mini-soup1213`), RTX PRO 6000; GuardBench fast subset for all (1.1's
+fast-subset values), GuardRate EN unseen per data/guardrate_en_seen_r11.json:
+
+| System | GuardRate EN | GuardRate RU | Over-defence | Injection v2 | GB prompts | GB conv | Conv (policy) | AA avg F1 | TC long safe blocked | p50 ms |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1.1 | 0.801 | 0.891 | 0.899 | 0.806 | 0.873 | 0.664 | 0.727 | 87.6 | 7.0% (36) | 43 |
+| d3-mini run 12 | 0.802 | 0.891 | 0.902 | 0.831 | 0.866 | 0.698 | 0.759 | 87.6 | 6.5% (33) | 41 |
+| **1.2 (soup 12+13)** | 0.807 | 0.888 | 0.905 | 0.846 | 0.867 | 0.707 | 0.768 | 87.6 | 7.2% (37) | 39 |
+| Lite 1.2 | 0.787 | 0.796 | 0.850 | 0.777 | 0.830 | 0.652 | 0.716 | 83.2 | 8.0% (41) | 29 |
+
+Rule: target injection v2 >= 0.826 passes (0.846); no-regression checks all pass (RU -0.003, GB prompts -0.006 within
+0.01; long safe 7.2% <= 8%). AA with training-seen items removed: 86.8 (1.1 86.8). Injection per set, 1.1 -> 1.2:
+CSE direct 0.52 -> 0.56, indirect 0.75 -> 0.87, multilingual 0.61 -> 0.65, PromptShield 0.90 -> 0.96, TensorTrust
+hijack 0.88 -> 0.92, extract 0.94 -> 0.93, SPML 0.78 -> 0.76, NotInject 0.95 -> 0.96. XSTest specificity 96.4 -> 97.2.
+Per the rule, 1.2 replaces 1.1 and ships with Lite 1.2 (upload is the user's call). Run 13's parent scores not needed.
+
+## GPU serving with vLLM-SR's runtime (vllm-srun) (2026-10-21)
+
+Image `ghcr.io/vllm-project/semantic-router/vllm-sr-cuda:e38f1fe7...` (what `vllm-sr serve -e` runs; vllm-srun 0.2.0,
+torch 2.10 cu128, fla 0.5.2; not vLLM itself, which has no d3 support). `vllm-srun serve <package> --device cuda
+--offline`. It needs `MODEL_MANIFEST.json` (d3-package-manifest/1), which our packages lack: `runs/_loadtest/
+make_manifest.py` writes it with vllm_srun's own hashing and identity functions into hard-linked serving copies
+(`runs/_serve/<run>`), then verifies the package. Client: `runs/_loadtest/srun_bench.py` (300 GuardRate EN items,
+10 warm-up, warm server; reference = in-process eager predictions on the A5000).
+
+| | in-process eager, A5000 | srun c=1, A5000 | srun c=1, PRO 6000 | srun best throughput |
+|---|---|---|---|---|
+| Lite 1.2 p50 | 28.4 ms | 10.9 ms (92 req/s) | 6.7 ms (127 req/s) | c=1 on both GPUs (A5000 c=8: 128 req/s, p50 69 ms) |
+| 1.2 p50 | 37.8 ms | 33.5 ms (29 req/s) | 16.6 ms (57 req/s) | PRO 6000 c=32: 88 req/s, p50 295 ms |
+
+- Eager in-process is host-bound (kernel dispatch hides the GPU work), so it was the same on both GPUs; srun
+  removes the host overhead and GPU speed then shows (1.2 on the A5000 is compute-bound: 145 ms per 1,024 tokens).
+- Agreement, one request at a time: 0 decisions changed on 300 items (max |dp| < 0.0001 on the A5000). Batched
+  (concurrent clients) srun pads rows and reports "approximate numerics": 0-2 of 300 decisions change, max |dp|
+  0.13; full AA set through srun at c=16: 1 of 7,232 changed, AA 83.2 (unchanged).
+- Concurrency adds little throughput (rows padded to the longest; 2 ms batch window); single-stream per replica is
+  the efficient setting for these input lengths.
+- Codebase: `d3_manifest.py` writes MODEL_MANIFEST.json (standard library; same identity and parameter counts as
+  vllm_srun's decision3 package code, whose verify() passes); `train_d3.py` and `merge_runs.py` now call it on every
+  package they write (the base model's manifest is stale once the weights change; its licence / base_model /
+  backbone fields are carried over). `scripts/serve_srun.sh <package>` serves a package on the A5000 by default;
+  `srun_bench.py` is the client. Release folders `hf/accuknox-guard-1.2` (new: 1.2 soup, hard links, card) and
+  `hf/accuknox-guard-lite-1.2` have manifests (vllm-srun verify OK; identity equals the scored package's); each
+  served from its release folder matches the in-process predictions (0 of 300 changed, max |dp| < 0.0001). Cards:
+  serving section added; Lite cards now compare against 1.2. Rerun d3_manifest.py after editing any file in a
+  release folder (every file is listed). `hf/accuknox-guard-1.1` (published) has no manifest; not changed.
+
+### llama.cpp in Docker (official image) for Lite 1.2 (2026-10-21)
+
+`ghcr.io/ggml-org/llama.cpp:server` (build 11783, commit 339f3242c, generic x86 build with runtime CPU dispatch),
+the release GGUF (`hf/accuknox-guard-lite-1.2-GGUF`, Q8_0), the card's flags (-t 8 -tb 8 -c/-b/-ub 8192 -np 1).
+300 AA items (every 24th), one request at a time, machine otherwise idle at the start (load 8 at the end), against
+the native b11727 GGML_NATIVE build's Q8_0 predictions: scores identical (max |dp| 0.0000, 0 flips). Latency p50 /
+p95: Docker 365 / 740 ms, native build 373 / 760 ms (same, within noise). The Docker image needs no local build.
+
+### Release folders: Docker setup and smoke test (2026-10-21)
+
+Each release folder now runs on its own: `docker-compose.yml` (1.2 and Lite 1.2: profiles `gpu` (vllm-srun, bf16)
+and `cpu` (vllm-srun, fp32); GGUF: llama.cpp official image pinned by digest, CPU) and `check.py` (standard
+library; 8 hand-written inputs and replies with expected decisions, then latency). All five setups pass, run as
+the team would (`docker compose up -d; python3 check.py`): p50 Lite GPU (A5000) 10.2 ms, Lite CPU (vllm-srun fp32,
+8 threads) 379 ms, Lite GGUF CPU 352 ms, 1.2 GPU (A5000) 31.8 ms, 1.2 CPU 1.92 s. vllm-srun on CPU against the GPU
+predictions, 300 AA items: 0 decisions changed (max |dp| 0.026). Manifests regenerated after adding the files
+(vllm-srun verify OK, identities unchanged). git keeps the cards, compose files, check.py and manifests
+(`.gitignore` exceptions); weights stay out.
+- Cards split (2026-10-21, user): README minimal (what it is, quick start, results, limitations, collapsed dataset
+  licences, licence); DEPLOYMENT.md per folder (requirements, compose and check.py, settings, API with request /
+  response examples, latency table, throughput and tuning, without Docker). Examples checked against live servers
+  (1.2 0.99999, Lite 0.99996, GGUF 0.99995 on the injection example; ready in 45 / 33 / 3 s on the A5000 / CPU).
+  Manifests regenerated and verified; git tracks DEPLOYMENT.md too.
+
+## Project layout reorganized (2026-10-24)
+
+The 45 scripts in the project root moved, with `git mv`, into `build/`, `callers/`, `train/`, `eval/`, `serve/`,
+`lib/` and `archive/` (runs 6-9 builders, `cpu_int8.py`); docs into `docs/`, `gpu_watch.sh` into `scripts/`.
+Compose puts the code folders on `PYTHONPATH`; Makefile, scripts and tests call scripts by their new paths. Script
+names in the entries above are the old root paths. Checks: every module imports in the container; injection v2
+results, AA results and the scorecard re-run from saved predictions match the saved outputs (the scorecard's
+"fast GB" row prints in another position); `make smoke` passes build, Jev and GLM (Bedrock needs a fresh
+`aws sso login`). `data/`, `runs/` and `hf/` did not move. Checkpoint before the move: commit bf2607a.

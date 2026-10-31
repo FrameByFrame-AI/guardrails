@@ -10,3 +10,10 @@ data/**/*.jsonl
 hf/*/*
 !hf/*/README.md
 !hf/*/NOTICE
+!hf/*/docker-compose.yml
+!hf/*/check.py
+!hf/*/MODEL_MANIFEST.json
+!hf/*/DEPLOYMENT.md
+# confidential material (shared in confidence, e.g. HiveTrace's artefacts): never pushed, the repo is public
+docs/*_private.md
+*_private.*

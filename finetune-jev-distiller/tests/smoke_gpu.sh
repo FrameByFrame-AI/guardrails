@@ -16,29 +16,29 @@ with open("tests/out_gpu/verified.jsonl", "w") as fh:
         r = json.loads(l)
         fh.write(json.dumps({**r, "verified_by": "judge1", "glm_risk": "other" if r["gold_block"] else "no_risk"}) + "\n")
 PY
-python to_gliner.py --input $OUT/verified.jsonl --output $OUT/gliner.jsonl
+python build/to_gliner.py --input $OUT/verified.jsonl --output $OUT/gliner.jsonl
 
 step "2. split_data (val only; the benchmark is the test set)"
-python split_data.py --input $OUT/gliner.jsonl --manifest $OUT/verified.jsonl --out-prefix $OUT/split --test 0 --val 0.3
+python build/split_data.py --input $OUT/gliner.jsonl --manifest $OUT/verified.jsonl --out-prefix $OUT/split --test 0 --val 0.3
 
 step "3. train_gliner: preflight on the longest batch, then 2 optimizer steps"
-python train_gliner.py --train $OUT/split_train.jsonl --val $OUT/split_val.jsonl --out $OUT/run \
+python train/train_gliner.py --train $OUT/split_train.jsonl --val $OUT/split_val.jsonl --out $OUT/run \
     --base /models/GLiNER2.5-Decide --max-steps 2 --batch-size 2 --grad-accum 1 --max-len 1024 \
     --gradient-checkpointing --workers 0
 
 step "4. gliner_caller on the 10 cases"
-python gliner_caller.py --model $OUT/run --input $F --output $OUT/scored.jsonl
+python callers/gliner_caller.py --model $OUT/run --input $F --output $OUT/scored.jsonl
 
 step "5. decision_caller: zero-shot d1-3B, d3-mini and Shieldstral-3B on the 10 cases"
-for m in d1 d3 shieldstral; do python decision_caller.py --model $m --input $F --output $OUT/$m.jsonl; done
+for m in d1 d3 shieldstral; do python callers/decision_caller.py --model $m --input $F --output $OUT/$m.jsonl; done
 
 step "6. train_d3: parity with d3 inference, preflight, 2 LoRA steps, export; then score the package"
-python train_d3.py --train $OUT/split_train.jsonl --val $OUT/split_val.jsonl --out $OUT/d3ft --max-steps 2 \
+python train/train_d3.py --train $OUT/split_train.jsonl --val $OUT/split_val.jsonl --out $OUT/d3ft --max-steps 2 \
     --batch-size 2 --eval-every 1
-python decision_caller.py --model d3 --path $OUT/d3ft/package --input $F --output $OUT/d3ft.jsonl
+python callers/decision_caller.py --model d3 --path $OUT/d3ft/package --input $F --output $OUT/d3ft.jsonl
 
 step "7. compare_systems with the model and both baselines as --system"
-python compare_systems.py --bench $F --system smoke=$OUT/scored.jsonl --system d1=$OUT/d1.jsonl \
+python eval/compare_systems.py --bench $F --system smoke=$OUT/scored.jsonl --system d1=$OUT/d1.jsonl \
     --system shieldstral=$OUT/shieldstral.jsonl \
     --system d3ft=$OUT/d3ft.jsonl --cases
 

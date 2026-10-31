@@ -1,0 +1,37 @@
+# Serve accuknox-guard-1.2 from this folder with vLLM Semantic Router's model runtime (vllm-srun).
+#   docker compose --profile gpu up -d     # NVIDIA GPU, bf16 (GPU_ID picks the card, default 0)
+#   docker compose --profile cpu up -d     # CPU only, fp32 (THREADS = free physical cores, default 8)
+#   python3 check.py                       # smoke test against http://127.0.0.1:8100
+#   docker compose --profile gpu down      # (or --profile cpu)
+# System One API: POST http://127.0.0.1:8100/v1/systemone; see DEPLOYMENT.md. The runtime checks the files against
+# MODEL_MANIFEST.json before loading.
+x-srun: &srun
+  image: ghcr.io/vllm-project/semantic-router/vllm-sr-cuda:e38f1fe79be9731d192622a6a982791e405b3666
+  entrypoint: ["vllm-srun"]
+  volumes:
+    - .:/models/accuknox-guard-1.2:ro
+  ports:
+    - "127.0.0.1:${PORT:-8100}:8100"
+  restart: unless-stopped
+
+services:
+  gpu:
+    <<: *srun
+    profiles: ["gpu"]
+    container_name: accuknox-guard-1.2-gpu
+    command: ["serve", "/models/accuknox-guard-1.2", "--host", "0.0.0.0", "--port", "8100", "--device", "cuda", "--offline",
+              "--served-model-name", "accuknox-guard-1.2"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["${GPU_ID:-0}"]
+              capabilities: [gpu]
+
+  cpu:
+    <<: *srun
+    profiles: ["cpu"]
+    container_name: accuknox-guard-1.2-cpu
+    command: ["serve", "/models/accuknox-guard-1.2", "--host", "0.0.0.0", "--port", "8100", "--device", "cpu", "--dtype", "float32",
+              "--threads", "${THREADS:-8}", "--offline", "--served-model-name", "accuknox-guard-1.2"]

@@ -21,20 +21,20 @@ for name, spec in DATASETS.items():
 PY
 
 step "2. build_benchmark: 2 candidates per benchmark dataset"
-python build_benchmark.py --per-dataset 2 --output $OUT/candidates.jsonl
+python build/build_benchmark.py --per-dataset 2 --output $OUT/candidates.jsonl
 
 step "3. jev_caller"
-python jev_caller.py --input $F --output $OUT/jev.jsonl
+python callers/jev_caller.py --input $F --output $OUT/jev.jsonl
 
 step "4. verify_glm (GLM 5.3 Flash vs dataset labels; no dataset dropped at this size)"
-python verify_glm.py --input $F --cache $OUT/glm.jsonl --output $OUT/verified.jsonl \
+python callers/verify_glm.py --input $F --cache $OUT/glm.jsonl --output $OUT/verified.jsonl \
     --disputed $OUT/disputed.jsonl --min-dataset-agreement 0
 
 step "5. bedrock_caller"
-python bedrock_caller.py --input $F --cache $OUT/bedrock.jsonl
+python callers/bedrock_caller.py --input $F --cache $OUT/bedrock.jsonl
 
 step "6. compare_systems on the 10 cases (dataset labels)"
-python compare_systems.py --bench $F --jev $OUT/jev.jsonl --glm $OUT/glm.jsonl --bedrock $OUT/bedrock.jsonl \
+python eval/compare_systems.py --bench $F --jev $OUT/jev.jsonl --glm $OUT/glm.jsonl --bedrock $OUT/bedrock.jsonl \
     --cases --output $OUT/compare.json
 
 python - <<'PY'
